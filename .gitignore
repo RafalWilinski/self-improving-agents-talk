@@ -1,0 +1,5 @@
+# Local render/check artifacts generated while iterating on the deck.
+/*.png
+
+# macOS metadata
+.DS_Store
