@@ -1017,6 +1017,53 @@
       display: block;
     }
 
+    .literal-tweets {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      width: 100%;
+      margin-top: 4px;
+      min-height: 0;
+    }
+
+    .literal-tweet-card {
+      height: 394px;
+      border: 1px solid rgba(41,37,36,.14);
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 12px;
+      overflow: auto;
+      display: block;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(124, 58, 237, .36) rgba(41, 37, 36, .06);
+    }
+
+    .literal-tweet-card .twitter-tweet {
+      margin: 0 !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+    }
+
+    .literal-tweet-card iframe {
+      max-width: 100% !important;
+      margin: 0 !important;
+    }
+
+    .literal-tweet-fallback {
+      display: block;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.55;
+      letter-spacing: .01em;
+      padding: 24px;
+      border: 1px solid rgba(41,37,36,.16);
+      background: rgba(250,250,249,.84);
+    }
+
     .minecraft {
       position: relative;
       height: 390px;
@@ -1761,10 +1808,10 @@
           <p class="body">Rafal Wilinski · Founding Engineer, Runlayer</p>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Hi, I'm Rafal. This talk is about self-improving agents, but not in the spooky sense where an agent secretly rewrites itself. I want to talk about something much more practical: when an agent does useful work, it should leave behind a better playbook for the next run, the next person, and eventually the whole company.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Hi everyone, I'm Rafal. Today I want to talk about self-improving agents, but not as an offline single-player loop where one agent just gets better by itself. I want to talk about how we can apply that self-improving loop across a whole organization, and ideally inside an enterprise. When an agent does useful work, it should leave behind a better playbook for the next run, the next person, and eventually the whole company.</p></aside>
     </div>
   </section>
-  <section class="slide light">
+<section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 86%; --gy: 18%;">
         <div class="chrome">
@@ -1789,10 +1836,10 @@
         </div>
         <div class="source">Bio source: rwilinski.ai</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Very quickly on me: I'm a founding engineer at Runlayer. Before that I was the tech lead for Zapier Agents, and before that I led AI work at Vendr. So most of my recent work has been about making agents reliable in production, not just impressive in demos. Outside work I'm usually climbing or drinking whiskey, but for legal and medical reasons, not at the same time.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Very quickly on me: I'm a founding engineer at Runlayer. Before that I was the tech lead for Zapier Agents, and before that I led AI work at Vendr. So most of my recent work has been about making agents reliable in production, not just impressive in demos. The thing I care about is this: when agents figure out how work should be done, they should help the company preserve that path. That becomes the AI golden path for your company. Outside work I'm usually climbing or drinking whiskey, but for legal and medical reasons, not at the same time.</p></aside>
     </div>
   </section>
-  <section class="slide">
+<section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 16%; --gy: 75%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">02 / term</div></div>
@@ -1806,10 +1853,10 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Before we go deeper, I want to define the word "skill." In this talk, a skill is basically a playbook an agent can load when the work starts. It tells the agent how to do a specific thing, when that procedure applies, what traps to avoid, and what good output looks like.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Before we go deeper, I want to make sure we are all on the same page about the word "skill." In this talk, a skill is essentially a playbook that an agent or client can load when it thinks that playbook is relevant. The technical pattern here is progressive disclosure. A skill has two parts: the actual content, and a short summary or description. At the beginning, the agent only sees the summary. When it thinks, "huh, this seems relevant," it decides to read the full skill and inject that content into its context. That is how the agent acquires the knowledge it needs for the task.</p></aside>
     </div>
   </section>
-  <section class="slide light">
+<section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 84%; --gy: 20%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">03 / METR</div></div>
@@ -1825,10 +1872,10 @@
         </div>
         <div class="source">Source: METR Task-Completion Time Horizons of Frontier AI Models, updated May 8, 2026</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>METR has this benchmark I really like because it measures agent capability in terms of task horizon. This is not just "how long did the model run." It is roughly: how long would a human expert need for the task that the model can now complete? And the trend is clear: frontier agents are getting better at longer, deeper, more multi-step work.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Okay, so why are skills important now? If you have not been living under a stone for the last six to twelve months, your workflow has probably changed pretty dramatically. And we can actually see that in a quantified way. There is this benchmark from METR that measures task horizon: roughly, how long can an agent work independently on a task and still have a good chance of completing it? The word "chance" is essential here, because these systems are probabilistic, not deterministic. As you can see, that horizon keeps improving. Every time it feels like we hit a wall, we wait a month or two, a new model shows up, and suddenly agents can work for longer again. The trend is clear: frontier agents are getting better at longer, deeper, multi-step work. Caveat: if those frontier capabilities are not taken from you. More on that later.</p></aside>
     </div>
   </section>
-  <section class="slide light">
+<section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 20%; --gy: 70%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">04 / deeper wrong paths</div></div>
@@ -1843,49 +1890,10 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>But there is a catch. If an agent can work independently for longer, it can also go much deeper into the wrong path. It can find a local optimum, spend hundreds of tool calls defending it, and then the next agent starts from scratch and repeats the same exploration. Longer autonomy makes persistent guidance more valuable.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But there is a catch. With great power comes great responsibility. If an agent can work independently for longer, it can also go much deeper into the wrong path. It can find a local optimum, spend hundreds of tool calls defending it, and then when the next agent starts from scratch, it repeats the same exploration, or maybe even finds a worse path. So the initial trajectory matters a lot. Being able to guide the agent toward the right target is extremely important, because otherwise you waste time, you waste money, and sometimes you optimize for the wrong thing entirely. This is what makes persistent guidance, using skills for example, so valuable.</p></aside>
     </div>
   </section>
-  <section class="slide">
-    <div class="unit">
-      <div class="frame video-frame" style="--gx: 82%; --gy: 16%;">
-        <div class="video-bg" aria-hidden="true">
-          <video autoplay muted loop playsinline preload="auto" poster="assets/video/voyager-minecraft-10s-preview.jpg">
-            <source src="assets/video/voyager-minecraft-10s.mp4" type="video/mp4" />
-          </video>
-        </div>
-        <div class="video-scrim"></div>
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">05 / Voyager</div></div>
-        <div class="content grid-2" style="grid-template-columns: .78fr 1.22fr;">
-          <div class="stack center">
-            <div class="eyebrow">This was visible in 2023</div>
-            <h2 class="display" style="font-size: 56px; max-width: 520px;">Voyager turned exploration into a growing skill library.</h2>
-            <p class="body" style="max-width: 520px; font-size: 18px;">In Minecraft, the agent explored, wrote reusable code skills, retrieved them later, and improved without changing model weights.</p>
-          </div>
-          <div></div>
-        </div>
-        <div class="source">Source: Voyager, arXiv:2305.16291</div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>This is why Voyager was so interesting back in 2023. It was a Minecraft agent that explored, wrote reusable code skills, put them in a skill library, and retrieved them later. GPT-4 had just been announced, we did not have today's skills ecosystem yet, but the core idea was already there: exploration should turn into reusable procedural knowledge.</p></aside>
-    </div>
-  </section>
-  <section class="slide">
-    <div class="unit">
-      <div class="frame" style="--gx: 70%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">06 / shorter letter</div></div>
-        <div class="content distill-slide" style="inset: 76px 54px 46px;">
-          <div class="stack distill-copy">
-            <div class="eyebrow">Distillation</div>
-            <h2 class="quote">“If I had more time, I would have written a shorter letter.”</h2>
-          </div>
-          <img class="distill-figure" src="assets/images/voyager-skill-library.png" alt="Voyager paper figure showing the automatic curriculum, skill library, iterative prompting, and environment feedback loop" />
-        </div>
-        <div class="source" style="left: auto; right: 64px;">Source: Voyager, arXiv:2305.16291</div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>There is this quote people usually phrase as, "If I had more time, I would have written a shorter letter." Agent traces have the same problem. A successful run might have 200 tool calls, dead ends, retries, and random documentation archaeology. The valuable thing is not the trace. The valuable thing is the shorter letter: the distilled workflow.</p></aside>
-    </div>
-  </section>
-  <section class="slide light">
+<section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 14%; --gy: 82%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">07 / enterprise examples</div></div>
@@ -1900,10 +1908,39 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>In enterprise settings this becomes very concrete. The valuable knowledge is often not glamorous. It is the ritual nobody wants every agent to rediscover: the incident that already happened, the SAP approval path, the legacy deploy script, the customer escalation language. If there is no curated playbook, the agent is guessing, and those guesses can create tickets, send messages, mutate systems, or waste a lot of human time.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Voyager was about Minecraft, but in enterprise settings this becomes even more important. The valuable knowledge is often not glamorous. It is tribal knowledge. It is the ritual that many agents would otherwise try to rediscover from first principles: SAP approval paths, legacy deployment scripts, customer escalation language, things like that. And if there is no curated playbook, the agent is just guessing and making wrong decisions. At that point, AI adoption in the company can simply fail, because people stop trusting the agents to follow the way work actually gets done.</p></aside>
     </div>
   </section>
-  <section class="slide">
+<section class="slide">
+    <div class="unit">
+      <div class="frame" style="--gx: 74%; --gy: 20%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">15 / ecosystem problem</div></div>
+        <div class="content grid-2">
+          <div class="terminal">
+            <pre><span class="prompt">$ npx skills install procurement-helper</span>
+downloading package...
+writing local files...
+editing client config...
+
+<span class="comment">works for a motivated dev</span>
+<span class="red">fails for HR, finance, marketing, ops</span></pre>
+          </div>
+          <div class="stack">
+            <div class="eyebrow">The current ecosystem</div>
+            <h2 class="display">Skill distribution is still too local-first.</h2>
+            <div class="list">
+              <div class="item"><div class="dot">01</div><div><h3>Manual install</h3><p>The happy path assumes npm, Git plugins, or local client config.</p></div></div>
+              <div class="item"><div class="dot">02</div><div><h3>Non-dev sharing breaks</h3><p>Hard to publish a change once and know everyone gets the updated skill.</p></div></div>
+              <div class="item"><div class="dot">03</div><div><h3>No learning network</h3><p>One agent learns. The rest of the organization does not.</p></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="source">Reference: <a href="https://x.com/HamelHusain/status/2065057311375421905">Hamel Husain on X</a></div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Now we hit the second problem: the ecosystem is inherently dev-centric. When you look at skills today, the things you mostly find are CLI commands, Git repositories as sources of truth, local files, plugins, and client config. And again, this works great for single-player mode and it works great for developers. But if you are a company and you are trying to build a strategy for expanding this to the whole organization, you need a better way. Hamel had a tweet that captured the exact question: how do non-developers share skills with their team, and how do you make sure everyone automatically gets the updated version when that skill changes?</p></aside>
+    </div>
+  </section>
+<section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 78%; --gy: 24%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">08 / hand authoring</div></div>
@@ -1925,10 +1962,156 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>So skills are valuable, but there is an annoying question: who writes them? Hand-authoring skills is useful, but it also feels a little silly. We are in the era of LLMs; we should not have to manually write poems for robots every time we discover a weird production procedure.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Okay, so skills are super important and really valuable, but there are actually two problems. First, nobody wants to write them by hand. Hand-authoring skills is useful, but it is also a little silly. We are in the era of LLMs. We should not be doing almost anything manually, especially writing poems for robots after we discover some weird database procedure. Second, the ecosystem around skills is still very developer-centric. Many teams are using Git as a repository for skills and plugins, and that is a totally valid way to start. It is even the recommended path when you read the Anthropic docs. But I believe there is a better way.</p></aside>
     </div>
   </section>
-  <section class="slide light">
+<section class="slide light">
+    <div class="unit">
+      <div class="frame" style="--gx: 80%; --gy: 24%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">16 / discourse</div></div>
+        <div class="content grid-2" style="grid-template-columns: .82fr 1.18fr; gap: 28px;">
+          <div class="stack">
+            <div class="eyebrow">The internet argument</div>
+            <h2 class="display">“Skills vs MCP” is the wrong fight.</h2>
+            <p class="body">The discourse got noisy fast. That noise is useful because it reveals the real question: what belongs in instructions, and what belongs in protocol?</p>
+          </div>
+          <div class="tweet-static">
+            <img src="assets/images/skills-vs-mcp-tweets-crop.png" alt="Static screenshot collage of tweets debating whether Skills make MCP obsolete" />
+          </div>
+        </div>
+        <div class="source">Sources: X posts by @levelsio, @garrytan, @Dan_Jeffries1</div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>When I went looking for the distribution layer, I mostly found a flame war. You've seen the takes: skills are killing MCP, MCP is dead, MCP is useless. I think that is the wrong framing. They are not competitors. One is the knowledge. The other is the wire.</p></aside>
+    </div>
+  </section>
+<section class="slide light">
+    <div class="unit">
+      <div class="frame" style="--gx: 84%; --gy: 18%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">17 / skills over MCP</div></div>
+        <div class="content stack" style="inset: 96px 64px 54px; gap: 18px;">
+          <div class="eyebrow">Skills over MCP</div>
+          <h2 class="display" style="font-size: 58px;">Make the remote MCP server the source of truth for skills.</h2>
+          <div class="mcp-evidence-grid">
+            <div class="compact-flow">
+              <div class="flow-step"><div class="label">Client</div><div class="name">Claude Code, ChatGPT, IDEs</div></div>
+              <div class="flow-step"><div class="label">MCP</div><div class="name">Find and fetch relevant skills</div></div>
+              <div class="flow-step"><div class="label">Registry</div><div class="name">Curated, versioned, governed</div></div>
+              <div class="flow-step"><div class="label">Runtime</div><div class="name">Freshest approved guidance</div></div>
+            </div>
+            <figure class="repo-shot-wrap">
+              <img class="repo-shot" src="assets/images/mcp-experimental-ext-skills.png" alt="Screenshot of the modelcontextprotocol experimental-ext-skills GitHub repository" />
+              <figcaption class="repo-caption">modelcontextprotocol/experimental-ext-skills</figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="source">Source: <a href="https://github.com/modelcontextprotocol/experimental-ext-skills">github.com/modelcontextprotocol/experimental-ext-skills</a></div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Our answer is Skills over MCP. Instead of installing skills locally, the remote MCP server becomes the source of truth. It can search the registry, return the right skill, enforce policy, and make sure every new session gets the freshest approved version. This is no longer just our internal instinct. The MCP ecosystem now has an experimental repository for this direction: modelcontextprotocol slash experimental-ext-skills. It is still experimental, but it points at the same shape of the solution.</p></aside>
+    </div>
+  </section>
+<section class="slide">
+    <div class="unit">
+      <div class="frame" style="--gx: 70%; --gy: 22%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">18 / API</div></div>
+        <div class="content grid-2">
+          <div class="stack">
+            <div class="eyebrow">Technically simple</div>
+            <h2 class="display">Two functions get you surprisingly far.</h2>
+            <p class="body">Search for relevant skills. Fetch the actual skill file. The harder work is ranking, scoping, governance, and evaluation.</p>
+          </div>
+          <div class="terminal">
+            <pre><span class="accent">findSkills</span>({
+  query: <span class="green">"debug chromium lambda fork"</span>
+}) → SkillSummary[]
+
+<span class="accent">getSkillFile</span>({
+  skillName: <span class="green">"chromium-lambda-runtime"</span>,
+  fileName: <span class="green">"SKILL.md"</span>
+}) → string</pre>
+          </div>
+        </div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>From a technical point of view, the basic protocol can be tiny. One function finds relevant skills for a query. Another function fetches the skill file. The hard part is not the JSON schema. The hard part is ranking, scoping, versioning, auditing, and deciding which skills are allowed to influence which agents.</p></aside>
+    </div>
+  </section>
+<section class="slide light">
+    <div class="unit">
+      <div class="frame" style="--gx: 84%; --gy: 20%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">19 / compatibility</div></div>
+        <div class="content stack center">
+          <div class="eyebrow">Client compatibility</div>
+          <h2 class="display">Not every AI client supports skills. Many do support MCP.</h2>
+          <div class="grid-3">
+            <div class="card"><span class="pill">Claude Code</span><h3 style="margin-top: 16px;">Native-ish skills</h3><p>Good developer path, increasingly skill-aware.</p></div>
+            <div class="card"><span class="pill">ChatGPT</span><h3 style="margin-top: 16px;">MCP bridge</h3><p>Use MCP to serve skills even when the client lacks first-class skill installs.</p></div>
+            <div class="card"><span class="pill">Enterprise</span><h3 style="margin-top: 16px;">One policy plane</h3><p>Admins control which skills can be loaded and by whom.</p></div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>This also solves a compatibility problem. Not every AI client has first-class support for skills today. ChatGPT, for example, is not the same as Claude Code here. But many clients are adding MCP support. So MCP gives us a bridge: we can serve skills to clients that do not have a native skill installer yet.</p></aside>
+    </div>
+  </section>
+<section class="slide">
+    <div class="unit">
+      <div class="frame" style="--gx: 74%; --gy: 26%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">20 / combination</div></div>
+        <div class="content stack center">
+          <div class="eyebrow">The combination</div>
+          <h2 class="display">Agents do the work. Skills guide the work. MCP distributes the guidance.</h2>
+          <div class="diagram" style="height: 330px;">
+            <div class="node" style="left: 70px; top: 120px;"><div class="label">Agent</div><div class="name">plans, acts, observes</div></div>
+            <div class="node" style="left: 360px; top: 120px;"><div class="label">Skill</div><div class="name">procedure + judgment</div></div>
+            <div class="node" style="left: 650px; top: 120px;"><div class="label">MCP</div><div class="name">governed loading</div></div>
+            <div class="node" style="left: 940px; top: 120px;"><div class="label">Org</div><div class="name">shared knowledge</div></div>
+            <div class="arrow" style="left: 240px; top: 178px; width: 118px;"></div>
+            <div class="arrow" style="left: 530px; top: 178px; width: 118px;"></div>
+            <div class="arrow" style="left: 820px; top: 178px; width: 118px;"></div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>So now the whole picture finally fits in one sentence. And notice we did not start here. We arrived here. Agents do the work. Skills guide the work. MCP distributes that guidance. That distribution layer is why one agent's learning can become company knowledge instead of a local file on one developer's machine.</p></aside>
+    </div>
+  </section>
+<section class="slide">
+    <div class="unit">
+      <div class="frame video-frame" style="--gx: 82%; --gy: 16%;">
+        <div class="video-bg" aria-hidden="true">
+          <video autoplay muted loop playsinline preload="auto" poster="assets/video/voyager-minecraft-10s-preview.jpg">
+            <source src="assets/video/voyager-minecraft-10s.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="video-scrim"></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">05 / Voyager</div></div>
+        <div class="content grid-2" style="grid-template-columns: .78fr 1.22fr;">
+          <div class="stack center">
+            <div class="eyebrow">This was visible in 2023</div>
+            <h2 class="display" style="font-size: 56px; max-width: 520px;">Voyager turned exploration into a growing skill library.</h2>
+            <p class="body" style="max-width: 520px; font-size: 18px;">In Minecraft, the agent explored, wrote reusable code skills, retrieved them later, and improved without changing model weights.</p>
+          </div>
+          <div></div>
+        </div>
+        <div class="source">Source: Voyager, arXiv:2305.16291</div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>And of course, we can all author skills by hand, but that part is not the interesting part. Everyone can do that. What I think is really interesting is the Voyager paper. This was back in 2023, right after GPT-4 was released, when people were still trying to measure agent effectiveness in harnesses like Minecraft: how long can an agent explore independently, and what can it learn? Voyager introduced this brilliant idea of a skill library. When the agent figured out how to do something useful, like craft a pickaxe, build a furnace, or make a crafting table, it saved the recipe for how it achieved that. Then, in the future, it did not have to rediscover the same thing from first principles. It could retrieve the skill, almost like a higher-order function or reusable code, and use that persisted knowledge directly.</p></aside>
+    </div>
+  </section>
+<section class="slide">
+    <div class="unit">
+      <div class="frame" style="--gx: 70%; --gy: 20%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">06 / skill library</div></div>
+        <div class="content distill-slide" style="inset: 76px 54px 46px;">
+          <div class="stack distill-copy">
+            <div class="eyebrow">The mechanism</div>
+            <h2 class="quote">Exploration becomes reusable procedural knowledge.</h2>
+          </div>
+          <img class="distill-figure" src="assets/images/voyager-skill-library.png" alt="Voyager paper figure showing the automatic curriculum, skill library, iterative prompting, and environment feedback loop" />
+        </div>
+        <div class="source" style="left: auto; right: 64px;">Source: Voyager, arXiv:2305.16291</div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>So while this diagram is on screen, the key thing to notice is the skill library. Voyager did not just explore Minecraft and throw the trace away. When the agent achieved something, it saved the recipe for how it got there. Later, when the same capability was needed again, the agent could retrieve that persisted skill instead of reasoning from scratch. That is the core idea I want to carry forward: exploration should turn into reusable procedural knowledge.</p></aside>
+    </div>
+  </section>
+<section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 82%; --gy: 20%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">09 / distill</div></div>
@@ -1949,7 +2132,7 @@ and...
       <aside class="notes"><div class="label">Speaker notes</div><p>The loop we started using is straightforward. Let the agent do real work. When the run succeeds, take the trace and ask another LLM to distill the reusable part. Then draft or update a skill. Some agent frameworks, like Hermes-style self-learning agents, do similar things. The important part for us is that the output is not hidden memory; it is a reviewable, editable artifact.</p></aside>
     </div>
   </section>
-  <section class="slide">
+<section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 18%; --gy: 70%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">10 / result</div></div>
@@ -1979,13 +2162,13 @@ and...
       <aside class="notes"><div class="label">Speaker notes</div><p>Here is the example that made this click for us. We had this very peculiar task: running a Chromium fork inside AWS Lambda. With Sonnet 4.6, across 25 runs, the agent could sometimes figure it out, but it was still unreliable: 9 out of 25, or about a 36 percent success rate. After distilling the successful trace into a skill, the same model went to 25 out of 25. We did not change the model. We changed the playbook.</p></aside>
     </div>
   </section>
-  <section class="slide light">
+<section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 82%; --gy: 20%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">11 / savings</div></div>
-        <div class="content stack center">
+        <div class="content stack center" style="inset: 116px 64px 54px;">
           <div class="eyebrow">Where the savings come from</div>
-          <h2 class="display">A skill narrows the search space before the agent starts spending.</h2>
+          <h2 class="display" style="font-size: 70px;">A skill narrows the search space before the agent starts spending.</h2>
           <div class="savings-board">
             <div class="savings-panel">
               <div class="saving-legend"><span>without skill</span><span>with skill</span></div>
@@ -1997,18 +2180,43 @@ and...
             <div class="savings-equation">
               <div class="equation-step">Less rediscovery.</div>
               <div class="equation-step">Fewer wrong branches.</div>
-              <div class="equation-step">Same model, cheaper trajectory.</div>
+              <div class="equation-step">Rented intelligence becomes owned knowledge.</div>
+            </div>
+          </div>
+        </div>
+        <div class="source">Reference: <a href="https://x.com/shadcn/status/2065826989769163068">shadcn on X</a></div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The success rate is the easiest number to show, but the savings are broader. A good skill narrows the search space before the agent starts spending. It reduces failed attempts, tool calls, tokens, wall clock time, and human interruptions. But putting savings and accuracy aside, there is a deeper reason to do this. Frontier-model intelligence is rented. It can move, change, get deprecated, or just disappear behind a different product surface. So while we have access to that intelligence, we should use it to discover and persist useful procedures. We should be building a catalog, almost a collective subconscious, of how work gets done inside the company.</p></aside>
+    </div>
+  </section>
+<section class="slide light">
+    <div class="unit">
+      <div class="frame" style="--gx: 84%; --gy: 18%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">12 / why now</div></div>
+        <div class="content stack" style="inset: 78px 64px 42px; justify-content: flex-start; gap: 14px;">
+          <div class="eyebrow">The market is noticing</div>
+          <h2 class="display" style="font-size: 48px; max-width: 1010px;">The question is not just “can agents do it?” It is “what does the company retain?”</h2>
+          <div class="literal-tweets">
+            <div class="literal-tweet-card">
+              <blockquote class="twitter-tweet" data-theme="light" data-dnt="true">
+                <a class="literal-tweet-fallback" href="https://x.com/shadcn/status/2065826989769163068">Open shadcn tweet about persisting useful knowledge from frontier intelligence</a>
+              </blockquote>
+            </div>
+            <div class="literal-tweet-card">
+              <blockquote class="twitter-tweet" data-theme="light" data-dnt="true">
+                <a class="literal-tweet-fallback" href="https://x.com/HamelHusain/status/2065057311375421905">Open Hamel Husain tweet about non-developers sharing skills with a team and keeping everyone updated</a>
+              </blockquote>
             </div>
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The success rate is the easiest number to show, but the savings are broader. A good skill narrows the search space before the agent starts spending. It reduces failed attempts, tool calls, tokens, wall clock time, and human interruptions. This is why the playbook matters economically, not just qualitatively. You are not buying a smarter model for every run. You are preventing the same expensive wandering from happening again.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>These two tweets point at the same deeper problem from different angles. One is about the fact that intelligence can be temporary. If we have access to frontier intelligence, we should use it to discover and persist useful work patterns. The other is about distribution: how do non-developers share skills with a team, and how does everyone get the updated version automatically? Together, that is the real opportunity: turn temporary intelligence into a durable, shared catalog of how the company works.</p></aside>
     </div>
   </section>
-  <section class="slide light">
+<section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 80%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">12 / clicked</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">13 / clicked</div></div>
         <div class="content stack center">
           <div class="eyebrow">The click</div>
           <h2 class="display">We copied the distilled output into our recommended skills library.</h2>
@@ -2041,10 +2249,10 @@ and...
       <aside class="notes"><div class="label">Speaker notes</div><p>The distilled skill was good enough that we literally copied it into our recommended skills library. And that felt absurd in a useful way. The agent had produced organizational knowledge, and we were manually doing the promotion step. That is when we started asking: why is this not a product workflow?</p></aside>
     </div>
   </section>
-  <section class="slide">
+<section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 22%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">13 / examples of org knowledge</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">14 / examples of org knowledge</div></div>
         <div class="content stack center">
           <div class="eyebrow">What gets promoted?</div>
           <h2 class="display">The useful skills are usually boring, precise, and local.</h2>
@@ -2058,157 +2266,22 @@ and...
       <aside class="notes"><div class="label">Speaker notes</div><p>The skills worth promoting are usually not glamorous. They are boring, precise, local procedures. How this repo expects auth and retries. How this support team handles a certain escalation. How this vendor integration gets configured. That is the stuff companies actually need agents to remember.</p></aside>
     </div>
   </section>
-  <section class="slide">
-    <div class="unit">
-      <div class="frame" style="--gx: 74%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">14 / ecosystem problem</div></div>
-        <div class="content grid-2">
-          <div class="terminal">
-            <pre><span class="prompt">$ npx skills install procurement-helper</span>
-downloading package...
-writing local files...
-editing client config...
-
-<span class="comment">works for a motivated dev</span>
-<span class="red">fails for HR, finance, marketing, ops</span></pre>
-          </div>
-          <div class="stack">
-            <div class="eyebrow">The current ecosystem</div>
-            <h2 class="display">Skill distribution is still too local-first.</h2>
-            <div class="list">
-              <div class="item"><div class="dot">01</div><div><h3>Manual install</h3><p>The happy path assumes npm, Git plugins, or local client config.</p></div></div>
-              <div class="item"><div class="dot">02</div><div><h3>No shared lifecycle</h3><p>Hard to approve, update, retire, or measure a skill across a company.</p></div></div>
-              <div class="item"><div class="dot">03</div><div><h3>No learning network</h3><p>One agent learns. The rest of the organization does not.</p></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Now we hit the ecosystem problem. The common install path for skills is still very developer-oriented: Git plugins, local files, npx commands, editing client config. That is fine for us in this room, but good luck asking HR, finance, marketing, or operations to manage company knowledge that way. This is where MCP becomes useful again.</p></aside>
-    </div>
-  </section>
-  <section class="slide light">
-    <div class="unit">
-      <div class="frame" style="--gx: 80%; --gy: 24%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">15 / discourse</div></div>
-        <div class="content grid-2" style="grid-template-columns: .82fr 1.18fr; gap: 28px;">
-          <div class="stack">
-            <div class="eyebrow">The internet argument</div>
-            <h2 class="display">“Skills vs MCP” is the wrong fight.</h2>
-            <p class="body">The discourse got noisy fast. That noise is useful because it reveals the real question: what belongs in instructions, and what belongs in protocol?</p>
-          </div>
-          <div class="tweet-static">
-            <img src="assets/images/skills-vs-mcp-tweets-crop.png" alt="Static screenshot collage of tweets debating whether Skills make MCP obsolete" />
-          </div>
-        </div>
-        <div class="source">Sources: X posts by @levelsio, @garrytan, @Dan_Jeffries1</div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>When I went looking for the distribution layer, I mostly found a flame war. You've seen the takes: skills are killing MCP, MCP is dead, MCP is useless. I think that is the wrong framing. They are not competitors. One is the knowledge. The other is the wire.</p></aside>
-    </div>
-  </section>
-  <section class="slide light">
-    <div class="unit">
-      <div class="frame" style="--gx: 84%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">16 / skills over MCP</div></div>
-        <div class="content stack" style="inset: 96px 64px 54px; gap: 18px;">
-          <div class="eyebrow">Skills over MCP</div>
-          <h2 class="display" style="font-size: 58px;">Make the remote MCP server the source of truth for skills.</h2>
-          <div class="mcp-evidence-grid">
-            <div class="compact-flow">
-              <div class="flow-step"><div class="label">Client</div><div class="name">Claude Code, ChatGPT, IDEs</div></div>
-              <div class="flow-step"><div class="label">MCP</div><div class="name">Find and fetch relevant skills</div></div>
-              <div class="flow-step"><div class="label">Registry</div><div class="name">Curated, versioned, governed</div></div>
-              <div class="flow-step"><div class="label">Runtime</div><div class="name">Freshest approved guidance</div></div>
-            </div>
-            <figure class="repo-shot-wrap">
-              <img class="repo-shot" src="assets/images/mcp-experimental-ext-skills.png" alt="Screenshot of the modelcontextprotocol experimental-ext-skills GitHub repository" />
-              <figcaption class="repo-caption">modelcontextprotocol/experimental-ext-skills</figcaption>
-            </figure>
-          </div>
-        </div>
-        <div class="source">Source: <a href="https://github.com/modelcontextprotocol/experimental-ext-skills">github.com/modelcontextprotocol/experimental-ext-skills</a></div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Our answer is Skills over MCP. Instead of installing skills locally, the remote MCP server becomes the source of truth. It can search the registry, return the right skill, enforce policy, and make sure every new session gets the freshest approved version. This is no longer just our internal instinct. The MCP ecosystem now has an experimental repository for this direction: modelcontextprotocol slash experimental-ext-skills. It is still experimental, but it points at the same shape of the solution.</p></aside>
-    </div>
-  </section>
-  <section class="slide">
-    <div class="unit">
-      <div class="frame" style="--gx: 70%; --gy: 22%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">17 / API</div></div>
-        <div class="content grid-2">
-          <div class="stack">
-            <div class="eyebrow">Technically simple</div>
-            <h2 class="display">Two functions get you surprisingly far.</h2>
-            <p class="body">Search for relevant skills. Fetch the actual skill file. The harder work is ranking, scoping, governance, and evaluation.</p>
-          </div>
-          <div class="terminal">
-            <pre><span class="accent">findSkills</span>({
-  query: <span class="green">"debug chromium lambda fork"</span>
-}) → SkillSummary[]
-
-<span class="accent">getSkillFile</span>({
-  skillName: <span class="green">"chromium-lambda-runtime"</span>,
-  fileName: <span class="green">"SKILL.md"</span>
-}) → string</pre>
-          </div>
-        </div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>From a technical point of view, the basic protocol can be tiny. One function finds relevant skills for a query. Another function fetches the skill file. The hard part is not the JSON schema. The hard part is ranking, scoping, versioning, auditing, and deciding which skills are allowed to influence which agents.</p></aside>
-    </div>
-  </section>
-  <section class="slide light">
-    <div class="unit">
-      <div class="frame" style="--gx: 84%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">18 / compatibility</div></div>
-        <div class="content stack center">
-          <div class="eyebrow">Client compatibility</div>
-          <h2 class="display">Not every AI client supports skills. Many do support MCP.</h2>
-          <div class="grid-3">
-            <div class="card"><span class="pill">Claude Code</span><h3 style="margin-top: 16px;">Native-ish skills</h3><p>Good developer path, increasingly skill-aware.</p></div>
-            <div class="card"><span class="pill">ChatGPT</span><h3 style="margin-top: 16px;">MCP bridge</h3><p>Use MCP to serve skills even when the client lacks first-class skill installs.</p></div>
-            <div class="card"><span class="pill">Enterprise</span><h3 style="margin-top: 16px;">One policy plane</h3><p>Admins control which skills can be loaded and by whom.</p></div>
-          </div>
-        </div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>This also solves a compatibility problem. Not every AI client has first-class support for skills today. ChatGPT, for example, is not the same as Claude Code here. But many clients are adding MCP support. So MCP gives us a bridge: we can serve skills to clients that do not have a native skill installer yet.</p></aside>
-    </div>
-  </section>
-  <section class="slide">
-    <div class="unit">
-      <div class="frame" style="--gx: 74%; --gy: 26%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">19 / combination</div></div>
-        <div class="content stack center">
-          <div class="eyebrow">The combination</div>
-          <h2 class="display">Agents do the work. Skills guide the work. MCP distributes the guidance.</h2>
-          <div class="diagram" style="height: 330px;">
-            <div class="node" style="left: 70px; top: 120px;"><div class="label">Agent</div><div class="name">plans, acts, observes</div></div>
-            <div class="node" style="left: 360px; top: 120px;"><div class="label">Skill</div><div class="name">procedure + judgment</div></div>
-            <div class="node" style="left: 650px; top: 120px;"><div class="label">MCP</div><div class="name">governed loading</div></div>
-            <div class="node" style="left: 940px; top: 120px;"><div class="label">Org</div><div class="name">shared knowledge</div></div>
-            <div class="arrow" style="left: 240px; top: 178px; width: 118px;"></div>
-            <div class="arrow" style="left: 530px; top: 178px; width: 118px;"></div>
-            <div class="arrow" style="left: 820px; top: 178px; width: 118px;"></div>
-          </div>
-        </div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>So now the whole picture finally fits in one sentence. And notice we did not start here. We arrived here. Agents do the work. Skills guide the work. MCP distributes that guidance. That distribution layer is why one agent's learning can become company knowledge instead of a local file on one developer's machine.</p></aside>
-    </div>
-  </section>
-  <section class="slide">
+<section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 70%; --gy: 24%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">20 / boundary</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">21 / boundary</div></div>
         <div class="blast">
           <div class="eyebrow">Distribution failure</div>
-          <h2 class="blast-sentence">A <span class="danger">bad skill</span> shared across agents becomes <span>organizational hallucination.</span></h2>
+          <h2 class="blast-sentence">A <span class="danger">bad skill</span> shared across agents becomes <span class="danger">organizational hallucination.</span></h2>
         </div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>Here is the sharper version of the failure mode. A bad skill shared across agents becomes organizational hallucination. It is no longer one agent making one bad call. It is the company repeatedly teaching agents the wrong procedure. That is why scope, evaluation, and rollback are not enterprise checkboxes. They are the difference between organizational learning and organizational hallucination.</p></aside>
     </div>
   </section>
-  <section class="slide light">
+<section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 16%; --gy: 74%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">21 / bad skill</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">22 / bad skill</div></div>
         <div class="content stack center">
           <div class="eyebrow">Keep this sentence</div>
           <h2 class="display">A bad skill is worse than no skill.</h2>
@@ -2224,10 +2297,10 @@ editing client config...
       <aside class="notes"><div class="label">Speaker notes</div><p>A bad skill is worse than no skill because a skill biases the agent. That is why it helps. But if the skill is wrong, stale, overfit, or distributed across the wrong boundary, it turns a one-time mistake into a repeatable instruction. You need evidence, scoped rollout, versioning, continuous evaluation, and iteration on persisted skills, because otherwise you have taught the company the wrong thing.</p></aside>
     </div>
   </section>
-  <section class="slide">
+<section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 76%; --gy: 22%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">22 / iteration</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">23 / iteration</div></div>
         <div class="content grid-2" style="grid-template-columns: .56fr 1.44fr; gap: 24px;">
           <div class="stack center">
             <div class="eyebrow">Iteration</div>
@@ -2236,16 +2309,6 @@ editing client config...
           </div>
           <div style="position: relative;">
             <img class="iteration-visual" src="assets/images/skill-improvement-landscape.png" alt="Isometric skill optimization landscape where accepted skill diffs move toward better task completion, with one rejected side branch" />
-            <div class="version-log">
-              <pre><span class="comment">skill: procurement-sap</span>
-v1  <span class="amber">+ captured happy path</span>
-v2  <span class="green">+ added vendor exception</span>
-v3  <span class="red">- overfit to one cost center</span>
-v4  <span class="green">+ restored generic flow</span>
-
-<span class="prompt">$ rollback</span> v3
-<span class="prompt">$ promote</span> v4 --scope team-finance</pre>
-            </div>
           </div>
         </div>
         <div class="source" style="left: auto; right: 70px; bottom: 48px;">Source: SkillGrad, arXiv:2605.27760</div>
@@ -2253,10 +2316,10 @@ v4  <span class="green">+ restored generic flow</span>
       <aside class="notes"><div class="label">Speaker notes</div><p>That is why versioning matters. Zero-shot skills are often not good enough. As agents uncover more edge cases, the system should patch the existing skill. You can think of this as gradient descent over skills: each run gives you a signal about the procedure. But some patches will make the skill worse, so skills need to behave more like code: versions, diffs, rollback, and eventually A/B tests between the current skill and a candidate update.</p></aside>
     </div>
   </section>
-  <section class="slide">
+<section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">23 / promotion</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">24 / promotion</div></div>
         <div class="content stack center">
           <div class="eyebrow">Agent memory → org knowledge</div>
           <h2 class="display">Promotion is a product workflow, not a hidden model behavior.</h2>
@@ -2276,10 +2339,10 @@ v4  <span class="green">+ restored generic flow</span>
       <aside class="notes"><div class="label">Speaker notes</div><p>Promotion is the boundary where I want humans involved. An LLM can suggest that a private skill is useful. It can summarize evidence and propose edits. But an admin or domain owner should decide when that skill becomes a team or organization default. Promotion is a workflow, not a hidden model behavior.</p></aside>
     </div>
   </section>
-  <section class="slide">
+<section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 76%; --gy: 26%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">24 / flywheel</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">25 / flywheel</div></div>
         <div class="content stack center" style="inset: 118px 64px 46px;">
           <div class="eyebrow">Self-improving company knowledge</div>
           <h2 class="display" style="font-size: 70px;">One agent learns. Everyone starts smarter.</h2>
@@ -2289,10 +2352,10 @@ v4  <span class="green">+ restored generic flow</span>
       <aside class="notes"><div class="label">Speaker notes</div><p>This is the flywheel. An agent solves real work. The successful run becomes a private learned skill. The useful skill gets reviewed and promoted into organizational knowledge. Then the skill registry and MCP make that knowledge available inside the AI clients employees already use. One agent learns, and everyone starts smarter.</p></aside>
     </div>
   </section>
-  <section class="slide">
+<section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">25 / close</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">26 / close</div></div>
         <div class="content grid-2">
           <div class="stack">
             <div class="eyebrow">The thesis</div>
@@ -2309,6 +2372,7 @@ v4  <span class="green">+ restored generic flow</span>
       <aside class="notes"><div class="label">Speaker notes</div><p>So the thesis is simple: the agent should leave a handbook. Capture procedures, not transcript residue. Load skills through governed infrastructure. Promote slowly and version aggressively. Self-improving agents are not valuable because they become mysterious. They are valuable because they teach the company back.</p></aside>
     </div>
   </section>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script>
     const slides = Array.from(document.querySelectorAll(".slide"));
     const progress = document.getElementById("progress");
