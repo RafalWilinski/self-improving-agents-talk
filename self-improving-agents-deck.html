@@ -43,6 +43,54 @@
         U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
     }
 
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("assets/fonts/inter-tight/InterTight-400.ttf") format("truetype");
+    }
+
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("assets/fonts/inter-tight/InterTight-500.ttf") format("truetype");
+    }
+
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url("assets/fonts/inter-tight/InterTight-600.ttf") format("truetype");
+    }
+
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("assets/fonts/inter-tight/InterTight-700.ttf") format("truetype");
+    }
+
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url("assets/fonts/inter-tight/InterTight-800.ttf") format("truetype");
+    }
+
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url("assets/fonts/inter-tight/InterTight-900.ttf") format("truetype");
+    }
+
     :root {
       --bg: #0C0A09;
       --ink: #1C1917;
@@ -79,13 +127,20 @@
       --alpha-dark-200: rgb(253 253 253 / 20%);
       --radius-md: 8px;
       --radius-lg: 12px;
-      --shadow: 0 1px 1px 0 rgb(255 255 255 / 0.06) inset, 0 4px 8px -2px var(--alpha-light-100);
-      --shadow-dark: 0 1px 1px 0 rgb(255 255 255 / 0.04) inset, 0 0 0 1px var(--alpha-dark-100), 0 8px 16px -8px rgb(0 0 0 / .55);
+      --shadow: none;
+      --shadow-dark: none;
       --sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+      --display: "Inter Tight", "Geist", ui-sans-serif, system-ui, sans-serif;
       --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
-    * { box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
 
     html {
       scroll-snap-type: y mandatory;
@@ -283,6 +338,7 @@
     .center { justify-content: center; }
 
     .title {
+      font-family: var(--display);
       font-size: clamp(52px, 5.7vw, 84px);
       line-height: .96;
       font-weight: 650;
@@ -290,12 +346,33 @@
       max-width: 1040px;
     }
 
+    .title-dim {
+      color: rgba(250, 250, 249, .36);
+    }
+
+    .title-highlight {
+      color: var(--white);
+    }
+
     .display {
+      font-family: var(--display);
       font-size: clamp(46px, 5vw, 74px);
       line-height: .99;
       font-weight: 650;
       letter-spacing: -0.025em;
       max-width: 1060px;
+    }
+
+    .problem-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--purple);
+      font-family: var(--mono);
+      font-size: 15px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
 
     .body {
@@ -307,6 +384,11 @@
     }
 
     .light .body { color: rgba(41,37,36,.67); }
+
+    .light .body .ink-emphasis {
+      color: var(--ink);
+      font-weight: 850;
+    }
 
     .small {
       font-size: 16px;
@@ -378,6 +460,162 @@
     }
 
     .light .pill { color: rgba(41,37,36,.58); }
+
+    .client-board {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(250,250,249,.055);
+      box-shadow: var(--shadow-dark);
+      overflow: hidden;
+    }
+
+    .client-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      min-height: 92px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .client-row:last-child { border-bottom: 0; }
+
+    .client-row h3 {
+      font-size: 26px;
+      line-height: 1.08;
+      font-weight: 850;
+    }
+
+    .client-row p {
+      margin-top: 6px;
+      color: rgba(250,250,249,.56);
+      font-size: 15px;
+      line-height: 1.28;
+      font-weight: 650;
+    }
+
+    .support-badge {
+      min-width: 112px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 850;
+      border: 1px solid currentColor;
+    }
+
+    .support-badge.yes {
+      color: var(--teal);
+      background: rgba(45, 212, 191, .1);
+    }
+
+    .support-badge.no {
+      color: var(--red);
+      background: rgba(248, 113, 113, .1);
+    }
+
+    .coverage-table {
+      margin-top: 18px;
+      border-top: 1px solid rgba(41,37,36,.16);
+      border-bottom: 1px solid rgba(41,37,36,.10);
+      color: var(--ink);
+    }
+
+    .coverage-row {
+      display: grid;
+      grid-template-columns: 1.2fr .62fr .62fr 1.85fr;
+      gap: 18px;
+      align-items: center;
+      min-height: 43px;
+      border-bottom: 1px solid rgba(41,37,36,.08);
+    }
+
+    .coverage-row:last-child { border-bottom: 0; }
+
+    .coverage-head {
+      min-height: 36px;
+      color: rgba(41,37,36,.58);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .coverage-client {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      line-height: 1.08;
+      font-weight: 850;
+    }
+
+    .coverage-client::before {
+      content: "";
+      width: 3px;
+      height: 22px;
+      background: rgba(41,37,36,.52);
+      border-radius: 2px;
+    }
+
+    .coverage-note {
+      color: rgba(41,37,36,.66);
+      font-size: 12px;
+      line-height: 1.18;
+      font-weight: 650;
+    }
+
+    .coverage-mark {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-inline: auto;
+      border: 2px solid var(--ink);
+      display: block;
+    }
+
+    .coverage-mark.full {
+      background: var(--ink);
+    }
+
+    .coverage-mark.partial {
+      background: linear-gradient(90deg, var(--ink) 0 50%, transparent 50% 100%);
+    }
+
+    .coverage-mark.empty {
+      background: transparent;
+      border-color: rgba(41,37,36,.46);
+    }
+
+    .coverage-legend {
+      display: flex;
+      gap: 18px;
+      margin-top: 14px;
+      color: rgba(41,37,36,.54);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-item .coverage-mark {
+      width: 12px;
+      height: 12px;
+      border-width: 1.5px;
+    }
 
     .quote {
       font-size: clamp(46px, 4.9vw, 74px);
@@ -915,6 +1153,12 @@
       background: rgba(255,255,255,.7);
     }
 
+    .social.author-social a {
+      font-size: 13px;
+      padding: 10px 14px;
+      letter-spacing: .09em;
+    }
+
     .tweet-chaos {
       position: relative;
       height: 520px;
@@ -1015,6 +1259,10 @@
       object-fit: cover;
       object-position: center;
       display: block;
+    }
+
+    .tweet-static.discourse-tweets img {
+      object-position: center 34%;
     }
 
     .literal-tweets {
@@ -1327,6 +1575,27 @@
       letter-spacing: .05em;
       color: rgba(41,37,36,.58);
       font-weight: 800;
+    }
+
+    .repo-fullscreen {
+      position: absolute;
+      inset: 74px 46px 42px;
+      border: 1px solid rgba(41,37,36,.15);
+      background: var(--white);
+      padding: 12px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .repo-fullscreen img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      border: 1px solid rgba(41,37,36,.12);
+      border-radius: var(--radius-md);
+      background: #fff;
     }
 
     .video-bg {
@@ -1822,21 +2091,35 @@
           <div class="stack">
             <div class="eyebrow">Rafal Wilinski</div>
             <h2 class="display" style="font-size: 60px; max-width: 560px;">I build agents that have to survive production.</h2>
-            <p class="body">Founding Engineer at Runlayer. Previously Tech Lead for Zapier Agents, AI Tech Lead at Vendr, and creator of Dynobase.</p>
+            <p class="body">Founding Engineer at <span class="ink-emphasis">Runlayer</span>. Previously Tech Lead for <span class="ink-emphasis">Zapier</span> Agents, AI Tech Lead at Vendr, and creator of <span class="ink-emphasis">Dynobase</span>.</p>
           </div>
           <div class="stack" style="align-items: center;">
             <img class="photo" src="assets/rafal-wilinski.jpeg" alt="Rafal Wilinski profile photo" />
-            <p class="small" style="max-width: 330px;">Outside work: climbing, whiskey, and a strict policy of not combining those two hobbies.</p>
-            <div class="social" style="max-width: 360px; justify-content: center;">
+            <div class="social author-social" style="max-width: 360px; justify-content: center;">
               <a href="https://x.com/RafalWilinski">x.com/RafalWilinski</a>
-              <a href="https://rwilinski.ai">rwilinski.ai</a>
-              <a href="https://www.linkedin.com/in/rafwilinski/">LinkedIn</a>
             </div>
           </div>
         </div>
         <div class="source">Bio source: rwilinski.ai</div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>Very quickly on me: I'm a founding engineer at Runlayer. Before that I was the tech lead for Zapier Agents, and before that I led AI work at Vendr. So most of my recent work has been about making agents reliable in production, not just impressive in demos. The thing I care about is this: when agents figure out how work should be done, they should help the company preserve that path. That becomes the AI golden path for your company. Outside work I'm usually climbing or drinking whiskey, but for legal and medical reasons, not at the same time.</p></aside>
+    </div>
+  </section>
+<section class="slide">
+    <div class="unit">
+      <div class="frame" style="--gx: 74%; --gy: 22%;">
+        <div class="chrome">
+          <div>
+            <img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" />
+            <img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" />
+          </div>
+          <div class="slide-no">AI Engineer World's Fair 2026</div>
+        </div>
+        <div class="content stack center">
+          <h1 class="title title-dim">Self-<span class="title-highlight">Improving Agents</span> That Teach the Company Back</h1>
+        </div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Before we get into architecture, I want to separate the two parts of the title. The interesting part is not just that agents are useful. It is the self-improving loop: how an agent learns from work, turns that into a reusable playbook, and makes future work better.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -1915,24 +2198,16 @@
     <div class="unit">
       <div class="frame" style="--gx: 74%; --gy: 20%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">15 / ecosystem problem</div></div>
-        <div class="content grid-2">
-          <div class="terminal">
-            <pre><span class="prompt">$ npx skills install procurement-helper</span>
-downloading package...
-writing local files...
-editing client config...
-
-<span class="comment">works for a motivated dev</span>
-<span class="red">fails for HR, finance, marketing, ops</span></pre>
-          </div>
+        <div class="content grid-2" style="grid-template-columns: .92fr 1.08fr; align-items: center;">
           <div class="stack">
             <div class="eyebrow">The current ecosystem</div>
-            <h2 class="display">Skill distribution is still too local-first.</h2>
-            <div class="list">
-              <div class="item"><div class="dot">01</div><div><h3>Manual install</h3><p>The happy path assumes npm, Git plugins, or local client config.</p></div></div>
-              <div class="item"><div class="dot">02</div><div><h3>Non-dev sharing breaks</h3><p>Hard to publish a change once and know everyone gets the updated skill.</p></div></div>
-              <div class="item"><div class="dot">03</div><div><h3>No learning network</h3><p>One agent learns. The rest of the organization does not.</p></div></div>
-            </div>
+            <h2 class="display"><span class="problem-label">Problem #1:</span>Skills are local-first and dev-centric.</h2>
+            <p class="body">That is fine for developers. It breaks when a whole company needs shared, updated knowledge.</p>
+          </div>
+          <div class="literal-tweet-card" style="height: 430px;">
+            <blockquote class="twitter-tweet" data-theme="light" data-dnt="true">
+              <a class="literal-tweet-fallback" href="https://x.com/HamelHusain/status/2065057311375421905">Open Hamel Husain tweet about non-developers sharing skills with a team and keeping everyone updated</a>
+            </blockquote>
           </div>
         </div>
         <div class="source">Reference: <a href="https://x.com/HamelHusain/status/2065057311375421905">Hamel Husain on X</a></div>
@@ -1947,7 +2222,7 @@ editing client config...
         <div class="content grid-2">
           <div class="stack">
             <div class="eyebrow">The lame part</div>
-            <h2 class="display">Who wants to write poems for robots?</h2>
+            <h2 class="display"><span class="problem-label">Problem #2:</span>Nobody wants to create them.</h2>
             <p class="body">Hand-authored skills are useful, but they do not scale to every weird task an agent discovers while doing real work.</p>
           </div>
           <div class="terminal">
@@ -1965,6 +2240,35 @@ and...
       <aside class="notes"><div class="label">Speaker notes</div><p>Okay, so skills are super important and really valuable, but there are actually two problems. First, nobody wants to write them by hand. Hand-authoring skills is useful, but it is also a little silly. We are in the era of LLMs. We should not be doing almost anything manually, especially writing poems for robots after we discover some weird database procedure. Second, the ecosystem around skills is still very developer-centric. Many teams are using Git as a repository for skills and plugins, and that is a totally valid way to start. It is even the recommended path when you read the Anthropic docs. But I believe there is a better way.</p></aside>
     </div>
   </section>
+<section class="slide">
+    <div class="unit">
+      <div class="frame" style="--gx: 72%; --gy: 22%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">09 / client gap</div></div>
+        <div class="content grid-2" style="grid-template-columns: .96fr 1.04fr; gap: 34px;">
+          <div class="stack">
+            <div class="eyebrow">Client compatibility</div>
+            <h2 class="display"><span class="problem-label">Problem #3:</span>Not every LLM client supports Skills.</h2>
+            <p class="body">Including the client your HR, marketing, and finance teams are most likely already using.</p>
+          </div>
+          <div class="client-board">
+            <div class="client-row">
+              <div><h3>Claude Code</h3><p>Great for developers. Native skill workflows fit the audience.</p></div>
+              <div class="support-badge yes">Skills</div>
+            </div>
+            <div class="client-row">
+              <div><h3>ChatGPT</h3><p>The popular client for non-developer departments.</p></div>
+              <div class="support-badge no">No Skills</div>
+            </div>
+            <div class="client-row">
+              <div><h3>Enterprise clients</h3><p>Mixed support, different surfaces, uneven rollout.</p></div>
+              <div class="support-badge no">Fragmented</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>There is a third problem: not every LLM client supports Skills. Claude Code is great if your audience is developers. But ChatGPT, for instance, is probably still the most popular client inside HR, marketing, finance, and other non-developer departments. So even if you write a great skill, the people who need it may be using a client that does not have native Skills support. That is a distribution problem too.</p></aside>
+    </div>
+  </section>
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 80%; --gy: 24%;">
@@ -1972,10 +2276,9 @@ and...
         <div class="content grid-2" style="grid-template-columns: .82fr 1.18fr; gap: 28px;">
           <div class="stack">
             <div class="eyebrow">The internet argument</div>
-            <h2 class="display">“Skills vs MCP” is the wrong fight.</h2>
-            <p class="body">The discourse got noisy fast. That noise is useful because it reveals the real question: what belongs in instructions, and what belongs in protocol?</p>
+            <h2 class="display">“Skills vs MCP” is the wrong fight. Skills-over-MCP is the answer.</h2>
           </div>
-          <div class="tweet-static">
+          <div class="tweet-static discourse-tweets">
             <img src="assets/images/skills-vs-mcp-tweets-crop.png" alt="Static screenshot collage of tweets debating whether Skills make MCP obsolete" />
           </div>
         </div>
@@ -1991,22 +2294,28 @@ and...
         <div class="content stack" style="inset: 96px 64px 54px; gap: 18px;">
           <div class="eyebrow">Skills over MCP</div>
           <h2 class="display" style="font-size: 58px;">Make the remote MCP server the source of truth for skills.</h2>
-          <div class="mcp-evidence-grid">
-            <div class="compact-flow">
-              <div class="flow-step"><div class="label">Client</div><div class="name">Claude Code, ChatGPT, IDEs</div></div>
-              <div class="flow-step"><div class="label">MCP</div><div class="name">Find and fetch relevant skills</div></div>
-              <div class="flow-step"><div class="label">Registry</div><div class="name">Curated, versioned, governed</div></div>
-              <div class="flow-step"><div class="label">Runtime</div><div class="name">Freshest approved guidance</div></div>
-            </div>
-            <figure class="repo-shot-wrap">
-              <img class="repo-shot" src="assets/images/mcp-experimental-ext-skills.png" alt="Screenshot of the modelcontextprotocol experimental-ext-skills GitHub repository" />
-              <figcaption class="repo-caption">modelcontextprotocol/experimental-ext-skills</figcaption>
-            </figure>
+          <div class="compact-flow" style="max-width: 720px;">
+            <div class="flow-step"><div class="label">Client</div><div class="name">Claude Code, ChatGPT, IDEs</div></div>
+            <div class="flow-step"><div class="label">MCP</div><div class="name">Find and fetch relevant skills</div></div>
+            <div class="flow-step"><div class="label">Registry</div><div class="name">Curated, versioned, governed</div></div>
+            <div class="flow-step"><div class="label">Runtime</div><div class="name">Freshest approved guidance</div></div>
           </div>
         </div>
         <div class="source">Source: <a href="https://github.com/modelcontextprotocol/experimental-ext-skills">github.com/modelcontextprotocol/experimental-ext-skills</a></div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>Our answer is Skills over MCP. Instead of installing skills locally, the remote MCP server becomes the source of truth. It can search the registry, return the right skill, enforce policy, and make sure every new session gets the freshest approved version. This is no longer just our internal instinct. The MCP ecosystem now has an experimental repository for this direction: modelcontextprotocol slash experimental-ext-skills. It is still experimental, but it points at the same shape of the solution.</p></aside>
+    </div>
+  </section>
+<section class="slide light">
+    <div class="unit">
+      <div class="frame" style="--gx: 84%; --gy: 18%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">17b / ext-skills</div></div>
+        <figure class="repo-fullscreen">
+          <img src="assets/images/mcp-experimental-ext-skills.png" alt="Screenshot of the modelcontextprotocol experimental-ext-skills GitHub repository" />
+        </figure>
+        <div class="source">Source: <a href="https://github.com/modelcontextprotocol/experimental-ext-skills">github.com/modelcontextprotocol/experimental-ext-skills</a></div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>This is the external signal that the pattern is becoming real. The MCP ecosystem has an experimental extension for skills. The important part is not that the exact API is final. The important part is the direction: skills can be distributed through MCP instead of living only as local files or developer-only installs.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2036,19 +2345,58 @@ and...
   </section>
 <section class="slide light">
     <div class="unit">
-      <div class="frame" style="--gx: 84%; --gy: 20%;">
+      <div class="frame" style="--gx: 86%; --gy: 18%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">19 / compatibility</div></div>
-        <div class="content stack center">
+        <div class="content stack" style="inset: 66px 64px 44px; gap: 8px;">
           <div class="eyebrow">Client compatibility</div>
-          <h2 class="display">Not every AI client supports skills. Many do support MCP.</h2>
-          <div class="grid-3">
-            <div class="card"><span class="pill">Claude Code</span><h3 style="margin-top: 16px;">Native-ish skills</h3><p>Good developer path, increasingly skill-aware.</p></div>
-            <div class="card"><span class="pill">ChatGPT</span><h3 style="margin-top: 16px;">MCP bridge</h3><p>Use MCP to serve skills even when the client lacks first-class skill installs.</p></div>
-            <div class="card"><span class="pill">Enterprise</span><h3 style="margin-top: 16px;">One policy plane</h3><p>Admins control which skills can be loaded and by whom.</p></div>
+          <h2 class="display" style="font-size: 50px; max-width: 1040px;">Not every AI client supports skills. Many do support MCP.</h2>
+          <div class="coverage-table">
+            <div class="coverage-row coverage-head">
+              <div>Consumer client</div>
+              <div>Skills</div>
+              <div>MCP</div>
+              <div>Reality</div>
+            </div>
+            <div class="coverage-row">
+              <div class="coverage-client">ChatGPT</div>
+              <span class="coverage-mark empty" aria-label="Skills not supported"></span>
+              <span class="coverage-mark full" aria-label="Full MCP support"></span>
+              <div class="coverage-note">MCP works through ChatGPT Apps/custom connectors; no native Skills surface in regular ChatGPT.</div>
+            </div>
+            <div class="coverage-row">
+              <div class="coverage-client">Claude</div>
+              <span class="coverage-mark full" aria-label="Full Skills support"></span>
+              <span class="coverage-mark full" aria-label="Full MCP support"></span>
+              <div class="coverage-note">Claude is the exception: Skills and MCP both exist in the Claude ecosystem.</div>
+            </div>
+            <div class="coverage-row">
+              <div class="coverage-client">Microsoft 365 Copilot</div>
+              <span class="coverage-mark empty" aria-label="Skills not documented"></span>
+              <span class="coverage-mark full" aria-label="Full MCP support"></span>
+              <div class="coverage-note">MCP Apps are available in Copilot chat; no portable Skills format for end users.</div>
+            </div>
+            <div class="coverage-row">
+              <div class="coverage-client">Perplexity</div>
+              <span class="coverage-mark empty" aria-label="Skills not supported"></span>
+              <span class="coverage-mark partial" aria-label="Partial MCP support"></span>
+              <div class="coverage-note">Perplexity exposes MCP/server-side integrations, but not a mainstream consumer Skills surface.</div>
+            </div>
+            <div class="coverage-row">
+              <div class="coverage-client">Poe</div>
+              <span class="coverage-mark empty" aria-label="Skills not documented"></span>
+              <span class="coverage-mark empty" aria-label="MCP not documented"></span>
+              <div class="coverage-note">Consumer bot marketplace, not a native Skills/MCP distribution plane.</div>
+            </div>
+          </div>
+          <div class="coverage-legend">
+            <span class="legend-item"><span class="coverage-mark full"></span> Native</span>
+            <span class="legend-item"><span class="coverage-mark partial"></span> Partial / gated</span>
+            <span class="legend-item"><span class="coverage-mark empty"></span> Not documented</span>
           </div>
         </div>
+        <div class="source">Sources: OpenAI, Anthropic, Microsoft, Perplexity, Poe docs</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>This also solves a compatibility problem. Not every AI client has first-class support for skills today. ChatGPT, for example, is not the same as Claude Code here. But many clients are adding MCP support. So MCP gives us a bridge: we can serve skills to clients that do not have a native skill installer yet.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>This also solves a compatibility problem. If we focus on consumer and non-coder clients, the picture is very different from developer tools. ChatGPT supports MCP, but it does not expose a native Skills surface to regular users. Claude is the exception where Skills and MCP both exist. Microsoft 365 Copilot supports MCP Apps in Copilot chat. Perplexity and Poe have their own partial or adjacent stories, but they do not give you a clean portable Skills distribution layer. So the thesis is simple: Skills are not evenly supported where business users actually work. MCP is the more realistic bridge.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2213,42 +2561,7 @@ and...
       <aside class="notes"><div class="label">Speaker notes</div><p>These two tweets point at the same deeper problem from different angles. One is about the fact that intelligence can be temporary. If we have access to frontier intelligence, we should use it to discover and persist useful work patterns. The other is about distribution: how do non-developers share skills with a team, and how does everyone get the updated version automatically? Together, that is the real opportunity: turn temporary intelligence into a durable, shared catalog of how the company works.</p></aside>
     </div>
   </section>
-<section class="slide light">
-    <div class="unit">
-      <div class="frame" style="--gx: 80%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">13 / clicked</div></div>
-        <div class="content stack center">
-          <div class="eyebrow">The click</div>
-          <h2 class="display">We copied the distilled output into our recommended skills library.</h2>
-          <p class="body">That felt slightly absurd. The agent had produced organizational knowledge. We were just doing the promotion step manually.</p>
-          <div class="manual-promo">
-            <div class="promo-step">
-              <div class="promo-label">agent output</div>
-              <div class="md-file"><strong>chromium-lambda.md</strong><br />runtime setup<br />launch flags<br />verification path</div>
-            </div>
-            <div class="promo-step">
-              <div class="promo-label">manual promoter</div>
-              <div class="dev-persona">
-                <div class="dev-avatar" aria-hidden="true"></div>
-              </div>
-              <p class="body" style="font-size: 15px; line-height: 1.35;">A developer copies the artifact by hand.</p>
-            </div>
-            <div class="promo-step">
-              <div class="promo-label">actual promotion</div>
-              <div class="repo-card">
-                <div class="repo-name">github.com/runlayer/skills</div>
-                <div class="folder-line">skill-templates/</div>
-                <div class="folder-line" style="margin-top: 12px;">chromium-lambda.md</div>
-              </div>
-            </div>
-            <div class="promo-arrow one"><span>copy / paste</span></div>
-            <div class="promo-arrow two"><span>git push</span></div>
-          </div>
-        </div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The distilled skill was good enough that we literally copied it into our recommended skills library. And that felt absurd in a useful way. The agent had produced organizational knowledge, and we were manually doing the promotion step. That is when we started asking: why is this not a product workflow?</p></aside>
-    </div>
-  </section>
+
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 22%;">
