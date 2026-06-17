@@ -1624,19 +1624,20 @@
 
     .image-fullscreen {
       position: absolute;
-      inset: 56px 36px 34px;
+      inset: 0;
+      margin: 0;
       display: grid;
       place-items: center;
       overflow: hidden;
-      border: 1px solid rgba(41,37,36,.15);
-      border-radius: var(--radius-lg);
+      border: 0;
+      border-radius: inherit;
       background: var(--white);
     }
 
     .image-fullscreen img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
       display: block;
       background: var(--white);
@@ -1725,6 +1726,83 @@
       color: rgba(250,250,249,.74);
       font-weight: 650;
       max-width: 1040px;
+    }
+
+    .notes-console {
+      display: none;
+    }
+
+    body.notes-mode {
+      min-height: 100vh;
+      padding: 0;
+      display: block;
+      background: #080808;
+      color: #FAFAF9;
+    }
+
+    body.notes-mode .progress,
+    body.notes-mode .slide {
+      display: none;
+    }
+
+    body.notes-mode .notes-console {
+      min-height: 100vh;
+      padding: 52px 64px 42px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 28px;
+      background:
+        linear-gradient(rgba(250,250,249,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(250,250,249,.035) 1px, transparent 1px),
+        radial-gradient(circle at 80% 12%, rgba(146, 82, 255, .16), transparent 36%),
+        #080808;
+      background-size: 36px 36px, 36px 36px, auto, auto;
+    }
+
+    .notes-console-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      color: rgba(250,250,249,.54);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .notes-console-title {
+      max-width: 1120px;
+      color: rgba(250,250,249,.9);
+      font-family: var(--display);
+      font-size: clamp(34px, 4.5vw, 72px);
+      line-height: .96;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .notes-console-text {
+      align-self: center;
+      max-width: 1180px;
+      color: rgba(250,250,249,.92);
+      font-size: clamp(28px, 3.25vw, 58px);
+      line-height: 1.18;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .notes-console-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(250,250,249,.12);
+      padding-top: 20px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(250,250,249,.46);
     }
 
     .risk {
@@ -2149,20 +2227,6 @@
       <aside class="notes"><div class="label">Speaker notes</div><p>Before diving deep into this topic, very quickly on me: I'm a founding engineer at Runlayer. We are trying to make the golden path for AI adoption inside your company. Before that, I was leading Zapier Agents, and before that I was also leading AI work at a startup called Vendr. So most of my recent work has been about making agents more reliable in production, not just impressive in demos. Outside of work, I'm usually climbing, and I love whiskey, but for medical and legal reasons, I'm not combining those two at the same time.</p></aside>
     </div>
   </section>
-<section class="slide light">
-    <div class="unit">
-      <div class="frame" style="--gx: 86%; --gy: 18%;">
-        <div class="chrome">
-          <div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div>
-          <div class="slide-no">02 / skills meme</div>
-        </div>
-        <figure class="image-fullscreen">
-          <img src="assets/images/imgflip-skills-meme.png" alt="Meme about skills distribution across AI clients" />
-        </figure>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>This is the problem in one image: skills are powerful, but the way people expect to distribute and use them across real client surfaces is still uneven.</p></aside>
-    </div>
-  </section>
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 74%; --gy: 22%;">
@@ -2171,7 +2235,7 @@
             <img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" />
             <img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" />
           </div>
-          <div class="slide-no">03 / AI Engineer World's Fair 2026</div>
+          <div class="slide-no">02 / AI Engineer World's Fair 2026</div>
         </div>
         <div class="content stack center">
           <h1 class="title title-dim">Self-<span class="title-highlight-animate">Improving Agents</span> That Teach the Company Back</h1>
@@ -2183,7 +2247,7 @@
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 16%; --gy: 75%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">04 / term</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">03 / term</div></div>
         <div class="content stack center">
           <div class="eyebrow">Working definition</div>
           <h2 class="display">Skill = a playbook an agent can load when the work starts.</h2>
@@ -2200,7 +2264,7 @@
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 84%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">05 / METR</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">04 / METR</div></div>
         <div class="content grid-2" style="grid-template-columns: .82fr 1.18fr; gap: 28px;">
           <div class="stack">
             <div class="eyebrow">Long-horizon agents</div>
@@ -2219,7 +2283,7 @@
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 20%; --gy: 70%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">06 / deeper wrong paths</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">05 / deeper wrong paths</div></div>
         <div class="content grid-2" style="grid-template-columns: .54fr 1.46fr; gap: 18px;">
           <div class="stack center">
             <div class="eyebrow">The hidden cost</div>
@@ -2237,7 +2301,7 @@
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 14%; --gy: 82%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">07 / enterprise examples</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">06 / enterprise examples</div></div>
         <div class="content stack center">
           <div class="eyebrow">Why enterprises care</div>
           <h2 class="display">The valuable skills are the rituals nobody wants rediscovered.</h2>
@@ -2255,7 +2319,7 @@
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 74%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">08 / ecosystem problem</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">07 / ecosystem problem</div></div>
         <div class="content grid-2" style="grid-template-columns: .92fr 1.08fr; align-items: center;">
           <div class="stack">
             <div class="eyebrow">The current ecosystem</div>
@@ -2273,10 +2337,20 @@
       <aside class="notes"><div class="label">Speaker notes</div><p>Skills are great, but they are not problem-free. I think there are three important problems standing in the way of making them great. The first one is that they are local-first and dev-centric. When you look at skills today, the things you mostly find are CLI commands, Git repositories as source of truth, local files, plugins, client config, and JSON files. That works great if you are a developer and if this is single-player mode. But if you are a company, or an AI adoption leader, or a VP of AI trying to roll out an AI strategy across the whole company, that approach does not scale. So the question is: how can people share skills with their team, and how can you make sure everyone automatically gets the best updated version of that skill?</p></aside>
     </div>
   </section>
+<section class="slide light">
+    <div class="unit">
+      <div class="frame" style="--gx: 86%; --gy: 18%;">
+        <figure class="image-fullscreen">
+          <img src="assets/images/imgflip-skills-meme.png" alt="Meme about skills distribution across AI clients" />
+        </figure>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>This is the problem in one image: skills are powerful, but the way people expect to distribute and use them across real client surfaces is still uneven.</p></aside>
+    </div>
+  </section>
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 78%; --gy: 24%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">09 / hand authoring</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">08 / hand authoring</div></div>
         <div class="content grid-2">
           <div class="stack">
             <div class="eyebrow">The lame part</div>
@@ -2301,7 +2375,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 22%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">10 / client gap</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">09 / client gap</div></div>
         <div class="content grid-2" style="grid-template-columns: .96fr 1.04fr; gap: 34px;">
           <div class="stack">
             <div class="eyebrow">Client compatibility</div>
@@ -2330,7 +2404,7 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 80%; --gy: 24%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">11 / discourse</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">10 / discourse</div></div>
         <div class="content grid-2" style="grid-template-columns: .82fr 1.18fr; gap: 28px;">
           <div class="stack">
             <div class="eyebrow">The internet argument</div>
@@ -2348,7 +2422,7 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 84%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">12 / skills over MCP</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">11 / skills over MCP</div></div>
         <div class="content stack" style="inset: 96px 64px 54px; gap: 18px;">
           <div class="eyebrow">Skills over MCP</div>
           <h2 class="display" style="font-size: 58px;">Make the remote MCP server the source of truth for skills.</h2>
@@ -2367,7 +2441,7 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 84%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">13 / ext-skills</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">12 / ext-skills</div></div>
         <figure class="repo-fullscreen">
           <img src="assets/images/mcp-experimental-ext-skills.png" alt="Screenshot of the modelcontextprotocol experimental-ext-skills GitHub repository" />
         </figure>
@@ -2379,7 +2453,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 70%; --gy: 22%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">14 / API</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">13 / API</div></div>
         <div class="content grid-2">
           <div class="stack">
             <div class="eyebrow">Technically simple</div>
@@ -2404,7 +2478,7 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 86%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">15 / compatibility</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">14 / compatibility</div></div>
         <div class="content stack" style="inset: 66px 64px 44px; gap: 8px;">
           <div class="eyebrow">Client compatibility</div>
           <h2 class="display" style="font-size: 50px; max-width: 1040px;">Not every AI client supports skills. Many do support MCP.</h2>
@@ -2465,7 +2539,7 @@ and...
             <img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" />
             <img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" />
           </div>
-          <div class="slide-no">16 / self-improving agents</div>
+          <div class="slide-no">15 / self-improving agents</div>
         </div>
         <div class="content stack center">
           <h1 class="title title-dim"><span class="title-prefix-reveal">Self-</span><span class="title-highlight">Improving Agents</span> That Teach the Company Back</h1>
@@ -2477,7 +2551,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 74%; --gy: 26%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">17 / combination</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">16 / combination</div></div>
         <div class="content stack center">
           <div class="eyebrow">The combination</div>
           <h2 class="display">Agents do the work. Skills guide the work. MCP distributes the guidance.</h2>
@@ -2504,7 +2578,7 @@ and...
           </video>
         </div>
         <div class="video-scrim"></div>
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">18 / Voyager</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">17 / Voyager</div></div>
         <div class="content grid-2" style="grid-template-columns: .78fr 1.22fr;">
           <div class="stack center">
             <div class="eyebrow">This was visible in 2023</div>
@@ -2521,7 +2595,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 70%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">19 / skill library</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">18 / skill library</div></div>
         <div class="content distill-slide" style="inset: 76px 54px 46px;">
           <div class="stack distill-copy">
             <div class="eyebrow">The mechanism</div>
@@ -2537,7 +2611,7 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 82%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">20 / distill</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">19 / distill</div></div>
         <div class="content stack center">
           <div class="eyebrow">The learning loop</div>
           <h2 class="display">Take the successful run. Distill the reusable part. Draft a skill.</h2>
@@ -2558,7 +2632,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 18%; --gy: 70%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">21 / result</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">20 / result</div></div>
         <div class="content metric">
           <div class="stack">
             <div class="eyebrow">Production anecdote</div>
@@ -2588,7 +2662,7 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 82%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">22 / savings</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">21 / savings</div></div>
         <div class="content stack center" style="inset: 116px 64px 54px;">
           <div class="eyebrow">Where the savings come from</div>
           <h2 class="display" style="font-size: 70px;">A skill narrows the search space before the agent starts spending.</h2>
@@ -2615,7 +2689,7 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 84%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">23 / why now</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">22 / why now</div></div>
         <div class="content stack" style="inset: 78px 64px 42px; justify-content: flex-start; gap: 14px;">
           <div class="eyebrow">The market is noticing</div>
           <h2 class="display" style="font-size: 48px; max-width: 1010px;">The question is not just “can agents do it?” It is “what does the company retain?”</h2>
@@ -2639,7 +2713,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 22%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">24 / examples of org knowledge</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">23 / examples of org knowledge</div></div>
         <div class="content stack center">
           <div class="eyebrow">What gets promoted?</div>
           <h2 class="display">The useful skills are usually boring, precise, and local.</h2>
@@ -2656,7 +2730,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 70%; --gy: 24%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">25 / boundary</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">24 / boundary</div></div>
         <div class="blast">
           <div class="eyebrow">Distribution failure</div>
           <h2 class="blast-sentence">A <span class="danger">bad skill</span> shared across agents becomes <span class="danger">organizational hallucination.</span></h2>
@@ -2668,7 +2742,7 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 16%; --gy: 74%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">26 / bad skill</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">25 / bad skill</div></div>
         <div class="content stack center">
           <div class="eyebrow">Keep this sentence</div>
           <h2 class="display">A bad skill is worse than no skill.</h2>
@@ -2687,7 +2761,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 76%; --gy: 22%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">27 / iteration</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">26 / iteration</div></div>
         <div class="content grid-2" style="grid-template-columns: .56fr 1.44fr; gap: 24px;">
           <div class="stack center">
             <div class="eyebrow">Iteration</div>
@@ -2706,7 +2780,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">28 / promotion</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">27 / promotion</div></div>
         <div class="content stack center">
           <div class="eyebrow">Agent memory → org knowledge</div>
           <h2 class="display">Promotion is a product workflow, not a hidden model behavior.</h2>
@@ -2729,7 +2803,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 76%; --gy: 26%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">29 / flywheel</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">28 / flywheel</div></div>
         <div class="content stack center" style="inset: 118px 64px 46px;">
           <div class="eyebrow">Self-improving company knowledge</div>
           <h2 class="display" style="font-size: 70px;">One agent learns. Everyone starts smarter.</h2>
@@ -2742,7 +2816,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">30 / close</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">29 / close</div></div>
         <div class="content grid-2">
           <div class="stack">
             <div class="eyebrow">The thesis</div>
@@ -2763,8 +2837,22 @@ and...
   <script>
     const slides = Array.from(document.querySelectorAll(".slide"));
     const progress = document.getElementById("progress");
+    const params = new URLSearchParams(window.location.search);
+    const isNotesMode = params.has("notes");
+    const syncKey = "runlayer:self-improving-agents-deck:index";
+    const sourceId = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    const channel = "BroadcastChannel" in window ? new BroadcastChannel("runlayer-self-improving-agents-deck") : null;
+    let activeIndex = 0;
+    let lastPublishedIndex = -1;
+    let applyingRemoteIndex = false;
+    let notesConsole = null;
+
+    function clampIndex(index) {
+      return Math.max(0, Math.min(slides.length - 1, index));
+    }
 
     function currentIndex() {
+      if (isNotesMode) return activeIndex;
       const midpoint = window.scrollY + window.innerHeight / 2;
       return Math.max(0, slides.findIndex((slide) => {
         const top = slide.offsetTop;
@@ -2772,20 +2860,103 @@ and...
       }));
     }
 
-    function go(delta) {
-      const index = currentIndex();
-      const next = Math.max(0, Math.min(slides.length - 1, index + delta));
-      slides[next].scrollIntoView({ behavior: "smooth", block: "start" });
+    function slideLabel(index) {
+      const label = slides[index].querySelector(".slide-no")?.textContent?.trim();
+      return label || `slide ${String(index + 1).padStart(2, "0")}`;
     }
 
-    function updateProgress() {
+    function slideTitle(index) {
+      const heading = slides[index].querySelector("h1, h2");
+      return heading ? heading.textContent.replace(/\s+/g, " ").trim() : "Full-screen visual";
+    }
+
+    function slideNotes(index) {
+      const note = slides[index].querySelector(".notes p");
+      return note ? note.textContent.replace(/\s+/g, " ").trim() : "";
+    }
+
+    function setupNotesMode() {
+      document.body.classList.add("notes-mode");
+      notesConsole = document.createElement("main");
+      notesConsole.className = "notes-console";
+      notesConsole.innerHTML = `
+        <div class="notes-console-top">
+          <span data-notes-label></span>
+          <span data-notes-count></span>
+        </div>
+        <h1 class="notes-console-title" data-notes-title></h1>
+        <div class="notes-console-text" data-notes-text></div>
+        <div class="notes-console-footer">
+          <span>Speaker notes</span>
+          <span data-notes-sync>Synced</span>
+        </div>
+      `;
+      document.body.appendChild(notesConsole);
+    }
+
+    function renderNotes(index) {
+      if (!notesConsole) return;
+      notesConsole.querySelector("[data-notes-label]").textContent = slideLabel(index);
+      notesConsole.querySelector("[data-notes-count]").textContent = `${index + 1} / ${slides.length}`;
+      notesConsole.querySelector("[data-notes-title]").textContent = slideTitle(index);
+      notesConsole.querySelector("[data-notes-text]").textContent = slideNotes(index);
+    }
+
+    function publishIndex(index) {
+      if (applyingRemoteIndex || index === lastPublishedIndex) return;
+      const payload = { index, sourceId, at: Date.now() };
+      lastPublishedIndex = index;
+      localStorage.setItem(syncKey, JSON.stringify(payload));
+      channel?.postMessage(payload);
+    }
+
+    function applySyncedIndex(payload) {
+      if (!payload || payload.sourceId === sourceId || !Number.isFinite(payload.index)) return;
+      applyingRemoteIndex = true;
+      goToIndex(payload.index, "auto", false);
+      setTimeout(() => { applyingRemoteIndex = false; }, 250);
+    }
+
+    function goToIndex(index, behavior = "smooth", shouldPublish = true) {
+      const next = clampIndex(index);
+      activeIndex = next;
+      if (isNotesMode) {
+        renderNotes(next);
+      } else {
+        slides[next].scrollIntoView({ behavior, block: "start" });
+      }
+      updateProgress(shouldPublish);
+    }
+
+    function go(delta) {
+      goToIndex(currentIndex() + delta);
+    }
+
+    function openNotesWindow() {
       const index = currentIndex();
-      progress.style.setProperty("--progress", (index + 1) / slides.length);
+      publishIndex(index);
+      const url = new URL(window.location.href);
+      url.searchParams.set("notes", "1");
+      window.open(url.toString(), "runlayer-speaker-notes");
+    }
+
+    function updateProgress(shouldPublish = true) {
+      const index = currentIndex();
+      activeIndex = index;
+      if (progress) progress.style.setProperty("--progress", (index + 1) / slides.length);
       slides.forEach((slide, slideIndex) => {
         slide.classList.toggle("is-active", slideIndex === index);
       });
+      if (isNotesMode) renderNotes(index);
+      if (shouldPublish) publishIndex(index);
     }
 
+    if (isNotesMode) setupNotesMode();
+    channel?.addEventListener("message", (event) => applySyncedIndex(event.data));
+    window.addEventListener("storage", (event) => {
+      if (event.key !== syncKey || !event.newValue) return;
+      applySyncedIndex(JSON.parse(event.newValue));
+    });
     window.addEventListener("scroll", updateProgress, { passive: true });
     window.addEventListener("resize", updateProgress);
     window.addEventListener("keydown", (event) => {
@@ -2797,10 +2968,19 @@ and...
         event.preventDefault();
         go(-1);
       }
-      if (event.key === "Home") slides[0].scrollIntoView({ behavior: "smooth", block: "start" });
-      if (event.key === "End") slides[slides.length - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+      if (event.key === "Home") goToIndex(0);
+      if (event.key === "End") goToIndex(slides.length - 1);
+      if (event.key.toLowerCase() === "n" && !isNotesMode) openNotesWindow();
     });
-    updateProgress();
+
+    let initialIndex = 0;
+    if (isNotesMode) {
+      try {
+        const saved = JSON.parse(localStorage.getItem(syncKey) || "null");
+        if (saved && Number.isFinite(saved.index)) initialIndex = saved.index;
+      } catch {}
+    }
+    goToIndex(initialIndex, "auto", false);
   </script>
 </body>
 </html>
