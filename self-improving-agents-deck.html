@@ -2315,7 +2315,7 @@
           <p class="body">Rafal Wilinski · Founding Engineer, Runlayer</p>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Hi everyone, I'm Rafal. Today I want to talk about self-improving agents, but not in an offline single-player setting where just one agent gets better by itself. I want to talk about how we can apply that self-improving loop across the whole company, or even across the whole enterprise. When an agent does a lot of work, it can leave something really valuable behind for your team and for everyone.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Hi everyone, I'm Rafal. Today I want to talk about self-improving agents, but not in an offline single-player setting where just one agent gets better by itself. I want to talk about how we can apply that self-improving loop across the whole company, or even across the whole enterprise.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2340,7 +2340,7 @@
         </div>
         <div class="source">Bio source: rwilinski.ai</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Before diving deep into this topic, very quickly on me: I'm a founding engineer at Runlayer. We are trying to make the golden path for AI adoption inside your company. Before that, I was leading Zapier Agents, and before that I was also leading AI work at a startup called Vendr. So most of my recent work has been about making agents more reliable in production, not just impressive in demos. Outside of work, I'm usually climbing, and I love whiskey, but for medical and legal reasons, I'm not combining those two at the same time.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Before diving deep into this topic, very quickly on me: I'm a founding engineer at Runlayer. We're making the golden path for AI adoption inside your company. Before that, I was leading Zapier Agents, and before that I was also leading AI work at a startup called Vendr. So most of my recent work has been about making agents more reliable in production, not just impressive in demos. Outside of work, I'm usually climbing, and I love whiskey, but for medical and legal reasons, I'm not combining those two at the same time.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2357,7 +2357,7 @@
           <h1 class="title title-dim">Self-<span class="title-highlight-animate">Improving Agents</span> That Teach the Company Back</h1>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Before we get into the architecture and the nitty-gritty technical details, I want to focus first on the improving agents part. I want to break down my title into several chapters, and let's start with improving agents. I believe the path to improving your agents is actually using skills.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Before we go to the interesting parts, I want to break down my title into three parts, starting with just improving agents. I believe the path to improving your agents is actually using skills.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2374,7 +2374,7 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Before we go further, I want to make sure we are all on the same page. In this talk, a skill is essentially a playbook that an agent or a client can load when it thinks that knowledge is relevant. The technical pattern here is called progressive disclosure. In a simplified way, a skill consists of two things: a description or summary, and the actual content. At the beginning, the harness or client sees only the summary. But when it thinks the knowledge inside can be valuable, it can read the whole skill, insert it into context, and change its trajectory based on that acquired knowledge.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>I want to make sure we are all on the same page. In this talk, a skill is essentially a playbook that an agent or a client can load when it thinks that knowledge is relevant. The technical pattern here is called progressive disclosure. In a simplified way, a skill consists of two things: a description or summary, and the actual content. At the beginning, the harness or client sees only the summary. But when it thinks the knowledge inside can be valuable, it can read the whole skill, insert it into context, and change its trajectory based on that acquired knowledge.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2429,7 +2429,7 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The most valuable knowledge is often not glamorous. It is tribal knowledge. It is a ritual that is probably embedded inside your company. But if your agents try to discover that from first principles, like SAP approval paths, legacy deployment scripts, customer escalation language, and things like that, without a curated playbook, they will likely fail. And many times, that failure can be really costly. Effectively, that is why I believe so many AI POCs are failing across the industry. You hear about them all the time.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The most valuable knowledge is often not glamorous. It is tribal knowledge. It is a ritual that is probably embedded inside your company. But if your agents try to discover that from first principles, like SAP approval paths, legacy deployment scripts, customer escalation language, and things like that, without a curated playbook, they will likely fail. And many times, that failure can be really costly. Effectively, that is why I believe so many AI POCs are failing across the industry. You're not giving the agents the relevant context, the playbooks to act accordingly within your company.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2461,7 +2461,7 @@
           <span class="npx-skills-tag">npx skills</span>
         </figure>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>This is the problem in one image: skills are powerful, but the way people expect to distribute and use them across real client surfaces is still uneven.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>In a way, this is what happens, um, when you give your developers access to NPX skills. Why? A lot of prompt injections, malware, secrets exfiltrations, etc. We're scanning thousands of skills every day, and you'll be amazed what's inside.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2486,7 +2486,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The second problem is that nobody wants to create them. Everyone wants to use skills, but nobody wants to create them. We are in the era of LLMs. No one should write these things by hand anymore. But almost no one actually reflects and takes the time to come up with a playbook after investigating some weird issue or database procedure.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The problem is that everyone wants to create them, but nobody wants to take their time to create those curated playbooks, um, after debugging some weird issue or database procedure. It takes time and effort to reflect on stuff, and not many people do that.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2515,7 +2515,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The third problem is that not every LLM client supports Skills. Claude Code is great, and if your audience is developers, they will probably manage. But ChatGPT, for instance, is probably the most important client inside HR, marketing, and finance departments, and they cannot use native Skills there. So that is a big problem.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The third problem is that not every LLM client supports Skills. Claude Code is great, and if your audience is developers, they will probably manage. But if you think about this empathetically and see how your marketing, legal, HR, and finance departments work, they most likely use ChatGPT or some other basic client. Skills cannot be used there. So that is a big problem.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2533,7 +2533,7 @@ and...
         </div>
         <div class="source">Sources: X posts by @levelsio, @garrytan, @Dan_Jeffries1</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>I believe the first and third problems can be solved using MCP. Not that long ago, there was a big debate on Twitter when Skills came out, with people saying MCP is dead or completely irrelevant now. But I think everyone missed the point. Skills are painful for this because they are inherently single-player. MCP shines because it gives you a distribution layer. It lets you make a remote MCP server the source of truth for skills.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Sometime ago, uh, when the skills were introduced, there was this big heated debate saying, oh, skills are changing everything. MCP is now obsolete. And thank god because it was so awful. Because now you can... inside your skill, have a bunch of CLI commands and... oh god. Like, hard-coded API keys and whatnot. But I think everyone missed the point. It's not Skills versus MCP. It's Skills over the MCP.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2821,7 +2821,7 @@ and...
         </div>
         <div class="source">Source: Voyager, arXiv:2305.16291</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Whenever I see a new paper or framework about self-improving agents, I always go back to the Voyager paper. This was back in 2023, ages ago, right? Right after the GPT-4 release, when people were still trying to measure agent effectiveness in harnesses like Minecraft: how long can an agent explore independently, and what can it learn? Voyager introduced this brilliant idea of a skill library. When the agent figured out how to do something useful, like craft a pickaxe, build a furnace, or make a crafting table, it saved the recipe for how it achieved that. Then, in the future, it did not have to rediscover the same thing from first principles. It could retrieve the skill, almost like a higher-order function or reusable code, and use that persisted knowledge directly.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Whenever I see a new paper or framework about self-improving agents, I always go back to the Voyager paper. This was back in 2023, ages ago, right? Right after the GPT-4 release. The question was simple: how long can an agent explore independently, and what can it learn? Voyager introduced this brilliant idea of a skill library. When the agent figured out how to do something useful, like craft a pickaxe, build a furnace, or make a crafting table, it saved the recipe for how it achieved that. Then, in the future, it did not have to rediscover the same thing from first principles. It could retrieve the skill, almost like a higher-order function or reusable code, and use that persisted knowledge directly.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2907,7 +2907,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The loop we started using is straightforward. Let the agent do real work. When the run succeeds, take the trace and ask another LLM to distill the reusable part. Then draft or update a skill. Some agent frameworks, like Hermes-style self-learning agents, do similar things. The important part for us is that the output is not hidden memory; it is a reviewable, editable artifact.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>And we started doing something very similar and straightforward. Let the agent do real work. When the run succeeds, take the trace and ask another LLM to distill the reusable part. Then draft or update a skill. Some agent frameworks, like Hermes-style self-learning agents, do similar things.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2937,7 +2937,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Here is the example that made this click for us. We had this very peculiar task: running a Chromium fork inside AWS Lambda. With Sonnet 4.6, across 25 runs, the agent could sometimes figure it out, but it was still unreliable: 9 out of 25, or about a 36 percent success rate. After distilling the successful trace into a skill, the same model went to 25 out of 25. We did not change the model. We changed the playbook.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The results were great. We had this very peculiar task: running a Chromium fork inside AWS Lambda. With Sonnet 4.6, across 25 runs, the agent could sometimes figure it out, but it was still unreliable: 9 out of 25, or about a 36 percent success rate. After distilling the successful trace into a skill, the same model went to 25 out of 25. We did not change the model. We changed the playbook.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2964,7 +2964,7 @@ and...
         </div>
         <div class="source">Reference: <a href="https://x.com/shadcn/status/2065826989769163068">shadcn on X</a></div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The success rate is the easiest number to show, but the savings are broader. A good skill narrows the search space before the agent starts spending. It reduces failed attempts, tool calls, tokens, wall clock time, and human interruptions. But putting savings and accuracy aside, there is a deeper reason to do this. Frontier-model intelligence is rented. It can move, change, get deprecated, or just disappear behind a different product surface. So while we have access to that intelligence, we should use it to discover and persist useful procedures. We should be building a catalog, almost a collective subconscious, of how work gets done inside the company.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The success rate is the easiest number to show, but the savings are broader. A good skill narrows the search space before the agent starts spending. It reduces failed attempts, tool calls, tokens, wall clock time, and human interruptions. But putting savings and accuracy aside, there is a deeper reason to do this. Frontier-model intelligence is rented.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3014,7 +3014,7 @@ and...
           <h1 class="title"><span class="title-highlight">Self-Improving Agents</span> <span class="title-highlight-animate">That Teach the Company Back</span></h1>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>And now the second half of the title lights up. We have self-improving agents, and the payoff is that they teach the company back. Every skill an agent distills can become shared, governed knowledge that every other agent inherits. That is the whole thesis in one line — and here is the mechanism.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>We now know how to improve agents. We know how to make them self-improve themselves. We also have the distribution layer, the centralized MCP server, and that's where it all clicks together.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3101,7 +3101,7 @@ and...
         </div>
         <div class="source">One agent's win becomes the company's default.</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>This is where the two halves snap together. Earlier we saw MCP distribute one governed library to every client, and we saw a single agent distill its own successful run into a skill. Combine them at company scale: any agent, on any client, does real work; the successful run is distilled into a skill; that skill is reviewed and promoted; and MCP serves it back to every client. The org skill library in the middle is both written to and read from. Knowledge captured by one agent becomes the default for everyone — that is literally teaching the company back.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>At Runlayer we call this the “self-improving organization flywheel.” Any agent, on any client, does real work; the successful run is distilled into a skill; that skill is reviewed and promoted; and MCP serves it back to every client. The org skill library in the middle is both written to and read from. Knowledge captured by one agent becomes the default for everyone — that is literally teaching the company back.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3113,7 +3113,7 @@ and...
           <h2 class="blast-sentence">A <span class="danger">bad skill</span> shared across agents becomes <span class="danger">organizational hallucination.</span></h2>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Here is the sharper version of the failure mode. A bad skill shared across agents becomes organizational hallucination. It is no longer one agent making one bad call. It is the company repeatedly teaching agents the wrong procedure. That is why scope, evaluation, and rollback are not enterprise checkboxes. They are the difference between organizational learning and organizational hallucination.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But there's also a catch. A bad skill shared across agents becomes organizational hallucination — it is no longer one agent making one bad call, it is the company repeatedly teaching every agent the wrong procedure. That is why scope, evaluation, and rollback are not enterprise checkboxes; they are the difference between organizational learning and organizational hallucination.</p></aside>
     </div>
   </section>
 <section class="slide light">
