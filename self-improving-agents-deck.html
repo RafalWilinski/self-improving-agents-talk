@@ -199,7 +199,7 @@
     .frame {
       width: 100%;
       aspect-ratio: 16 / 9;
-      max-height: calc(100vh - 202px);
+      max-height: calc(100vh - 68px);
       position: relative;
       overflow: hidden;
       border: 1px solid rgba(250,250,249,.13);
@@ -1282,11 +1282,17 @@
     }
 
     .tweet-static.discourse-tweets img {
-      object-position: center 34%;
+      height: auto;
+      max-height: 470px;
+      object-fit: contain;
+      object-position: center;
     }
 
     .tweet-static.discourse-tweets {
-      transform: translateY(-15%) rotate(-1.5deg);
+      transform: rotate(-1.4deg);
+      align-self: center;
+      max-width: 620px;
+      margin: 0 auto;
     }
 
     .literal-tweets {
@@ -1335,6 +1341,72 @@
       border: 1px solid rgba(41,37,36,.16);
       background: rgba(250,250,249,.84);
     }
+
+    .loop-figure {
+      width: 100%;
+      height: 352px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 4px;
+    }
+    .loop-figure svg { width: 100%; height: 100%; display: block; }
+
+    /* distill loop: staged fade-in reveal (1s stagger, 1s fade), replays on slide entry */
+    .loop-anim { opacity: 0; }
+    @keyframes loopFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .slide.is-active .loop-d1 { animation: loopFadeIn 1s ease-out 0.4s both; }
+    .slide.is-active .loop-d2 { animation: loopFadeIn 1s ease-out 1.4s both; }
+    .slide.is-active .loop-d3 { animation: loopFadeIn 1s ease-out 2.4s both; }
+    .slide.is-active .loop-d4 { animation: loopFadeIn 1s ease-out 3.4s both; }
+    .slide.is-active .loop-d5 { animation: loopFadeIn 1s ease-out 4.4s both; }
+    @media print { .loop-anim { opacity: 1 !important; animation: none !important; } }
+
+    .x-tweet {
+      align-self: center;
+      width: 100%;
+      max-width: 540px;
+      background: #fff;
+      border: 1px solid rgba(41,37,36,.16);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 20px 22px;
+      font-family: var(--sans);
+      color: #0f1419;
+    }
+    .x-tweet-head { display: flex; align-items: center; gap: 12px; }
+    .x-avatar {
+      width: 46px; height: 46px; border-radius: 999px; flex: 0 0 auto;
+      background: #1C1917; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 15px; letter-spacing: .02em;
+      overflow: hidden;
+    }
+    .x-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .x-id { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+    .x-name { display: flex; align-items: center; gap: 5px; font-weight: 800; font-size: 15.5px; color: #0f1419; }
+    .x-handle { color: #536471; font-size: 14px; }
+    .x-handle b { color: #1d9bf0; font-weight: 700; }
+    .x-logo { margin-left: auto; color: #0f1419; display: flex; }
+    .x-body { margin-top: 14px; font-size: 17px; line-height: 1.5; color: #0f1419; }
+    .x-body p { margin: 0 0 12px; }
+    .x-body p:last-child { margin-bottom: 0; }
+    .x-mark { background: rgba(28,25,23,.10); border-radius: 4px; padding: 0 4px; font-weight: 650; }
+    .x-foot {
+      margin-top: 16px; padding-top: 13px; border-top: 1px solid rgba(0,0,0,.08);
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13.5px; color: #536471; text-decoration: none;
+    }
+    .x-foot:hover { color: #1d9bf0; }
+
+    .tangent-chip {
+      display: inline-flex; align-items: center; gap: 7px; width: fit-content;
+      font-family: var(--mono); font-size: 12px; letter-spacing: .03em;
+      color: var(--stone-600); text-decoration: none;
+      border: 1px solid rgba(41,37,36,.2); border-radius: 999px;
+      padding: 8px 15px; background: rgba(255,255,255,.6);
+    }
+    .tangent-chip:hover { border-color: rgba(41,37,36,.45); color: var(--ink); }
 
     .minecraft {
       position: relative;
@@ -1570,6 +1642,20 @@
       color: var(--ink);
     }
 
+    .mcp-fanout {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      display: flex;
+      margin-top: 2px;
+    }
+
+    .mcp-fanout svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
     .repo-shot-wrap {
       border: 1px solid rgba(41,37,36,.15);
       background: var(--white);
@@ -1617,7 +1703,6 @@
       object-fit: contain;
       object-position: center;
       display: block;
-      border: 1px solid rgba(41,37,36,.12);
       border-radius: var(--radius-md);
       background: #fff;
     }
@@ -1641,6 +1726,37 @@
       object-position: center;
       display: block;
       background: var(--white);
+    }
+
+    .npx-skills-tag {
+      position: absolute;
+      left: 55.5%;
+      top: 47%;
+      z-index: 2;
+      opacity: 0;
+      transform: rotate(5deg) translateY(8px);
+      color: #16A34A;
+      background: rgba(8, 8, 12, .86);
+      border: 1px solid rgba(22, 163, 74, .72);
+      border-radius: 4px;
+      padding: 16px 24px;
+      font-family: var(--mono);
+      font-size: 44px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+
+    .slide.is-active .npx-skills-tag {
+      animation: terminalStampIn .24s steps(2, end) 2s forwards;
+    }
+
+    @keyframes terminalStampIn {
+      to {
+        opacity: 1;
+        transform: rotate(5deg) translateY(0);
+      }
     }
 
     .video-bg {
@@ -1705,7 +1821,7 @@
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-dark);
       padding: 16px 18px 15px;
-      display: grid;
+      display: none;
       grid-template-columns: 156px 1fr;
       gap: 22px;
     }
@@ -2342,6 +2458,7 @@
       <div class="frame" style="--gx: 86%; --gy: 18%;">
         <figure class="image-fullscreen">
           <img src="assets/images/imgflip-skills-meme.png" alt="Meme about skills distribution across AI clients" />
+          <span class="npx-skills-tag">npx skills</span>
         </figure>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>This is the problem in one image: skills are powerful, but the way people expect to distribute and use them across real client surfaces is still uneven.</p></aside>
@@ -2405,8 +2522,8 @@ and...
     <div class="unit">
       <div class="frame" style="--gx: 80%; --gy: 24%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">10 / discourse</div></div>
-        <div class="content grid-2" style="grid-template-columns: .82fr 1.18fr; gap: 28px;">
-          <div class="stack">
+        <div class="content grid-2" style="grid-template-columns: .82fr 1.18fr; gap: 28px; align-items: start;">
+          <div class="stack" style="margin-top: 26px;">
             <div class="eyebrow">The internet argument</div>
             <h2 class="display">“Skills vs MCP” is the wrong fight. Skills-over-MCP is the answer.</h2>
           </div>
@@ -2423,14 +2540,150 @@ and...
     <div class="unit">
       <div class="frame" style="--gx: 84%; --gy: 18%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">11 / skills over MCP</div></div>
-        <div class="content stack" style="inset: 96px 64px 54px; gap: 18px;">
+        <div class="content stack" style="inset: 76px 56px 50px; gap: 12px;">
           <div class="eyebrow">Skills over MCP</div>
-          <h2 class="display" style="font-size: 58px;">Make the remote MCP server the source of truth for skills.</h2>
-          <div class="compact-flow" style="max-width: 720px;">
-            <div class="flow-step"><div class="label">Client</div><div class="name">Claude Code, ChatGPT, IDEs</div></div>
-            <div class="flow-step"><div class="label">MCP</div><div class="name">Find and fetch relevant skills</div></div>
-            <div class="flow-step"><div class="label">Registry</div><div class="name">Curated, versioned, governed</div></div>
-            <div class="flow-step"><div class="label">Runtime</div><div class="name">Freshest approved guidance</div></div>
+          <h2 class="display" style="font-size: 40px; max-width: 880px;">Make the remote MCP server the source of truth for skills.</h2>
+          <div class="mcp-fanout">
+            <svg viewBox="0 0 1100 430" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Many AI clients connect through one MCP gateway that unifies dozens of markdown skill files">
+              <defs>
+                <symbol id="mdmark" viewBox="0 0 208 128">
+                  <rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/>
+                  <path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/>
+                </symbol>
+                <marker id="arrIn" markerWidth="8" markerHeight="8" refX="5.5" refY="3" orient="auto">
+                  <path d="M0 0 L6 3 L0 6 Z" fill="#1C1917" fill-opacity="0.5"/>
+                </marker>
+                <symbol id="rlmark" viewBox="0 0 86.437 86.437">
+                  <path fill="#A48977" fill-rule="nonzero" d="M 46.409 53.204 C 46.771 53.204 47.065 53.498 47.065 53.859 L 47.065 85.781 C 47.065 86.143 46.771 86.437 46.409 86.437 L 40.027 86.437 C 39.666 86.437 39.372 86.143 39.372 85.781 L 39.372 53.859 C 39.372 53.498 39.666 53.204 40.027 53.204 L 46.409 53.204 Z M 33.438 47.832 C 33.611 47.832 33.779 47.901 33.901 48.024 L 38.416 52.539 C 38.671 52.794 38.671 53.207 38.416 53.463 L 15.843 76.036 C 15.587 76.291 15.174 76.291 14.919 76.036 L 10.404 71.521 C 10.281 71.398 10.212 71.231 10.212 71.058 C 10.212 70.884 10.281 70.717 10.404 70.594 L 32.974 48.024 L 33.076 47.941 C 33.183 47.87 33.308 47.832 33.438 47.832 Z M 32.578 39.372 C 32.939 39.372 33.233 39.666 33.233 40.027 L 33.233 46.409 C 33.233 46.583 33.164 46.75 33.041 46.873 C 32.918 46.996 32.751 47.065 32.578 47.065 L 0.655 47.065 C 0.294 47.065 0 46.771 0 46.409 L 0 40.027 C 0 39.854 0.069 39.687 0.192 39.564 C 0.315 39.441 0.482 39.372 0.655 39.372 L 32.578 39.372 Z M 85.781 39.372 C 86.143 39.372 86.437 39.666 86.437 40.027 L 86.437 46.409 C 86.437 46.583 86.367 46.75 86.245 46.873 C 86.122 46.996 85.955 47.065 85.781 47.065 L 40.027 47.065 C 39.666 47.065 39.372 46.771 39.372 46.409 L 39.372 40.027 C 39.372 39.854 39.441 39.687 39.564 39.564 C 39.687 39.441 39.854 39.372 40.027 39.372 L 85.781 39.372 Z M 14.916 10.401 C 15.171 10.145 15.587 10.146 15.843 10.401 L 38.416 32.974 C 38.539 33.097 38.608 33.264 38.608 33.438 C 38.608 33.611 38.539 33.779 38.416 33.901 L 33.901 38.416 C 33.646 38.671 33.23 38.671 32.974 38.416 L 10.401 15.843 C 10.146 15.587 10.146 15.171 10.401 14.916 L 14.916 10.401 Z M 46.409 0 C 46.771 0 47.065 0.294 47.065 0.655 L 47.065 32.578 C 47.065 32.939 46.771 33.233 46.409 33.233 L 40.027 33.233 C 39.666 33.233 39.372 32.939 39.372 32.578 L 39.372 0.655 C 39.372 0.482 39.441 0.315 39.564 0.192 C 39.687 0.069 39.854 0 40.027 0 L 46.409 0 Z"/>
+                  <path fill="#A48977" fill-rule="nonzero" d="M 57.977 52.904 C 57.854 52.782 57.687 52.713 57.513 52.713 L 48.484 52.713 C 48.22 52.713 47.981 52.874 47.88 53.119 C 47.779 53.363 47.837 53.644 48.024 53.832 L 70.594 76.405 C 70.716 76.527 70.884 76.596 71.057 76.597 C 71.231 76.597 71.398 76.527 71.521 76.405 L 76.036 71.89 C 76.291 71.634 76.291 71.219 76.036 70.963 L 57.977 52.904 Z"/>
+                  <path fill="#A48977" fill-rule="nonzero" d="M 71.522 9.686 C 71.298 9.463 70.954 9.435 70.7 9.602 L 70.597 9.686 L 48.024 32.259 C 47.837 32.446 47.78 32.727 47.88 32.972 C 47.982 33.216 48.223 33.378 48.488 33.378 L 57.517 33.378 C 57.69 33.377 57.855 33.308 57.978 33.186 L 76.036 15.127 C 76.159 15.005 76.228 14.838 76.228 14.664 C 76.228 14.49 76.159 14.323 76.036 14.2 L 71.522 9.686 Z"/>
+                </symbol>
+              </defs>
+
+              <!-- zone captions -->
+              <text class="loop-anim loop-d1" x="18" y="40" font-family="Geist Mono, ui-monospace, monospace" font-size="11" letter-spacing="1.6" fill="#1C1917" fill-opacity="0.5">AI CLIENTS</text>
+              <text class="loop-anim loop-d3" x="1084" y="40" text-anchor="end" font-family="Geist Mono, ui-monospace, monospace" font-size="11" letter-spacing="1.6" fill="#1C1917" fill-opacity="0.5">ONE LIBRARY · DOZENS OF SKILLS</text>
+
+              <!-- connectors: clients -> gateway -->
+              <g class="loop-anim loop-d2" fill="none" stroke="#1C1917" stroke-opacity="0.22" stroke-width="1.6">
+                <path d="M236 81 C 330 81, 352 158, 444 158" marker-end="url(#arrIn)"/>
+                <path d="M236 148 C 330 148, 352 186, 444 186" marker-end="url(#arrIn)"/>
+                <path d="M236 215 C 330 215, 352 215, 444 215" marker-end="url(#arrIn)"/>
+                <path d="M236 282 C 330 282, 352 244, 444 244" marker-end="url(#arrIn)"/>
+                <path d="M236 349 C 330 349, 352 272, 444 272" marker-end="url(#arrIn)"/>
+              </g>
+              <!-- connectors: gateway -> skill library -->
+              <g class="loop-anim loop-d3" fill="none" stroke="#1C1917" stroke-opacity="0.22" stroke-width="1.6">
+                <path d="M656 165 C 692 165, 702 113, 728 113" marker-end="url(#arrIn)"/>
+                <path d="M656 198 C 692 198, 702 181, 728 181" marker-end="url(#arrIn)"/>
+                <path d="M656 232 C 692 232, 702 249, 728 249" marker-end="url(#arrIn)"/>
+                <path d="M656 265 C 692 265, 702 317, 728 317" marker-end="url(#arrIn)"/>
+              </g>
+
+              <!-- client nodes -->
+              <g class="loop-anim loop-d1" font-family="Geist, ui-sans-serif, system-ui, sans-serif">
+                <g>
+                  <rect x="18" y="54" width="218" height="54" rx="11" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <svg x="30" y="71" width="20" height="20" viewBox="0 0 24 24"><path fill="#1C1917" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
+                  <text x="60" y="86" font-size="16.5" font-weight="650" fill="#1C1917">Claude Code</text>
+                </g>
+                <g>
+                  <rect x="18" y="121" width="218" height="54" rx="11" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <svg x="30" y="138" width="20" height="20" viewBox="0 0 24 24"><path fill="#1C1917" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+                  <text x="60" y="153" font-size="16.5" font-weight="650" fill="#1C1917">ChatGPT</text>
+                </g>
+                <g>
+                  <rect x="18" y="188" width="218" height="54" rx="11" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <svg x="30" y="205" width="20" height="20" viewBox="0 0 24 24"><path fill="#1C1917" d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg>
+                  <text x="60" y="220" font-size="16.5" font-weight="650" fill="#1C1917">Cursor</text>
+                </g>
+                <g>
+                  <rect x="18" y="255" width="218" height="54" rx="11" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <svg x="30" y="272" width="20" height="20" viewBox="0 0 24 24"><path fill="#1C1917" d="M23.922 16.997C23.061 18.492 18.063 22.02 12 22.02 5.937 22.02.939 18.492.078 16.997A.641.641 0 0 1 0 16.741v-2.869a.883.883 0 0 1 .053-.22c.372-.935 1.347-2.292 2.605-2.656.167-.429.414-1.055.644-1.517a10.098 10.098 0 0 1-.052-1.086c0-1.331.282-2.499 1.132-3.368.397-.406.89-.717 1.474-.952C7.255 2.937 9.248 1.98 11.978 1.98c2.731 0 4.767.957 6.166 2.093.584.235 1.077.546 1.474.952.85.869 1.132 2.037 1.132 3.368 0 .368-.014.733-.052 1.086.23.462.477 1.088.644 1.517 1.258.364 2.233 1.721 2.605 2.656a.841.841 0 0 1 .053.22v2.869a.641.641 0 0 1-.078.256Zm-11.75-5.992h-.344a4.359 4.359 0 0 1-.355.508c-.77.947-1.918 1.492-3.508 1.492-1.725 0-2.989-.359-3.782-1.259a2.137 2.137 0 0 1-.085-.104L4 11.746v6.585c1.435.779 4.514 2.179 8 2.179 3.486 0 6.565-1.4 8-2.179v-6.585l-.098-.104s-.033.045-.085.104c-.793.9-2.057 1.259-3.782 1.259-1.59 0-2.738-.545-3.508-1.492a4.359 4.359 0 0 1-.355-.508Zm2.328 3.25c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm-5 0c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm3.313-6.185c.136 1.057.403 1.913.878 2.497.442.544 1.134.938 2.344.938 1.573 0 2.292-.337 2.657-.751.384-.435.558-1.15.558-2.361 0-1.14-.243-1.847-.705-2.319-.477-.488-1.319-.862-2.824-1.025-1.487-.161-2.192.138-2.533.529-.269.307-.437.808-.438 1.578v.021c0 .265.021.562.063.893Zm-1.626 0c.042-.331.063-.628.063-.894v-.02c-.001-.77-.169-1.271-.438-1.578-.341-.391-1.046-.69-2.533-.529-1.505.163-2.347.537-2.824 1.025-.462.472-.705 1.179-.705 2.319 0 1.211.175 1.926.558 2.361.365.414 1.084.751 2.657.751 1.21 0 1.902-.394 2.344-.938.475-.584.742-1.44.878-2.497Z"/></svg>
+                  <text x="60" y="287" font-size="16.5" font-weight="650" fill="#1C1917">GitHub Copilot</text>
+                </g>
+                <g>
+                  <rect x="18" y="322" width="218" height="54" rx="11" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <svg x="30" y="339" width="20" height="20" viewBox="0 0 24 24"><path fill="#1C1917" d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg>
+                  <text x="60" y="354" font-size="16.5" font-weight="650" fill="#1C1917">Perplexity</text>
+                </g>
+              </g>
+
+              <!-- gateway hub -->
+              <g class="loop-anim loop-d2">
+                <rect x="444" y="137" width="212" height="156" rx="16" fill="#1C1917"/>
+                <use href="#rlmark" x="536" y="156" width="28" height="28"/>
+                <text x="550" y="212" text-anchor="middle" font-family="Inter Tight, Geist, sans-serif" font-size="23" font-weight="680" fill="#FAFAF9">MCP Gateway</text>
+                <text x="550" y="236" text-anchor="middle" font-family="Geist Mono, ui-monospace, monospace" font-size="9.5" letter-spacing="1.8" fill="#FAFAF9" fill-opacity="0.62">FIND · FETCH · GOVERN</text>
+                <text x="550" y="258" text-anchor="middle" font-family="Geist, ui-sans-serif, sans-serif" font-size="11.5" fill="#FAFAF9" fill-opacity="0.66">one remote source of truth</text>
+                <!-- ports -->
+                <g fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.5" stroke-width="1">
+                  <circle cx="444" cy="158" r="2.4"/><circle cx="444" cy="186" r="2.4"/><circle cx="444" cy="215" r="2.4"/><circle cx="444" cy="244" r="2.4"/><circle cx="444" cy="272" r="2.4"/>
+                  <circle cx="656" cy="165" r="2.4"/><circle cx="656" cy="198" r="2.4"/><circle cx="656" cy="232" r="2.4"/><circle cx="656" cy="265" r="2.4"/>
+                </g>
+              </g>
+
+              <!-- governance layer -->
+              <path class="loop-anim loop-d4" d="M550 295 L550 314" fill="none" stroke="#1C1917" stroke-opacity="0.5" stroke-width="1.8" marker-end="url(#arrIn)"/>
+              <g class="loop-anim loop-d4">
+                <rect x="405" y="318" width="290" height="104" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.16"/>
+                <text x="550" y="340" text-anchor="middle" font-family="Geist Mono, ui-monospace, monospace" font-size="10" letter-spacing="1.5" fill="#1C1917" fill-opacity="0.55">GOVERNANCE LAYER</text>
+                <g font-family="Geist, ui-sans-serif, sans-serif" font-size="11.5" font-weight="650" fill="#1C1917">
+                  <g><rect x="421" y="352" width="123" height="27" rx="8" fill="#F5F5F4" stroke="#1C1917" stroke-opacity="0.12"/><text x="482.5" y="369.5" text-anchor="middle">RBAC</text></g>
+                  <g><rect x="556" y="352" width="123" height="27" rx="8" fill="#F5F5F4" stroke="#1C1917" stroke-opacity="0.12"/><text x="617.5" y="369.5" text-anchor="middle">Auditing</text></g>
+                  <g><rect x="421" y="388" width="123" height="27" rx="8" fill="#F5F5F4" stroke="#1C1917" stroke-opacity="0.12"/><text x="482.5" y="405.5" text-anchor="middle">Analytics</text></g>
+                  <g><rect x="556" y="388" width="123" height="27" rx="8" fill="#F5F5F4" stroke="#1C1917" stroke-opacity="0.12"/><text x="617.5" y="405.5" text-anchor="middle">Scanning</text></g>
+                </g>
+              </g>
+
+              <!-- skill library panel -->
+              <rect class="loop-anim loop-d3" x="712" y="74" width="388" height="286" rx="18" fill="#1C1917" fill-opacity="0.025" stroke="#1C1917" stroke-opacity="0.09"/>
+              <g class="loop-anim loop-d3" font-family="Geist Mono, ui-monospace, monospace">
+                <!-- row 0 -->
+                <g>
+                  <rect x="728" y="86" width="170" height="54" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <use href="#mdmark" x="742" y="105" width="28" height="17"/>
+                  <text x="782" y="118" font-size="10.5" fill="#1C1917" fill-opacity="0.82">deploy.md</text>
+                </g>
+                <g>
+                  <rect x="914" y="86" width="170" height="54" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <use href="#mdmark" x="928" y="105" width="28" height="17"/>
+                  <text x="968" y="118" font-size="10.5" fill="#1C1917" fill-opacity="0.82">lambda-setup.md</text>
+                </g>
+                <!-- row 1 -->
+                <g>
+                  <rect x="728" y="154" width="170" height="54" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <use href="#mdmark" x="742" y="173" width="28" height="17"/>
+                  <text x="782" y="186" font-size="10.5" fill="#1C1917" fill-opacity="0.82">pr-review.md</text>
+                </g>
+                <g>
+                  <rect x="914" y="154" width="170" height="54" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <use href="#mdmark" x="928" y="173" width="28" height="17"/>
+                  <text x="968" y="186" font-size="10.5" fill="#1C1917" fill-opacity="0.82">oncall-triage.md</text>
+                </g>
+                <!-- row 2 -->
+                <g>
+                  <rect x="728" y="222" width="170" height="54" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <use href="#mdmark" x="742" y="241" width="28" height="17"/>
+                  <text x="782" y="254" font-size="10.5" fill="#1C1917" fill-opacity="0.82">db-migrate.md</text>
+                </g>
+                <g>
+                  <rect x="914" y="222" width="170" height="54" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <use href="#mdmark" x="928" y="241" width="28" height="17"/>
+                  <text x="968" y="254" font-size="10.5" fill="#1C1917" fill-opacity="0.82">brand-voice.md</text>
+                </g>
+                <!-- row 3 -->
+                <g>
+                  <rect x="728" y="290" width="170" height="54" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <use href="#mdmark" x="742" y="309" width="28" height="17"/>
+                  <text x="782" y="322" font-size="10.5" fill="#1C1917" fill-opacity="0.82">refund-flow.md</text>
+                </g>
+                <g>
+                  <rect x="914" y="290" width="170" height="54" rx="10" fill="#1C1917" fill-opacity="0.04" stroke="#1C1917" stroke-opacity="0.2" stroke-dasharray="4 4"/>
+                  <text x="999" y="322" text-anchor="middle" font-size="11" letter-spacing="0.5" fill="#1C1917" fill-opacity="0.55">+ 44 more</text>
+                </g>
+              </g>
+            </svg>
           </div>
         </div>
         <div class="source">Source: <a href="https://github.com/modelcontextprotocol/experimental-ext-skills">github.com/modelcontextprotocol/experimental-ext-skills</a></div>
@@ -2479,7 +2732,7 @@ and...
     <div class="unit">
       <div class="frame" style="--gx: 86%; --gy: 18%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">14 / compatibility</div></div>
-        <div class="content stack" style="inset: 66px 64px 44px; gap: 8px;">
+        <div class="content stack" style="inset: 66px 64px 44px; gap: 8px; justify-content: center;">
           <div class="eyebrow">Client compatibility</div>
           <h2 class="display" style="font-size: 50px; max-width: 1040px;">Not every AI client supports skills. Many do support MCP.</h2>
           <div class="coverage-table">
@@ -2550,35 +2803,14 @@ and...
   </section>
 <section class="slide">
     <div class="unit">
-      <div class="frame" style="--gx: 74%; --gy: 26%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">16 / combination</div></div>
-        <div class="content stack center">
-          <div class="eyebrow">The combination</div>
-          <h2 class="display">Agents do the work. Skills guide the work. MCP distributes the guidance.</h2>
-          <div class="diagram" style="height: 330px;">
-            <div class="node" style="left: 70px; top: 120px;"><div class="label">Agent</div><div class="name">plans, acts, observes</div></div>
-            <div class="node" style="left: 360px; top: 120px;"><div class="label">Skill</div><div class="name">procedure + judgment</div></div>
-            <div class="node" style="left: 650px; top: 120px;"><div class="label">MCP</div><div class="name">governed loading</div></div>
-            <div class="node" style="left: 940px; top: 120px;"><div class="label">Org</div><div class="name">shared knowledge</div></div>
-            <div class="arrow" style="left: 240px; top: 178px; width: 118px;"></div>
-            <div class="arrow" style="left: 530px; top: 178px; width: 118px;"></div>
-            <div class="arrow" style="left: 820px; top: 178px; width: 118px;"></div>
-          </div>
-        </div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>So now the whole picture finally fits in one sentence. And notice we did not start here. We arrived here. Agents do the work. Skills guide the work. MCP distributes that guidance. That distribution layer is why one agent's learning can become company knowledge instead of a local file on one developer's machine.</p></aside>
-    </div>
-  </section>
-<section class="slide">
-    <div class="unit">
       <div class="frame video-frame" style="--gx: 82%; --gy: 16%;">
         <div class="video-bg" aria-hidden="true">
-          <video autoplay muted loop playsinline preload="auto" poster="assets/video/voyager-minecraft-10s-preview.jpg">
+          <video autoplay muted loop playsinline preload="auto">
             <source src="assets/video/voyager-minecraft-10s.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="video-scrim"></div>
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">17 / Voyager</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">16 / Voyager</div></div>
         <div class="content grid-2" style="grid-template-columns: .78fr 1.22fr;">
           <div class="stack center">
             <div class="eyebrow">This was visible in 2023</div>
@@ -2595,7 +2827,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 70%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">18 / skill library</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">17 / skill library</div></div>
         <div class="content distill-slide" style="inset: 76px 54px 46px;">
           <div class="stack distill-copy">
             <div class="eyebrow">The mechanism</div>
@@ -2611,18 +2843,67 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 82%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">19 / distill</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">18 / distill</div></div>
         <div class="content stack center">
           <div class="eyebrow">The learning loop</div>
-          <h2 class="display">Take the successful run. Distill the reusable part. Draft a skill.</h2>
-          <div class="diagram" style="height: 330px;">
-            <div class="node" style="left: 70px; top: 116px;"><div class="label">trace</div><div class="name">successful agent run</div></div>
-            <div class="node" style="left: 376px; top: 116px;"><div class="label">judge</div><div class="name">LLM distillation</div></div>
-            <div class="node" style="left: 682px; top: 116px;"><div class="label">artifact</div><div class="name">private skill draft</div></div>
-            <div class="node" style="left: 976px; top: 116px;"><div class="label">future</div><div class="name">next run loads it</div></div>
-            <div class="arrow" style="left: 236px; top: 174px; width: 136px;"></div>
-            <div class="arrow" style="left: 542px; top: 174px; width: 136px;"></div>
-            <div class="arrow" style="left: 840px; top: 174px; width: 136px;"></div>
+          <h2 class="display" style="font-size: 44px; max-width: 980px;">Take the successful run. Distill the reusable part. Draft a skill.</h2>
+          <div class="loop-figure">
+            <svg viewBox="0 0 1100 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A learning loop: a successful run leaves a trace, the reusable part is distilled, drafted into a private skill .md, then the next run loads it">
+              <defs>
+                <marker id="loopArr" markerWidth="10" markerHeight="10" refX="6" refY="3.5" orient="auto">
+                  <path d="M0 0 L7 3.5 L0 7 Z" fill="#1C1917" fill-opacity="0.6"/>
+                </marker>
+                <symbol id="mdmark2" viewBox="0 0 208 128">
+                  <rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/>
+                  <path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/>
+                </symbol>
+              </defs>
+
+              <!-- clockwise loop connectors (true elliptical arcs) -->
+              <g fill="none" stroke="#1C1917" stroke-opacity="0.3" stroke-width="2.25">
+                <path class="loop-anim loop-d2" d="M720 73 A 402 140 0 0 1 938 164" marker-end="url(#loopArr)"/>
+                <path class="loop-anim loop-d3" d="M914 259 A 402 140 0 0 1 720 327" marker-end="url(#loopArr)"/>
+                <path class="loop-anim loop-d4" d="M380 327 A 402 140 0 0 1 186 259" marker-end="url(#loopArr)"/>
+                <path class="loop-anim loop-d5" d="M186 141 A 402 140 0 0 1 380 73" marker-end="url(#loopArr)"/>
+              </g>
+
+              <!-- nodes -->
+              <g font-family="Geist, ui-sans-serif, system-ui, sans-serif">
+                <!-- 1 TRACE (top) -->
+                <g class="loop-anim loop-d1">
+                  <rect x="418" y="16" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="418" cy="16" r="17" fill="#1C1917"/>
+                  <text x="418" y="21.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">1</text>
+                  <text x="450" y="52" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">TRACE</text>
+                  <text x="450" y="80" font-size="18.5" font-weight="750" fill="#1C1917">A successful run</text>
+                </g>
+                <!-- 2 DISTILL (right) -->
+                <g class="loop-anim loop-d2">
+                  <rect x="820" y="156" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="820" cy="156" r="17" fill="#1C1917"/>
+                  <text x="820" y="161.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">2</text>
+                  <text x="852" y="192" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">DISTILL</text>
+                  <text x="852" y="220" font-size="18.5" font-weight="750" fill="#1C1917">the reusable part</text>
+                </g>
+                <!-- 3 DRAFT (bottom) -->
+                <g class="loop-anim loop-d3">
+                  <rect x="418" y="296" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="418" cy="296" r="17" fill="#1C1917"/>
+                  <text x="418" y="301.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">3</text>
+                  <text x="450" y="334" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">DRAFT</text>
+                  <use href="#mdmark2" x="450" y="346" width="34" height="21"/>
+                  <text x="494" y="363" font-size="18.5" font-weight="750" fill="#1C1917">Private skill</text>
+                </g>
+                <!-- 4 REUSE (left) -->
+                <g class="loop-anim loop-d4">
+                  <rect x="16" y="156" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="16" cy="156" r="17" fill="#1C1917"/>
+                  <text x="16" y="161.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">4</text>
+                  <text x="48" y="192" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">REUSE</text>
+                  <text x="48" y="220" font-size="18.5" font-weight="750" fill="#1C1917">Next run loads it</text>
+                </g>
+              </g>
+            </svg>
           </div>
         </div>
       </div>
@@ -2632,7 +2913,7 @@ and...
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 18%; --gy: 70%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">20 / result</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">19 / result</div></div>
         <div class="content metric">
           <div class="stack">
             <div class="eyebrow">Production anecdote</div>
@@ -2662,14 +2943,14 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 82%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">21 / savings</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">20 / savings</div></div>
         <div class="content stack center" style="inset: 116px 64px 54px;">
           <div class="eyebrow">Where the savings come from</div>
           <h2 class="display" style="font-size: 70px;">A skill narrows the search space before the agent starts spending.</h2>
           <div class="savings-board">
             <div class="savings-panel">
               <div class="saving-legend"><span>without skill</span><span>with skill</span></div>
-              <div class="saving-row"><div class="saving-label">failed tries</div><div class="saving-track" style="--before: 86%; --after: 22%;"></div><div class="saving-delta">↓</div></div>
+              <div class="saving-row"><div class="saving-label">failed tries</div><div class="saving-track" style="--before: 86%; --after: 0%;"></div><div class="saving-delta">0</div></div>
               <div class="saving-row"><div class="saving-label">tool calls</div><div class="saving-track" style="--before: 78%; --after: 34%;"></div><div class="saving-delta">↓</div></div>
               <div class="saving-row"><div class="saving-label">tokens</div><div class="saving-track" style="--before: 82%; --after: 42%;"></div><div class="saving-delta">↓</div></div>
               <div class="saving-row"><div class="saving-label">wall clock</div><div class="saving-track" style="--before: 74%; --after: 38%;"></div><div class="saving-delta">↓</div></div>
@@ -2689,42 +2970,138 @@ and...
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 84%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">22 / why now</div></div>
-        <div class="content stack" style="inset: 78px 64px 42px; justify-content: flex-start; gap: 14px;">
-          <div class="eyebrow">The market is noticing</div>
-          <h2 class="display" style="font-size: 48px; max-width: 1010px;">The question is not just “can agents do it?” It is “what does the company retain?”</h2>
-          <div class="literal-tweets">
-            <div class="literal-tweet-card">
-              <blockquote class="twitter-tweet" data-theme="light" data-dnt="true">
-                <a class="literal-tweet-fallback" href="https://x.com/shadcn/status/2065826989769163068">Open shadcn tweet about persisting useful knowledge from frontier intelligence</a>
-              </blockquote>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">21 / why now</div></div>
+        <div class="content grid-2" style="grid-template-columns: 1.02fr .98fr; gap: 40px; align-items: center;">
+          <div class="stack" style="gap: 20px;">
+            <div class="eyebrow">Why now</div>
+            <h2 class="display" style="font-size: 44px; max-width: 560px;">The question is not just “can agents do it?” It is “what does the company retain?”</h2>
+            <p class="body" style="max-width: 520px;">Frontier intelligence is <strong>borrowed</strong>. A model can vanish overnight — Fable 5 just got pulled. What survives the next swap is the procedure you distilled into a skill while you still had access.</p>
+            <a class="tangent-chip" href="https://x.com/packyM/status/2064811710544777334" target="_blank" rel="noopener">In the same vein — @packyM ↗</a>
+          </div>
+          <div class="x-tweet">
+            <div class="x-tweet-head">
+              <div class="x-avatar"><img src="assets/images/shadcn-avatar.png" alt="shadcn" /></div>
+              <div class="x-id">
+                <span class="x-name">shadcn <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#1d9bf0" d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/></svg></span>
+                <span class="x-handle">@shadcn · <b>Follow</b></span>
+              </div>
+              <span class="x-logo"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
             </div>
-            <div class="literal-tweet-card">
-              <blockquote class="twitter-tweet" data-theme="light" data-dnt="true">
-                <a class="literal-tweet-fallback" href="https://x.com/HamelHusain/status/2065057311375421905">Open Hamel Husain tweet about non-developers sharing skills with a team and keeping everyone updated</a>
-              </blockquote>
+            <div class="x-body">
+              <p>In light of what happened, I'm doubling down on skills like /improve.</p>
+              <p>A frontier model got pulled. If it happened once, it's gonna happen again. Fable today, 4.9 tomorrow or maybe gpt 6 one day.</p>
+              <p>So, <span class="x-mark">treat intelligence as borrowed</span>. Drain intelligence when it's available.</p>
             </div>
+            <a class="x-foot" href="https://x.com/shadcn/status/2065826989769163068" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> View post on X</a>
           </div>
         </div>
+        <div class="source">Reference: <a href="https://x.com/shadcn/status/2065826989769163068">shadcn on X</a> · <a href="https://x.com/packyM/status/2064811710544777334">@packyM on X</a></div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>These two tweets point at the same deeper problem from different angles. One is about the fact that intelligence can be temporary. If we have access to frontier intelligence, we should use it to discover and persist useful work patterns. The other is about distribution: how do non-developers share skills with a team, and how does everyone get the updated version automatically? Together, that is the real opportunity: turn temporary intelligence into a durable, shared catalog of how the company works.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>shadcn captures the urgency here: intelligence can be temporary. A frontier model can be pulled, deprecated, or moved behind a different surface. So while we have access to it, we should use it to discover and persist useful procedures — and Packy McCormick makes a related point. The opportunity is to turn borrowed intelligence into a durable, shared catalog of how the company actually works.</p></aside>
     </div>
   </section>
 <section class="slide">
     <div class="unit">
-      <div class="frame" style="--gx: 72%; --gy: 22%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">23 / examples of org knowledge</div></div>
-        <div class="content stack center">
-          <div class="eyebrow">What gets promoted?</div>
-          <h2 class="display">The useful skills are usually boring, precise, and local.</h2>
-          <div class="grid-3">
-            <div class="card"><span class="pill">Review</span><h3 style="margin-top: 16px;">Code path checklist</h3><p>How this repo expects auth, retries, logging, and rollout guards.</p></div>
-            <div class="card"><span class="pill">Support</span><h3 style="margin-top: 16px;">Escalation path</h3><p>Which signals prove severity and which customer messages are safe.</p></div>
-            <div class="card"><span class="pill">Ops</span><h3 style="margin-top: 16px;">Integration setup</h3><p>The exact sequence for a vendor, region, or internal tool.</p></div>
+      <div class="frame" style="--gx: 74%; --gy: 22%;">
+        <div class="chrome">
+          <div>
+            <img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" />
+            <img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" />
           </div>
+          <div class="slide-no">22 / teach the company back</div>
+        </div>
+        <div class="content stack center">
+          <h1 class="title"><span class="title-highlight">Self-Improving Agents</span> <span class="title-highlight-animate">That Teach the Company Back</span></h1>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The skills worth promoting are usually not glamorous. They are boring, precise, local procedures. How this repo expects auth and retries. How this support team handles a certain escalation. How this vendor integration gets configured. That is the stuff companies actually need agents to remember.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>And now the second half of the title lights up. We have self-improving agents, and the payoff is that they teach the company back. Every skill an agent distills can become shared, governed knowledge that every other agent inherits. That is the whole thesis in one line — and here is the mechanism.</p></aside>
+    </div>
+  </section>
+<section class="slide light">
+    <div class="unit">
+      <div class="frame" style="--gx: 80%; --gy: 18%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">23 / flywheel</div></div>
+        <div class="content stack center" style="inset: 70px 56px 46px; gap: 10px;">
+          <div class="eyebrow">Putting it together</div>
+          <h2 class="display" style="font-size: 42px; max-width: 960px;">Self-improving organization flywheel.</h2>
+          <div class="loop-figure" style="height: 372px;">
+            <svg viewBox="0 0 1100 440" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A company-level loop: any agent on any client does work, distills a skill, gets it promoted, and MCP serves it back to every client. The org skill library sits at the center, written to and read from.">
+              <defs>
+                <marker id="compArr" markerWidth="10" markerHeight="10" refX="6" refY="3.5" orient="auto">
+                  <path d="M0 0 L7 3.5 L0 7 Z" fill="#1C1917" fill-opacity="0.6"/>
+                </marker>
+                <marker id="compArrLite" markerWidth="9" markerHeight="9" refX="5.5" refY="3" orient="auto">
+                  <path d="M0 0 L6 3 L0 6 Z" fill="#1C1917" fill-opacity="0.5"/>
+                </marker>
+                <symbol id="mdmark3" viewBox="0 0 208 128">
+                  <rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/>
+                  <path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/>
+                </symbol>
+              </defs>
+
+              <!-- outer clockwise ring -->
+              <g fill="none" stroke="#1C1917" stroke-opacity="0.3" stroke-width="2.25">
+                <path class="loop-anim loop-d2" d="M717 73 A 396 162 0 0 1 933 178" marker-end="url(#compArr)"/>
+                <path class="loop-anim loop-d3" d="M909 288 A 396 162 0 0 1 717 367" marker-end="url(#compArr)"/>
+                <path class="loop-anim loop-d4" d="M383 367 A 396 162 0 0 1 191 288" marker-end="url(#compArr)"/>
+                <path class="loop-anim loop-d5" d="M191 151 A 396 162 0 0 1 383 73" marker-end="url(#compArr)"/>
+              </g>
+
+              <!-- center hub: org skill library -->
+              <g class="loop-anim loop-d1">
+                <rect x="435" y="160" width="230" height="120" rx="18" fill="#1C1917"/>
+                <use href="#mdmark3" x="497" y="184" width="30" height="18"/>
+                <use href="#mdmark3" x="535" y="184" width="30" height="18"/>
+                <use href="#mdmark3" x="573" y="184" width="30" height="18"/>
+                <text x="550" y="232" text-anchor="middle" font-family="Inter Tight, Geist, sans-serif" font-size="16" font-weight="700" fill="#FAFAF9">Org skill library</text>
+                <text x="550" y="254" text-anchor="middle" font-family="Geist Mono, ui-monospace, monospace" font-size="9" letter-spacing="1.5" fill="#FAFAF9" fill-opacity="0.6">GOVERNED · VERSIONED</text>
+              </g>
+
+              <!-- write / serve spokes -->
+              <g fill="none" stroke="#1C1917" stroke-opacity="0.34" stroke-width="1.8">
+                <path class="loop-anim loop-d2" d="M812 208 L 672 208" marker-end="url(#compArrLite)"/>
+                <path class="loop-anim loop-d4" d="M433 246 L 292 246" marker-end="url(#compArrLite)"/>
+              </g>
+              <text class="loop-anim loop-d2" x="742" y="201" text-anchor="middle" font-family="Geist Mono, monospace" font-size="9.5" letter-spacing="1" fill="#1C1917" fill-opacity="0.55">WRITE</text>
+              <text class="loop-anim loop-d4" x="362" y="239" text-anchor="middle" font-family="Geist Mono, monospace" font-size="9.5" letter-spacing="1" fill="#1C1917" fill-opacity="0.55">SERVE</text>
+
+              <!-- nodes -->
+              <g font-family="Geist, ui-sans-serif, system-ui, sans-serif">
+                <g class="loop-anim loop-d1">
+                  <rect x="418" y="14" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="418" cy="14" r="17" fill="#1C1917"/>
+                  <text x="418" y="19.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">1</text>
+                  <text x="450" y="50" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">WORK</text>
+                  <text x="450" y="78" font-size="18.5" font-weight="750" fill="#1C1917">Any agent, any client</text>
+                </g>
+                <g class="loop-anim loop-d2">
+                  <rect x="814" y="176" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="814" cy="176" r="17" fill="#1C1917"/>
+                  <text x="814" y="181.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">2</text>
+                  <text x="846" y="212" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">DISTILL</text>
+                  <text x="846" y="240" font-size="18.5" font-weight="750" fill="#1C1917">Writes a skill back</text>
+                </g>
+                <g class="loop-anim loop-d3">
+                  <rect x="418" y="338" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="418" cy="338" r="17" fill="#1C1917"/>
+                  <text x="418" y="343.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">3</text>
+                  <text x="450" y="374" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">PROMOTE</text>
+                  <text x="450" y="402" font-size="18.5" font-weight="750" fill="#1C1917">Reviewed → shared</text>
+                </g>
+                <g class="loop-anim loop-d4">
+                  <rect x="22" y="176" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="22" cy="176" r="17" fill="#1C1917"/>
+                  <text x="22" y="181.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">4</text>
+                  <text x="54" y="212" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">SERVE</text>
+                  <text x="54" y="240" font-size="18.5" font-weight="750" fill="#1C1917">MCP → every client</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="source">One agent's win becomes the company's default.</div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>This is where the two halves snap together. Earlier we saw MCP distribute one governed library to every client, and we saw a single agent distill its own successful run into a skill. Combine them at company scale: any agent, on any client, does real work; the successful run is distilled into a skill; that skill is reviewed and promoted; and MCP serves it back to every client. The org skill library in the middle is both written to and read from. Knowledge captured by one agent becomes the default for everyone — that is literally teaching the company back.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2758,65 +3135,77 @@ and...
       <aside class="notes"><div class="label">Speaker notes</div><p>A bad skill is worse than no skill because a skill biases the agent. That is why it helps. But if the skill is wrong, stale, overfit, or distributed across the wrong boundary, it turns a one-time mistake into a repeatable instruction. You need evidence, scoped rollout, versioning, continuous evaluation, and iteration on persisted skills, because otherwise you have taught the company the wrong thing.</p></aside>
     </div>
   </section>
-<section class="slide">
+<section class="slide light">
     <div class="unit">
-      <div class="frame" style="--gx: 76%; --gy: 22%;">
+      <div class="frame" style="--gx: 80%; --gy: 20%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">26 / iteration</div></div>
-        <div class="content grid-2" style="grid-template-columns: .56fr 1.44fr; gap: 24px;">
-          <div class="stack center">
-            <div class="eyebrow">Iteration</div>
-            <h2 class="display" style="font-size: 50px;">Skills improve like code: patches, evidence, rollback.</h2>
-            <p class="body">Each successful run is a signal. Some diffs move the skill toward better task completion. Some need to be rejected or rolled back.</p>
-          </div>
-          <div style="position: relative;">
-            <img class="iteration-visual" src="assets/images/skill-improvement-landscape.png" alt="Isometric skill optimization landscape where accepted skill diffs move toward better task completion, with one rejected side branch" />
+        <div class="content stack center" style="inset: 72px 56px 46px; gap: 10px;">
+          <div class="eyebrow">Continuous improvement</div>
+          <h2 class="display" style="font-size: 42px; max-width: 1000px;">Skills improve like code: patches, evidence, rollback.</h2>
+          <div class="loop-figure">
+            <svg viewBox="0 0 1100 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A refinement loop: an existing skill version N is used in a run that hits a new edge case, a diff is distilled, evidence decides whether to keep it or roll back, producing version N plus one">
+              <defs>
+                <marker id="iterArr" markerWidth="10" markerHeight="10" refX="6" refY="3.5" orient="auto">
+                  <path d="M0 0 L7 3.5 L0 7 Z" fill="#1C1917" fill-opacity="0.6"/>
+                </marker>
+                <symbol id="mdmark4" viewBox="0 0 208 128">
+                  <rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/>
+                  <path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/>
+                </symbol>
+              </defs>
+
+              <g fill="none" stroke="#1C1917" stroke-opacity="0.3" stroke-width="2.25">
+                <path d="M720 73 A 402 140 0 0 1 938 164" marker-end="url(#iterArr)"/>
+                <path d="M914 259 A 402 140 0 0 1 720 327" marker-end="url(#iterArr)"/>
+                <path d="M380 327 A 402 140 0 0 1 186 259" marker-end="url(#iterArr)"/>
+                <path d="M186 141 A 402 140 0 0 1 380 73" marker-end="url(#iterArr)"/>
+              </g>
+
+              <text x="244" y="98" font-family="Geist Mono, monospace" font-size="13" font-weight="700" letter-spacing="0.5" fill="#1C1917" fill-opacity="0.62">merge → vN+1</text>
+
+              <g font-family="Geist, ui-sans-serif, system-ui, sans-serif">
+                <g>
+                  <rect x="418" y="16" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="418" cy="16" r="17" fill="#1C1917"/>
+                  <text x="418" y="21.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">1</text>
+                  <text x="450" y="50" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">EXISTING</text>
+                  <use href="#mdmark4" x="450" y="62" width="34" height="21"/>
+                  <text x="494" y="79" font-size="18.5" font-weight="750" fill="#1C1917">Skill vN</text>
+                </g>
+                <g>
+                  <rect x="820" y="156" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="820" cy="156" r="17" fill="#1C1917"/>
+                  <text x="820" y="161.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">2</text>
+                  <text x="852" y="192" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">RUN</text>
+                  <text x="852" y="220" font-size="18.5" font-weight="750" fill="#1C1917">Hits a new edge case</text>
+                </g>
+                <g>
+                  <rect x="418" y="296" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="418" cy="296" r="17" fill="#1C1917"/>
+                  <text x="418" y="301.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">3</text>
+                  <text x="450" y="334" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">PATCH</text>
+                  <text x="450" y="362" font-size="18.5" font-weight="750" fill="#1C1917">Distill a diff</text>
+                </g>
+                <g>
+                  <rect x="16" y="156" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="16" cy="156" r="17" fill="#1C1917"/>
+                  <text x="16" y="161.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">4</text>
+                  <text x="48" y="192" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">REVIEW</text>
+                  <text x="48" y="220" font-size="18.5" font-weight="750" fill="#1C1917">Keep, or roll back</text>
+                </g>
+              </g>
+            </svg>
           </div>
         </div>
-        <div class="source" style="left: auto; right: 70px; bottom: 48px;">Source: SkillGrad, arXiv:2605.27760</div>
+        <div class="source">The same loop refines skills that already exist — version them like code.</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>That is why versioning matters. Zero-shot skills are often not good enough. As agents uncover more edge cases, the system should patch the existing skill. You can think of this as gradient descent over skills: each run gives you a signal about the procedure. But some patches will make the skill worse, so skills need to behave more like code: versions, diffs, rollback, and eventually A/B tests between the current skill and a candidate update.</p></aside>
-    </div>
-  </section>
-<section class="slide">
-    <div class="unit">
-      <div class="frame" style="--gx: 72%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">27 / promotion</div></div>
-        <div class="content stack center">
-          <div class="eyebrow">Agent memory → org knowledge</div>
-          <h2 class="display">Promotion is a product workflow, not a hidden model behavior.</h2>
-          <div class="diagram" style="height: 330px;">
-            <div class="node" style="left: 58px; top: 128px;"><div class="label">private</div><div class="name">agent-learned skill</div></div>
-            <div class="node" style="left: 340px; top: 70px;"><div class="label">evidence</div><div class="name">runs, diffs, evals</div></div>
-            <div class="node" style="left: 340px; top: 212px;"><div class="label">review</div><div class="name">admin edits + approves</div></div>
-            <div class="node" style="left: 660px; top: 128px;"><div class="label">shared</div><div class="name">team skill</div></div>
-            <div class="node" style="left: 940px; top: 128px;"><div class="label">org</div><div class="name">company playbook</div></div>
-            <div class="arrow" style="left: 238px; top: 184px; width: 100px; transform: rotate(-25deg);"></div>
-            <div class="arrow" style="left: 238px; top: 184px; width: 100px; transform: rotate(25deg);"></div>
-            <div class="arrow" style="left: 542px; top: 184px; width: 116px;"></div>
-            <div class="arrow" style="left: 834px; top: 184px; width: 104px;"></div>
-          </div>
-        </div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Promotion is the boundary where I want humans involved. An LLM can suggest that a private skill is useful. It can summarize evidence and propose edits. But an admin or domain owner should decide when that skill becomes a team or organization default. Promotion is a workflow, not a hidden model behavior.</p></aside>
-    </div>
-  </section>
-<section class="slide">
-    <div class="unit">
-      <div class="frame" style="--gx: 76%; --gy: 26%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">28 / flywheel</div></div>
-        <div class="content stack center" style="inset: 118px 64px 46px;">
-          <div class="eyebrow">Self-improving company knowledge</div>
-          <h2 class="display" style="font-size: 70px;">One agent learns. Everyone starts smarter.</h2>
-          <img class="flywheel-visual" src="assets/images/company-knowledge-flywheel.png" alt="Dark premium systems diagram showing a five-step self-improving company knowledge flywheel with agent run, skill document, human review, governed registry, and smarter clients" />
-        </div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>This is the flywheel. An agent solves real work. The successful run becomes a private learned skill. The useful skill gets reviewed and promoted into organizational knowledge. Then the skill registry and MCP make that knowledge available inside the AI clients employees already use. One agent learns, and everyone starts smarter.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>And the loop doesn't only mint new skills — it refines the ones you already have. Zero-shot skills are often not good enough. As agents uncover more edge cases, the system patches the existing skill: distill a diff, gather evidence, and either keep it as the next version or roll it back. Think of it as gradient descent over skills — each run is a signal, but some patches make things worse, so skills behave like code: versions, diffs, rollback, and eventually A/B tests between the current skill and a candidate update.</p></aside>
     </div>
   </section>
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">29 / close</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">27 / close</div></div>
         <div class="content grid-2">
           <div class="stack">
             <div class="eyebrow">The thesis</div>
