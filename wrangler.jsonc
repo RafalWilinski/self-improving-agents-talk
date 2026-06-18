@@ -1,0 +1,9 @@
+{
+  // Static-assets-only Worker (no Worker script): serves the deck and its assets.
+  // Fixes the Workers Build error "Could not detect a directory containing static files".
+  "name": "self-improving-agents-talk",
+  "compatibility_date": "2025-06-18",
+  "assets": {
+    "directory": "."
+  }
+}

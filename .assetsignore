@@ -1,0 +1,8 @@
+# Keep repo/config files out of the deployed static assets
+.git
+.gitignore
+.assetsignore
+.claude
+wrangler.jsonc
+README.md
+*.log
