@@ -3014,7 +3014,7 @@ and...
           <h1 class="title"><span class="title-highlight">Self-Improving Agents</span> <span class="title-highlight-animate">That Teach the Company Back</span></h1>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>We now know how to improve agents. We know how to make them self-improve themselves. We also have the distribution layer, the centralized MCP server, and that's where it all clicks together.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Here's the whole title, lit up. "Improving agents" — that's skills. "Self-improving" — that's the distill loop. And we have the distribution layer: the central MCP server. So far, that is one agent getting smarter. The interesting part is what happens when you multiply that by every agent, on every client, in the entire company — and that is the next slide. If you remember one diagram from this talk, make it that one.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3110,7 +3110,7 @@ and...
         </div>
         <div class="source">One agent's win becomes the company's default.</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>At Runlayer we call this the “self-improving organization flywheel.” Any agent, on any client, does real work; the successful run is distilled into a skill; that skill is reviewed and promoted; and MCP serves it back to every client. The org skill library in the middle is both written to and read from. Knowledge captured by one agent becomes the default for everyone — that is literally teaching the company back.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>At Runlayer we call this the self-improving organization flywheel — and this is the whole talk in one loop. Any agent, on any client, does real work. The successful run gets distilled into a skill. It passes through the governance layer and a human, and then MCP serves it back to every client. The org skill library in the middle is written to and read from at the same time. So one agent solves something once — and every other agent, in every department, starts the next task already knowing it. Nobody re-derives the OOM runbook, the vendor approval path, or the Chromium-on-Lambda incantation ever again. The company gets smarter in the background, while you sleep. That is, very literally, teaching the company back.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3122,32 +3122,13 @@ and...
           <h2 class="blast-sentence">A <span class="danger">bad skill</span> shared across agents becomes <span class="danger">organizational hallucination.</span></h2>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>But there's also a catch. A bad skill shared across agents becomes organizational hallucination — it is no longer one agent making one bad call, it is the company repeatedly teaching every agent the wrong procedure. That is why scope, evaluation, and rollback are not enterprise checkboxes; they are the difference between organizational learning and organizational hallucination.</p></aside>
-    </div>
-  </section>
-<section class="slide light">
-    <div class="unit">
-      <div class="frame" style="--gx: 16%; --gy: 74%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">25 / bad skill</div></div>
-        <div class="content stack center">
-          <div class="eyebrow">Keep this sentence</div>
-          <h2 class="display">A bad skill is worse than no skill.</h2>
-          <div class="matrix">
-            <div class="cell head">Failure</div><div class="cell head">What happens</div><div class="cell head">Why it hurts</div><div class="cell head">Control</div>
-            <div class="cell">Overfitted trick</div><div class="cell muted">Works once, misleads later</div><div class="cell muted">False confidence</div><div class="cell">Evidence + scope</div>
-            <div class="cell">Stale process</div><div class="cell muted">Guides agent to a dead path</div><div class="cell muted">More expensive than search</div><div class="cell">Versioning</div>
-            <div class="cell">Leaky boundary</div><div class="cell muted">One team learns the wrong thing from another</div><div class="cell muted">Company-wide contamination</div><div class="cell">Scoped rollout</div>
-            <div class="cell">Unsafe shortcut</div><div class="cell muted">Reinforces risky behavior</div><div class="cell muted">Agency collapses into habit</div><div class="cell">Continuous eval</div>
-          </div>
-        </div>
-      </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>A bad skill is worse than no skill because a skill biases the agent. That is why it helps. But if the skill is wrong, stale, overfit, or distributed across the wrong boundary, it turns a one-time mistake into a repeatable instruction. You need evidence, scoped rollout, versioning, continuous evaluation, and iteration on persisted skills, because otherwise you have taught the company the wrong thing.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But there's also a catch — and it's a big one. A hallucinating agent is a bad day. A hallucinating skill is a policy. One bad agent makes one bad call; one bad skill makes that same bad call on every client, every day, automatically. You didn't ship a bug — you promoted it to company policy and gave it a distribution channel. That's the real reason a bad skill is worse than no skill: with no skill the agent thinks for itself; with a bad one it's confidently wrong, fast, and now it can teach the new hires. So scope, evidence, and rollback aren't enterprise checkboxes — they're the line between organizational learning and organizational hallucination.</p></aside>
     </div>
   </section>
 <section class="slide light">
     <div class="unit">
       <div class="frame" style="--gx: 80%; --gy: 20%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">26 / iteration</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">25 / iteration</div></div>
         <div class="content stack center" style="inset: 72px 56px 46px; gap: 10px;">
           <div class="eyebrow">Continuous improvement</div>
           <h2 class="display" style="font-size: 42px; max-width: 1000px;">Skills improve like code: patches, evidence, rollback.</h2>
@@ -3206,29 +3187,22 @@ and...
             </svg>
           </div>
         </div>
-        <div class="source">The same loop refines skills that already exist — version them like code.</div>
+        <div class="source">The flywheel spreads a skill sideways, across the company. This loop runs forward, across versions.</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>And the loop doesn't only mint new skills — it refines the ones you already have. Zero-shot skills are often not good enough. As agents uncover more edge cases, the system patches the existing skill: distill a diff, gather evidence, and either keep it as the next version or roll it back. Think of it as gradient descent over skills — each run is a signal, but some patches make things worse, so skills behave like code: versions, diffs, rollback, and eventually A/B tests between the current skill and a candidate update.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>One more axis. The flywheel spreads a skill sideways — across the company. This is the same loop running forward — across versions. A skill is rarely great on the first try, so every new edge case becomes a patch: distill a diff, gather evidence, and either ship it as the next version or roll it back. Treat skills like code, because they are code now — which means yes, they have bugs, yes, they have versions, and yes, eventually someone is going to git blame the agent.</p></aside>
     </div>
   </section>
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 18%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">27 / close</div></div>
-        <div class="content grid-2">
-          <div class="stack">
-            <div class="eyebrow">The thesis</div>
-            <h2 class="display">The agent should leave a handbook.</h2>
-            <p class="body">Successful work should become inspectable, improvable, and eventually useful everywhere work happens.</p>
-          </div>
-          <div class="stack">
-            <div class="card" style="min-height: 142px;"><h3>Capture procedures, not transcript residue.</h3></div>
-            <div class="card" style="min-height: 142px;"><h3>Load skills through governed infrastructure.</h3></div>
-            <div class="card" style="min-height: 142px;"><h3>Promote slowly. Version aggressively.</h3></div>
-          </div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">26 / close</div></div>
+        <div class="content stack center">
+          <div class="eyebrow">The thesis</div>
+          <h2 class="display" style="max-width: 1040px;">The agent should leave a handbook.</h2>
+          <p class="body" style="max-width: 780px;">The bar isn't “did it finish the task.” It's: when it's done, is the company smarter than before it started?</p>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>So the thesis is simple: the agent should leave a handbook. Capture procedures, not transcript residue. Load skills through governed infrastructure. Promote slowly and version aggressively. Self-improving agents are not valuable because they become mysterious. They are valuable because they teach the company back.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Here's how I think about it. Every great engineer who has ever left your company walked out with a handbook in their head that you never got to keep. For the first time, the worker writing that handbook isn't going anywhere — and it's happy to leave the notes behind. So stop measuring whether the agent finished the task. Start measuring whether, when it's done, the company is smarter than it was before it started. The whole talk is really just this: make your agents read the notes — and then write the next ones. Thank you.</p></aside>
     </div>
   </section>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
