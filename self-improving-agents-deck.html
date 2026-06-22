@@ -794,11 +794,10 @@
       background: var(--stone-600);
       box-shadow: none;
       position: relative;
-      transition: height .9s cubic-bezier(.2,.75,.25,1);
+      transition: height 0.65s linear 0.4s;
     }
+    .bar-fill.skill { transition: height 1.8s linear 0.4s; }
     .slide.is-active .bar-fill { height: var(--bh, 0); }
-    .slide.is-active .bar-item:nth-child(1) .bar-fill { transition-delay: .3s; }
-    .slide.is-active .bar-item:nth-child(2) .bar-fill { transition-delay: .65s; }
     @media print { .bar-fill { height: var(--bh, 0) !important; transition: none !important; } }
 
     .bar-fill.skill {
@@ -1385,49 +1384,59 @@
     .slide.is-active .loop-d5 { animation: loopFadeIn 1s ease-out 4.4s both; }
     @media print { .loop-anim { opacity: 1 !important; animation: none !important; } }
 
-    /* skill = file, with progressive-disclosure expand */
-    .skillfile {
-      align-self: center;
-      width: 100%;
-      max-width: 900px;
-      background: #fff;
-      border: 1px solid rgba(41,37,36,.16);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      margin-top: 4px;
+    /* skill = progressive disclosure into the LLM context window */
+    .pd {
+      align-self: center; width: 100%; max-width: 980px;
+      display: grid; grid-template-columns: 320px 52px 1fr; align-items: start;
     }
-    .skillfile-bar {
-      display: flex; align-items: center; gap: 9px;
-      padding: 11px 16px;
-      background: #F5F5F4;
-      border-bottom: 1px solid rgba(41,37,36,.1);
+    .pd-col-label {
+      font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+      text-transform: uppercase; color: rgba(250,250,249,.5); margin-bottom: 12px;
     }
-    .skillfile-bar svg { width: 18px; height: 11px; display: block; flex: 0 0 auto; }
-    .skillfile-name { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--stone-700); }
-    .skillfile-status {
-      margin-left: auto; font-family: var(--mono); font-size: 9px;
-      letter-spacing: .12em; text-transform: uppercase; color: var(--stone-500);
-      display: inline-flex; align-items: center; gap: 6px;
+    .pd-skills { display: grid; gap: 11px; }
+    .pd-hint {
+      display: flex; gap: 11px; align-items: flex-start;
+      background: #fff; border: 1px solid rgba(41,37,36,.16);
+      border-radius: var(--radius-md); padding: 12px 14px; box-shadow: var(--shadow);
     }
-    .skillfile-status::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--green); }
-    .skillfile-body { padding: 14px 22px 18px; font-family: var(--mono); }
-    .sf-block { padding: 9px 0; }
-    .sf-collapsible .sf-block { border-top: 1px dashed rgba(41,37,36,.12); }
-    .sf-tag {
-      display: inline-block; margin-bottom: 7px;
-      font-size: 10px; letter-spacing: .09em; text-transform: uppercase; font-weight: 800;
-      color: var(--stone-600); background: #F5F5F4;
-      border: 1px solid rgba(41,37,36,.12); padding: 3px 9px; border-radius: 999px;
+    .pd-mk { width: 21px; height: 13px; flex: 0 0 auto; margin-top: 2px; }
+    .pd-body { flex: 1; min-width: 0; }
+    .pd-name { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--ink); }
+    .pd-sum { height: 7px; border-radius: 999px; background: rgba(41,37,36,.15); margin-top: 8px; }
+    .slide.is-active .pd-hint.chosen { animation: pdChoose .5s ease-out 1.3s forwards; }
+    .slide.is-active .pd-hint.dim { animation: pdDim .5s ease-out 1.3s forwards; }
+    @keyframes pdChoose { to { border-color: var(--tan); box-shadow: 0 0 0 2px rgba(164,137,119,.65), var(--shadow); } }
+    @keyframes pdDim { to { opacity: .36; } }
+    .pd-flow { align-self: center; display: flex; justify-content: center; opacity: 0; }
+    .pd-flow svg { width: 40px; height: 20px; }
+    .slide.is-active .pd-flow { animation: pdArrow .5s ease-out 1.9s forwards; }
+    @keyframes pdArrow { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+    .pd-context {
+      background: #fff; border: 1px solid rgba(41,37,36,.16);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow);
+      padding: 15px 18px; min-height: 232px;
     }
-    .sf-line { font-size: 13.5px; line-height: 1.62; color: var(--ink); }
-    .sf-key { color: var(--tan); }
-    .sf-str { color: var(--stone-500); }
-    .sf-h { font-size: 13.5px; font-weight: 800; color: var(--ink); line-height: 1.85; }
-    .sf-collapsible { max-height: 0; opacity: 0; overflow: hidden; }
-    .slide.is-active .sf-collapsible { animation: sfExpand .75s ease-out 1.2s forwards; }
-    @keyframes sfExpand { from { max-height: 0; opacity: 0; } to { max-height: 360px; opacity: 1; } }
-    @media print { .sf-collapsible { max-height: none !important; opacity: 1 !important; animation: none !important; } }
+    .pd-ctx-lines { display: grid; gap: 9px; opacity: .4; }
+    .pd-ln { height: 8px; border-radius: 999px; background: rgba(41,37,36,.16); }
+    .pd-loaded {
+      margin-top: 15px; border-left: 3px solid var(--tan);
+      background: rgba(164,137,119,.09); border-radius: 8px; padding: 11px 13px; opacity: 0;
+    }
+    .slide.is-active .pd-loaded { animation: pdLoad .6s ease-out 2.4s forwards; }
+    @keyframes pdLoad { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .pd-loaded-head { display: flex; align-items: center; gap: 8px; }
+    .pd-loaded-name { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--ink); }
+    .pd-loaded-tag {
+      margin-left: auto; font-family: var(--mono); font-size: 9px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--tan); font-weight: 800;
+    }
+    .pd-loaded .pd-rows { display: grid; gap: 8px; margin-top: 11px; }
+    .pd-loaded .pd-ln { background: rgba(41,37,36,.2); }
+    @media print {
+      .pd-hint.chosen { border-color: var(--tan) !important; box-shadow: 0 0 0 2px rgba(164,137,119,.65), var(--shadow) !important; }
+      .pd-hint.dim { opacity: .36 !important; }
+      .pd-flow, .pd-loaded { opacity: 1 !important; animation: none !important; }
+    }
 
     .x-tweet {
       align-self: center;
@@ -2431,34 +2440,50 @@
     <div class="unit">
       <div class="frame" style="--gx: 16%; --gy: 75%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">03 / term</div></div>
-        <div class="content stack" style="inset: 74px 64px 54px; gap: 16px;">
+        <div class="content stack center" style="inset: 74px 64px 54px; gap: 18px;">
           <div class="eyebrow">Working definition</div>
           <h2 class="display" style="font-size: 40px; max-width: 1000px;">Skill = a playbook an agent can load when the work starts.</h2>
-          <div class="skillfile">
-            <div class="skillfile-bar">
-              <svg viewBox="0 0 208 128" aria-hidden="true"><rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/><path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/></svg>
-              <span class="skillfile-name">chromium-lambda-runtime / SKILL.md</span>
-              <span class="skillfile-status">progressive disclosure</span>
-            </div>
-            <div class="skillfile-body">
-              <div class="sf-block">
-                <span class="sf-tag">Context · when to use it</span>
-                <div class="sf-line"><span class="sf-key">name</span>: chromium-lambda-runtime</div>
-                <div class="sf-line"><span class="sf-key">description</span>: <span class="sf-str">Run headless Chromium inside AWS Lambda.</span></div>
-                <div class="sf-line"><span class="sf-key">when_to_use</span>: <span class="sf-str">Playwright cold-starts failing on Lambda.</span></div>
-              </div>
-              <div class="sf-collapsible">
-                <div class="sf-block">
-                  <span class="sf-tag">Procedure · how to do it</span>
-                  <div class="sf-h">## Steps</div>
-                  <div class="sf-line">1. Pin the Chromium fork + matching driver</div>
-                  <div class="sf-line">2. Bundle the fonts, add <span class="sf-str">--single-process</span></div>
-                  <div class="sf-line">3. Verify with a screenshot before returning</div>
+          <div class="pd">
+            <div>
+              <div class="pd-col-label">Available skills · summaries only</div>
+              <div class="pd-skills">
+                <div class="pd-hint dim">
+                  <svg class="pd-mk" viewBox="0 0 208 128" aria-hidden="true"><rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/><path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/></svg>
+                  <div class="pd-body"><div class="pd-name">oncall-runbook</div><div class="pd-sum" style="width: 78%"></div></div>
                 </div>
-                <div class="sf-block">
-                  <span class="sf-tag">Taste · what good looks like</span>
-                  <div class="sf-h">## What good looks like</div>
-                  <div class="sf-line">Cold start &lt; 2s · no missing-font boxes · clean exit</div>
+                <div class="pd-hint chosen">
+                  <svg class="pd-mk" viewBox="0 0 208 128" aria-hidden="true"><rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/><path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/></svg>
+                  <div class="pd-body"><div class="pd-name">chromium-lambda</div><div class="pd-sum" style="width: 90%"></div></div>
+                </div>
+                <div class="pd-hint dim">
+                  <svg class="pd-mk" viewBox="0 0 208 128" aria-hidden="true"><rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/><path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/></svg>
+                  <div class="pd-body"><div class="pd-name">pr-review</div><div class="pd-sum" style="width: 70%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="pd-flow">
+              <svg viewBox="0 0 40 20" aria-hidden="true" fill="none" stroke="#FAFAF9" stroke-opacity="0.55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10 H31"/><path d="M27 4 L37 10 L27 16"/></svg>
+            </div>
+            <div>
+              <div class="pd-col-label">LLM context window</div>
+              <div class="pd-context">
+                <div class="pd-ctx-lines">
+                  <div class="pd-ln" style="width: 92%"></div>
+                  <div class="pd-ln" style="width: 80%"></div>
+                  <div class="pd-ln" style="width: 88%"></div>
+                </div>
+                <div class="pd-loaded">
+                  <div class="pd-loaded-head">
+                    <svg class="pd-mk" viewBox="0 0 208 128" aria-hidden="true"><rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/><path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/></svg>
+                    <span class="pd-loaded-name">chromium-lambda</span>
+                    <span class="pd-loaded-tag">loaded into context</span>
+                  </div>
+                  <div class="pd-rows">
+                    <div class="pd-ln" style="width: 84%"></div>
+                    <div class="pd-ln" style="width: 96%"></div>
+                    <div class="pd-ln" style="width: 72%"></div>
+                    <div class="pd-ln" style="width: 90%"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2858,12 +2883,6 @@ and...
               <span class="coverage-mark partial" aria-label="Partial MCP support"></span>
               <div class="coverage-note">Perplexity exposes MCP/server-side integrations, but not a mainstream consumer Skills surface.</div>
             </div>
-            <div class="coverage-row">
-              <div class="coverage-client">Poe</div>
-              <span class="coverage-mark empty" aria-label="Skills not documented"></span>
-              <span class="coverage-mark empty" aria-label="MCP not documented"></span>
-              <div class="coverage-note">Consumer bot marketplace, not a native Skills/MCP distribution plane.</div>
-            </div>
           </div>
           <div class="coverage-legend">
             <span class="legend-item"><span class="coverage-mark full"></span> Native</span>
@@ -2871,7 +2890,7 @@ and...
             <span class="legend-item"><span class="coverage-mark empty"></span> Not documented</span>
           </div>
         </div>
-        <div class="source">Sources: OpenAI, Anthropic, Microsoft, Perplexity, Poe docs</div>
+        <div class="source">Sources: OpenAI, Anthropic, Microsoft, Perplexity docs</div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>And if you look at this compatibility matrix, you can see that Model Context Protocol solves that problem almost entirely. So the problem of distributing skills to your non-technical people is solved. Plus, because you're now serving skills from a centralized API, they're always up-to-date — you can monitor which skills are used, apply RBAC and scanning, and do all sorts of stuff.</p></aside>
     </div>
@@ -3054,7 +3073,6 @@ and...
             </div>
           </div>
         </div>
-        <div class="source">Reference: <a href="https://x.com/shadcn/status/2065826989769163068">shadcn on X</a></div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>The success rate is the easiest number to show, but the savings are broader. A good skill narrows the search space before the agent starts spending. It reduces failed attempts, tool calls, tokens, wall clock time, and human interruptions. But putting savings and accuracy aside, there is a deeper reason to do this. Frontier-model intelligence is rented.</p></aside>
     </div>
@@ -3068,7 +3086,6 @@ and...
             <div class="eyebrow">Why now</div>
             <h2 class="display" style="font-size: 44px; max-width: 560px;">The question is not just “can agents do it?” It is “what does the company retain?”</h2>
             <p class="body" style="max-width: 520px;">Frontier intelligence is <strong>borrowed</strong>. A model can vanish overnight — Fable 5 just got pulled. What survives the next swap is the procedure you distilled into a skill while you still had access.</p>
-            <a class="tangent-chip" href="https://x.com/packyM/status/2064811710544777334" target="_blank" rel="noopener">In the same vein — @packyM ↗</a>
           </div>
           <div class="x-tweet">
             <div class="x-tweet-head">
@@ -3087,7 +3104,7 @@ and...
             <a class="x-foot" href="https://x.com/shadcn/status/2065826989769163068" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> View post on X</a>
           </div>
         </div>
-        <div class="source">Reference: <a href="https://x.com/shadcn/status/2065826989769163068">shadcn on X</a> · <a href="https://x.com/packyM/status/2064811710544777334">@packyM on X</a></div>
+        <div class="source">Reference: <a href="https://x.com/shadcn/status/2065826989769163068">shadcn on X</a></div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>Frontier-model intelligence is rented. It can move, change, get deprecated, or just disappear behind a different product surface. So while we have access to that intelligence, we should use it to discover and persist useful procedures. We should be building a catalog, almost a collective subconscious, of how work gets done inside the company.</p></aside>
     </div>
@@ -3125,6 +3142,9 @@ and...
                 <marker id="compArrLite" markerWidth="9" markerHeight="9" refX="5.5" refY="3" orient="auto">
                   <path d="M0 0 L6 3 L0 6 Z" fill="#1C1917" fill-opacity="0.5"/>
                 </marker>
+                <marker id="compArrBi" markerWidth="9" markerHeight="7" refX="6" refY="3.5" orient="auto-start-reverse">
+                  <path d="M0 0 L7 3.5 L0 7 Z" fill="#1C1917" fill-opacity="0.55"/>
+                </marker>
                 <symbol id="mdmark3" viewBox="0 0 208 128">
                   <rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/>
                   <path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/>
@@ -3134,7 +3154,6 @@ and...
               <!-- outer clockwise ring -->
               <g fill="none" stroke="#1C1917" stroke-opacity="0.3" stroke-width="2.25">
                 <path class="loop-anim loop-d2" d="M717 73 A 396 162 0 0 1 933 178" marker-end="url(#compArr)"/>
-                <path class="loop-anim loop-d3" d="M909 288 A 396 162 0 0 1 738 363" marker-end="url(#compArr)"/>
                 <path class="loop-anim loop-d4" d="M362 363 A 396 162 0 0 1 191 288" marker-end="url(#compArr)"/>
                 <path class="loop-anim loop-d5" d="M191 151 A 396 162 0 0 1 383 73" marker-end="url(#compArr)"/>
               </g>
@@ -3148,6 +3167,9 @@ and...
                 <text x="550" y="232" text-anchor="middle" font-family="Inter Tight, Geist, sans-serif" font-size="16" font-weight="700" fill="#FAFAF9">Org skill library</text>
                 <text x="550" y="254" text-anchor="middle" font-family="Geist Mono, ui-monospace, monospace" font-size="9" letter-spacing="1.5" fill="#FAFAF9" fill-opacity="0.6">GOVERNED · VERSIONED</text>
               </g>
+
+              <!-- library <-> governance (bidirectional) -->
+              <path class="loop-anim loop-d3" d="M550 283 L550 311" fill="none" stroke="#1C1917" stroke-opacity="0.5" stroke-width="2" marker-start="url(#compArrBi)" marker-end="url(#compArrBi)"/>
 
               <!-- write / serve spokes -->
               <g fill="none" stroke="#1C1917" stroke-opacity="0.34" stroke-width="1.8">
@@ -3288,10 +3310,15 @@ and...
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 18%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">26 / close</div></div>
-        <div class="content stack center">
-          <div class="eyebrow">The thesis</div>
-          <h2 class="display" style="max-width: 1040px;">The agent should leave a handbook.</h2>
-          <p class="body" style="max-width: 780px;">The bar isn't “did it finish the task.” It's: when it's done, is the company smarter than before it started?</p>
+        <div class="content stack center" style="inset: 66px 64px 48px; gap: 18px;">
+          <div class="eyebrow">What to take away</div>
+          <h2 class="display" style="font-size: 42px; max-width: 1000px;">The agent should leave a handbook.</h2>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%;">
+            <div class="card" style="padding: 18px 20px;"><span class="pill">Skills</span><h3 style="margin-top: 11px;">Better agents, retained intelligence.</h3><p>Distilled playbooks raise performance — and keep what frontier models know, even when the model changes.</p></div>
+            <div class="card" style="padding: 18px 20px;"><span class="pill">MCP</span><h3 style="margin-top: 11px;">One distribution layer.</h3><p>A remote MCP server unifies, centralizes, governs, and makes skill usage transparent.</p></div>
+            <div class="card" style="padding: 18px 20px;"><span class="pill">Self-learning</span><h3 style="margin-top: 11px;">Agents distill their own skills.</h3><p>From real successes and failures — not from someone writing docs by hand.</p></div>
+            <div class="card" style="padding: 18px 20px;"><span class="pill">Flywheel</span><h3 style="margin-top: 11px;">Promote once, everyone benefits.</h3><p>MCP serves the skill across the whole company — it gets better while you sleep.</p></div>
+          </div>
         </div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>Here's how I think about it. Every great engineer who has ever left your company walked out with a handbook in their head that you never got to keep. For the first time, the worker writing that handbook isn't going anywhere — and it's happy to leave the notes behind. So stop measuring whether the agent finished the task. Start measuring whether, when it's done, the company is smarter than it was before it started. The whole talk is really just this: make your agents read the notes — and then write the next ones. Thank you.</p></aside>
