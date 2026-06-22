@@ -789,11 +789,17 @@
     .bar-fill {
       align-self: end;
       min-height: 16px;
+      height: 0;
       border: 1px solid rgba(250,250,249,.18);
       background: var(--stone-600);
       box-shadow: none;
       position: relative;
+      transition: height .9s cubic-bezier(.2,.75,.25,1);
     }
+    .slide.is-active .bar-fill { height: var(--bh, 0); }
+    .slide.is-active .bar-item:nth-child(1) .bar-fill { transition-delay: .3s; }
+    .slide.is-active .bar-item:nth-child(2) .bar-fill { transition-delay: .65s; }
+    @media print { .bar-fill { height: var(--bh, 0) !important; transition: none !important; } }
 
     .bar-fill.skill {
       background: var(--stone-50);
@@ -908,15 +914,32 @@
 
     .saving-track::before {
       left: 0;
-      width: var(--before, 82%);
+      width: 0;
       background: var(--stone-400);
+      transition: width .85s cubic-bezier(.2,.75,.25,1);
     }
 
     .saving-track::after {
       left: 0;
-      width: var(--after, 38%);
+      width: 0;
       background: var(--stone-900);
       box-shadow: none;
+      transition: width .85s cubic-bezier(.2,.75,.25,1);
+    }
+
+    .slide.is-active .saving-track::before { width: var(--before, 82%); }
+    .slide.is-active .saving-track::after { width: var(--after, 38%); }
+    .slide.is-active .saving-row:nth-child(2) .saving-track::before,
+    .slide.is-active .saving-row:nth-child(2) .saving-track::after { transition-delay: .15s; }
+    .slide.is-active .saving-row:nth-child(3) .saving-track::before,
+    .slide.is-active .saving-row:nth-child(3) .saving-track::after { transition-delay: .30s; }
+    .slide.is-active .saving-row:nth-child(4) .saving-track::before,
+    .slide.is-active .saving-row:nth-child(4) .saving-track::after { transition-delay: .45s; }
+    .slide.is-active .saving-row:nth-child(5) .saving-track::before,
+    .slide.is-active .saving-row:nth-child(5) .saving-track::after { transition-delay: .60s; }
+    @media print {
+      .saving-track::before { width: var(--before, 82%) !important; transition: none !important; }
+      .saving-track::after { width: var(--after, 38%) !important; transition: none !important; }
     }
 
     .saving-delta {
@@ -1361,6 +1384,50 @@
     .slide.is-active .loop-d4 { animation: loopFadeIn 1s ease-out 3.4s both; }
     .slide.is-active .loop-d5 { animation: loopFadeIn 1s ease-out 4.4s both; }
     @media print { .loop-anim { opacity: 1 !important; animation: none !important; } }
+
+    /* skill = file, with progressive-disclosure expand */
+    .skillfile {
+      align-self: center;
+      width: 100%;
+      max-width: 900px;
+      background: #fff;
+      border: 1px solid rgba(41,37,36,.16);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .skillfile-bar {
+      display: flex; align-items: center; gap: 9px;
+      padding: 11px 16px;
+      background: #F5F5F4;
+      border-bottom: 1px solid rgba(41,37,36,.1);
+    }
+    .skillfile-bar svg { width: 18px; height: 11px; display: block; flex: 0 0 auto; }
+    .skillfile-name { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--stone-700); }
+    .skillfile-status {
+      margin-left: auto; font-family: var(--mono); font-size: 9px;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--stone-500);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .skillfile-status::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--green); }
+    .skillfile-body { padding: 14px 22px 18px; font-family: var(--mono); }
+    .sf-block { padding: 9px 0; }
+    .sf-collapsible .sf-block { border-top: 1px dashed rgba(41,37,36,.12); }
+    .sf-tag {
+      display: inline-block; margin-bottom: 7px;
+      font-size: 10px; letter-spacing: .09em; text-transform: uppercase; font-weight: 800;
+      color: var(--stone-600); background: #F5F5F4;
+      border: 1px solid rgba(41,37,36,.12); padding: 3px 9px; border-radius: 999px;
+    }
+    .sf-line { font-size: 13.5px; line-height: 1.62; color: var(--ink); }
+    .sf-key { color: var(--tan); }
+    .sf-str { color: var(--stone-500); }
+    .sf-h { font-size: 13.5px; font-weight: 800; color: var(--ink); line-height: 1.85; }
+    .sf-collapsible { max-height: 0; opacity: 0; overflow: hidden; }
+    .slide.is-active .sf-collapsible { animation: sfExpand .75s ease-out 1.2s forwards; }
+    @keyframes sfExpand { from { max-height: 0; opacity: 0; } to { max-height: 360px; opacity: 1; } }
+    @media print { .sf-collapsible { max-height: none !important; opacity: 1 !important; animation: none !important; } }
 
     .x-tweet {
       align-self: center;
@@ -2364,15 +2431,40 @@
     <div class="unit">
       <div class="frame" style="--gx: 16%; --gy: 75%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">03 / term</div></div>
-        <div class="content stack center">
+        <div class="content stack" style="inset: 74px 64px 54px; gap: 16px;">
           <div class="eyebrow">Working definition</div>
-          <h2 class="display">Skill = a playbook an agent can load when the work starts.</h2>
-          <div class="grid-3">
-            <div class="card"><span class="pill">Procedure</span><h3 style="margin-top: 16px;">How to do it</h3><p>Steps, constraints, common traps, verification.</p></div>
-            <div class="card"><span class="pill">Context</span><h3 style="margin-top: 16px;">When to use it</h3><p>The trigger conditions that make this playbook relevant.</p></div>
-            <div class="card"><span class="pill">Taste</span><h3 style="margin-top: 16px;">What good looks like</h3><p>The local standards a generic model would not know.</p></div>
+          <h2 class="display" style="font-size: 40px; max-width: 1000px;">Skill = a playbook an agent can load when the work starts.</h2>
+          <div class="skillfile">
+            <div class="skillfile-bar">
+              <svg viewBox="0 0 208 128" aria-hidden="true"><rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/><path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/></svg>
+              <span class="skillfile-name">chromium-lambda-runtime / SKILL.md</span>
+              <span class="skillfile-status">progressive disclosure</span>
+            </div>
+            <div class="skillfile-body">
+              <div class="sf-block">
+                <span class="sf-tag">Context · when to use it</span>
+                <div class="sf-line"><span class="sf-key">name</span>: chromium-lambda-runtime</div>
+                <div class="sf-line"><span class="sf-key">description</span>: <span class="sf-str">Run headless Chromium inside AWS Lambda.</span></div>
+                <div class="sf-line"><span class="sf-key">when_to_use</span>: <span class="sf-str">Playwright cold-starts failing on Lambda.</span></div>
+              </div>
+              <div class="sf-collapsible">
+                <div class="sf-block">
+                  <span class="sf-tag">Procedure · how to do it</span>
+                  <div class="sf-h">## Steps</div>
+                  <div class="sf-line">1. Pin the Chromium fork + matching driver</div>
+                  <div class="sf-line">2. Bundle the fonts, add <span class="sf-str">--single-process</span></div>
+                  <div class="sf-line">3. Verify with a screenshot before returning</div>
+                </div>
+                <div class="sf-block">
+                  <span class="sf-tag">Taste · what good looks like</span>
+                  <div class="sf-h">## What good looks like</div>
+                  <div class="sf-line">Cold start &lt; 2s · no missing-font boxes · clean exit</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="source">Progressive disclosure — the agent reads the summary first, and loads the full skill only when it's relevant.</div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>I want to make sure we are all on the same page. In this talk, a skill is essentially a playbook that an agent or a client can load when it thinks that knowledge is relevant. The technical pattern here is called progressive disclosure. In a simplified way, a skill consists of two things: a description or summary, and the actual content. At the beginning, the harness or client sees only the summary. But when it thinks the knowledge inside can be valuable, it can read the whole skill, insert it into context, and change its trajectory based on that acquired knowledge.</p></aside>
     </div>
@@ -2393,7 +2485,7 @@
         </div>
         <div class="source">Source: METR Task-Completion Time Horizons of Frontier AI Models, updated May 8, 2026</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Why are skills important? If you have not been living under a rock for the past six to twelve months, your workflow has probably changed pretty dramatically, and you can see that in a quantifiable way. This benchmark measures task horizon: how long agents can work independently while still having a good chance of completing some task. I think the word "chance" is essential here, because agents are not deterministic, they are probabilistic. And you can see that the horizon keeps improving. Every time we feel like we hit a wall, there is a new model, a new harness, or a new agent, and suddenly it works better. The trend is clear: frontier agents are getting better at longer, deeper, multi-step work. Caveat: only if those frontier capabilities are not taken from you. More on that later.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Why are skills important? If you have not been living under a rock for the past six to twelve months, your workflow has probably changed pretty dramatically, and you can see that in a quantifiable way. The METR benchmark measures task horizon: how long agents can work independently while still having a good chance of completing some task. The trend is clear: frontier agents are getting better at longer, deeper, multi-step work. Caveat: only if those frontier capabilities are not taken from you. More on that later.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2411,7 +2503,7 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>But there is a catch. With great power comes great responsibility. If an agent can work independently for longer, it can also go much deeper into the wrong path. It can find a local optimum, spend hundreds of tool calls exploring one direction, defending it, and still not arrive at the right conclusion. The next agent can do the same thing. It can repeat the wrong exploration, or even find a worse one. So the initial trajectory matters a lot. That is why skills are important: they can guide the agent toward the right target. Otherwise you waste time, you waste money, you get bad tool calls, bad emails, and bad side effects.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But there is a catch. With great power comes great responsibility. If an agent can work independently for longer, it can also go much deeper into the wrong path. It can find a local optimum, spend hundreds of tool calls exploring one direction, defending it, and still not arrive at the right conclusion. The next agent can do the same thing. It can repeat the wrong exploration, or even find a worse one. So the initial trajectory matters a lot. That is why skills are important: they can guide the agent toward the right target. Otherwise you waste tokens, you waste money, you get bad tool calls, and bad side effects.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2429,7 +2521,7 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The most valuable knowledge is often not glamorous. It is tribal knowledge. It is a ritual that is probably embedded inside your company. But if your agents try to discover that from first principles, like SAP approval paths, legacy deployment scripts, customer escalation language, and things like that, without a curated playbook, they will likely fail. And many times, that failure can be really costly. Effectively, that is why I believe so many AI POCs are failing across the industry. You're not giving the agents the relevant context, the playbooks to act accordingly within your company.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The most valuable knowledge is often not glamorous. It is tribal ritual that is probably embedded deeply inside your company, and if your agents try to discover that from first principles, like SAP approval paths, legacy deployment scripts, customer escalation language, and things like that, without a curated playbook, they will likely fail. And many times, that failure can be really costly. Effectively, that is why I believe so many AI POCs are failing across the industry. You're not giving the agents the relevant context, the playbooks to act accordingly within your company.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2450,7 +2542,7 @@
         </div>
         <div class="source">Reference: <a href="https://x.com/HamelHusain/status/2065057311375421905">Hamel Husain on X</a></div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Skills are great, but they are not problem-free. I think there are three important problems standing in the way of making them great. The first one is that they are local-first and dev-centric. When you look at skills today, the things you mostly find are CLI commands, Git repositories as source of truth, local files, plugins, client config, and JSON files. That works great if you are a developer and if this is single-player mode. But if you are a company, or an AI adoption leader, or a VP of AI trying to roll out an AI strategy across the whole company, that approach does not scale. So the question is: how can people share skills with their team, and how can you make sure everyone automatically gets the best updated version of that skill?</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Skills are great, but they are not problem-free. I think there are three important problems standing in the way of making them great. The first one is that they are local-first and dev-centric. When you look at skills today, the things you mostly find are CLI commands, Git repositories, config files as JSON, and so on. That works great if you are a developer and if this is single-player mode. But if you are a company, or an AI adoption leader, or a VP of AI trying to roll out an AI strategy across the whole company, that approach does not scale. So the challenge is: how can non-technical people use and share skills?</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2461,7 +2553,7 @@
           <span class="npx-skills-tag">npx skills</span>
         </figure>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>In a way, this is what happens, um, when you give your developers access to NPX skills. Why? A lot of prompt injections, malware, secrets exfiltrations, etc. We're scanning thousands of skills every day, and you'll be amazed what's inside. npx skills: the only command that installs a playbook, three prompt injections, and somebody's AWS keys, all in one go.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Btw, this is what happens when your junior developer discovers npx skills. That's the only command I know that installs a playbook, three prompt injections, and someone else's API keys and untrusted root-access scripts, all in one go. We're scanning thousands of skills every day, and trust me — there's wild stuff in there.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2486,7 +2578,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The problem is that everyone wants to create them, but nobody wants to take their time to create those curated playbooks, um, after debugging some weird issue or database procedure. It takes time and effort to reflect on stuff, and not many people do that.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The problem is that everyone wants to see well-curated, up-to-date playbooks or docs, but nobody wants to take the time to create them after that weird OOM incident. It takes a lot of intention, time, and effort to reflect on stuff, invest your time there, and leave something useful for posterity behind.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2781,7 +2873,7 @@ and...
         </div>
         <div class="source">Sources: OpenAI, Anthropic, Microsoft, Perplexity, Poe docs</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>With MCP, we also solve the compatibility problem. If you focus on consumer and non-coder clients, the picture is very different from developer tools. ChatGPT supports MCP, but it does not support native Skills. Claude is the exception where Skills and MCP both work. But when we look across other clients, every client has a slightly different style and flavor when it comes to skills, if it has anything at all. Unifying that is super problematic. Fortunately, we have Model Context Protocol, which can unify serving skills across all these surfaces.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>And if you look at this compatibility matrix, you can see that Model Context Protocol solves that problem almost entirely. So the problem of distributing skills to your non-technical people is solved. Plus, because you're now serving skills from a centralized API, they're always up-to-date — you can monitor which skills are used, apply RBAC and scanning, and do all sorts of stuff.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2925,11 +3017,11 @@ and...
             <div class="bar-title">Success rate, same model</div>
             <div class="bar-chart" aria-label="Success rate comparison: without skill 36 percent, with self-acquired skill 100 percent">
               <div class="bar-item">
-                <div class="bar-fill" style="height: 36%;"><span class="bar-value">36%</span></div>
+                <div class="bar-fill" style="--bh: 36%;"><span class="bar-value">36%</span></div>
                 <div class="bar-label">without skill · 9/25</div>
               </div>
               <div class="bar-item">
-                <div class="bar-fill skill" style="height: 100%;"><span class="bar-value">100%</span></div>
+                <div class="bar-fill skill" style="--bh: 100%;"><span class="bar-value">100%</span></div>
                 <div class="bar-label">with skill · 25/25</div>
               </div>
             </div>
