@@ -1384,6 +1384,47 @@
     .slide.is-active .loop-d5 { animation: loopFadeIn 1s ease-out 4.4s both; }
     @media print { .loop-anim { opacity: 1 !important; animation: none !important; } }
 
+    /* fanout: clients -> gateway arrows cascade in one after another */
+    .fan-clients path { opacity: 0; }
+    .slide.is-active .fan-clients path { animation: loopFadeIn .45s ease-out both; }
+    .slide.is-active .fan-clients path:nth-child(1) { animation-delay: 1.40s; }
+    .slide.is-active .fan-clients path:nth-child(2) { animation-delay: 1.65s; }
+    .slide.is-active .fan-clients path:nth-child(3) { animation-delay: 1.90s; }
+    .slide.is-active .fan-clients path:nth-child(4) { animation-delay: 2.15s; }
+    .slide.is-active .fan-clients path:nth-child(5) { animation-delay: 2.40s; }
+    @media print { .fan-clients path { opacity: 1 !important; animation: none !important; } }
+
+    /* fanout: skill tiles reveal one after another */
+    .fan-tiles > g { opacity: 0; }
+    .slide.is-active .fan-tiles > g { animation: loopFadeIn .4s ease-out both; }
+    .slide.is-active .fan-tiles > g:nth-of-type(1) { animation-delay: 2.50s; }
+    .slide.is-active .fan-tiles > g:nth-of-type(2) { animation-delay: 2.65s; }
+    .slide.is-active .fan-tiles > g:nth-of-type(3) { animation-delay: 2.80s; }
+    .slide.is-active .fan-tiles > g:nth-of-type(4) { animation-delay: 2.95s; }
+    .slide.is-active .fan-tiles > g:nth-of-type(5) { animation-delay: 3.10s; }
+    .slide.is-active .fan-tiles > g:nth-of-type(6) { animation-delay: 3.25s; }
+    .slide.is-active .fan-tiles > g:nth-of-type(7) { animation-delay: 3.40s; }
+    .slide.is-active .fan-tiles > g:nth-of-type(8) { animation-delay: 3.55s; }
+    @media print { .fan-tiles > g { opacity: 1 !important; animation: none !important; } }
+
+    /* skill distiller: rotating cog */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .cog { transform-box: fill-box; transform-origin: center; animation: spin 4.5s linear infinite; }
+    @media print { .cog { animation: none !important; } }
+
+    /* iteration diagram: staged reveal (agent -> runs -> distiller -> skill v2 -> feedback) */
+    .slide.is-active .iv-agent { animation: loopFadeIn .5s ease-out 0.30s both; }
+    .slide.is-active .iv-fan   { animation: loopFadeIn .4s ease-out 0.70s both; }
+    .slide.is-active .iv-run1  { animation: loopFadeIn .4s ease-out 0.90s both; }
+    .slide.is-active .iv-run2  { animation: loopFadeIn .4s ease-out 1.10s both; }
+    .slide.is-active .iv-run3  { animation: loopFadeIn .4s ease-out 1.30s both; }
+    .slide.is-active .iv-run4  { animation: loopFadeIn .4s ease-out 1.50s both; }
+    .slide.is-active .iv-conv  { animation: loopFadeIn .4s ease-out 1.75s both; }
+    .slide.is-active .iv-dist  { animation: loopFadeIn .5s ease-out 1.95s both; }
+    .slide.is-active .iv-out   { animation: loopFadeIn .4s ease-out 2.50s both; }
+    .slide.is-active .iv-skill { animation: loopFadeIn .5s ease-out 2.70s both; }
+    .slide.is-active .iv-fb    { animation: loopFadeIn .6s ease-out 3.20s both; }
+
     /* skill = progressive disclosure into the LLM context window */
     .pd {
       align-self: center; width: 100%; max-width: 980px;
@@ -1403,13 +1444,13 @@
     .pd-body { flex: 1; min-width: 0; }
     .pd-name { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--ink); }
     .pd-sum { height: 7px; border-radius: 999px; background: rgba(41,37,36,.15); margin-top: 8px; }
-    .slide.is-active .pd-hint.chosen { animation: pdChoose .5s ease-out 1.3s forwards; }
-    .slide.is-active .pd-hint.dim { animation: pdDim .5s ease-out 1.3s forwards; }
+    .slide.is-active .pd-hint.chosen { animation: pdChoose .5s ease-out 0.5s forwards; }
+    .slide.is-active .pd-hint.dim { animation: pdDim .5s ease-out 0.5s forwards; }
     @keyframes pdChoose { to { border-color: var(--tan); box-shadow: 0 0 0 2px rgba(164,137,119,.65), var(--shadow); } }
     @keyframes pdDim { to { opacity: .36; } }
     .pd-flow { align-self: center; display: flex; justify-content: center; opacity: 0; }
     .pd-flow svg { width: 40px; height: 20px; }
-    .slide.is-active .pd-flow { animation: pdArrow .5s ease-out 1.9s forwards; }
+    .slide.is-active .pd-flow { animation: pdArrow .5s ease-out 1.0s forwards; }
     @keyframes pdArrow { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
     .pd-context {
       background: #fff; border: 1px solid rgba(41,37,36,.16);
@@ -1422,7 +1463,7 @@
       margin-top: 15px; border-left: 3px solid var(--tan);
       background: rgba(164,137,119,.09); border-radius: 8px; padding: 11px 13px; opacity: 0;
     }
-    .slide.is-active .pd-loaded { animation: pdLoad .6s ease-out 2.4s forwards; }
+    .slide.is-active .pd-loaded { animation: pdLoad .6s ease-out 1.5s forwards; }
     @keyframes pdLoad { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
     .pd-loaded-head { display: flex; align-items: center; gap: 8px; }
     .pd-loaded-name { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--ink); }
@@ -2044,15 +2085,15 @@
     }
 
     .usecase {
-      min-height: 278px;
+      min-height: 200px;
       border: 1px solid rgba(41,37,36,.15);
       background: var(--white);
       padding: 18px;
       border-radius: var(--radius-md);
       box-shadow: var(--shadow);
       display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: 14px;
+      grid-template-rows: auto 1fr;
+      gap: 12px;
     }
 
     .usecase .question {
@@ -2060,30 +2101,6 @@
       line-height: 1.06;
       font-weight: 850;
       color: var(--ink);
-    }
-
-    .usecase .becomes {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--stone-600);
-      font-weight: 850;
-      border-top: 1px solid rgba(41,37,36,.12);
-      padding-top: 13px;
-    }
-
-    .usecase .skill-name {
-      align-self: end;
-      background: #0b0b10;
-      color: var(--green);
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 1.35;
-      font-weight: 850;
-      padding: 13px;
-      border-radius: var(--radius-sm);
-      box-shadow: 0 0 0 1px var(--alpha-light-100);
     }
 
     .warning-line {
@@ -2489,7 +2506,6 @@
             </div>
           </div>
         </div>
-        <div class="source">Progressive disclosure — the agent reads the summary first, and loads the full skill only when it's relevant.</div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>I want to make sure we are all on the same page. In this talk, a skill is essentially a playbook that an agent or a client can load when it thinks that knowledge is relevant. The technical pattern here is called progressive disclosure. In a simplified way, a skill consists of two things: a description or summary, and the actual content. At the beginning, the harness or client sees only the summary. But when it thinks the knowledge inside can be valuable, it can read the whole skill, insert it into context, and change its trajectory based on that acquired knowledge.</p></aside>
     </div>
@@ -2502,7 +2518,6 @@
           <div class="stack">
             <div class="eyebrow">Long-horizon agents</div>
             <h2 class="display" style="font-size: 62px;">Agents are getting better at staying on task.</h2>
-            <p class="body">METR tracks the human task duration at which an agent is predicted to succeed with a target reliability.</p>
           </div>
           <div class="chart" style="padding: 14px; height: 430px;">
             <img src="assets/metr-time-horizon.png" alt="METR time horizon chart showing frontier AI agents' task-completion time horizon increasing since 2023" />
@@ -2539,10 +2554,10 @@
           <div class="eyebrow">Why enterprises care</div>
           <h2 class="display">The valuable skills are the rituals nobody wants rediscovered.</h2>
           <div class="usecase-grid">
-            <div class="usecase"><span class="pill">Incident</span><div class="question">“Have we seen this OOM before?”</div><p>Root cause, fix, PR, and what not to restart blindly.</p><div class="becomes">becomes</div><div class="skill-name">oom-analytics-runbook.md</div></div>
-            <div class="usecase"><span class="pill">Finance</span><div class="question">“How does this vendor get approved?”</div><p>SAP screens, exception path, budget code, approval order.</p><div class="becomes">becomes</div><div class="skill-name">sap-vendor-approval.md</div></div>
-            <div class="usecase"><span class="pill">Engineering</span><div class="question">“Which deploy path is real?”</div><p>Legacy script, runtime flags, environment variables, rollback.</p><div class="becomes">becomes</div><div class="skill-name">legacy-deploy-checklist.md</div></div>
-            <div class="usecase"><span class="pill">Support</span><div class="question">“Can I say this to the customer?”</div><p>Severity proof, safe language, escalation owner, approval gate.</p><div class="becomes">becomes</div><div class="skill-name">enterprise-escalation.md</div></div>
+            <div class="usecase"><div class="question">“Have we seen this OOM before?”</div><p>Root cause, fix, PR, and what not to restart blindly.</p></div>
+            <div class="usecase"><div class="question">“How does this vendor get approved?”</div><p>SAP screens, exception path, budget code, approval order.</p></div>
+            <div class="usecase"><div class="question">“Which deploy path is real?”</div><p>Legacy script, runtime flags, environment variables, rollback.</p></div>
+            <div class="usecase"><div class="question">“Can I say this to the customer?”</div><p>Severity proof, safe language, escalation owner, approval gate.</p></div>
           </div>
         </div>
       </div>
@@ -2682,7 +2697,7 @@ and...
               <text class="loop-anim loop-d3" x="1084" y="40" text-anchor="end" font-family="Geist Mono, ui-monospace, monospace" font-size="11" letter-spacing="1.6" fill="#1C1917" fill-opacity="0.5">ONE LIBRARY · DOZENS OF SKILLS</text>
 
               <!-- connectors: clients -> gateway -->
-              <g class="loop-anim loop-d2" fill="none" stroke="#1C1917" stroke-opacity="0.22" stroke-width="1.6">
+              <g class="fan-clients" fill="none" stroke="#1C1917" stroke-opacity="0.22" stroke-width="1.6">
                 <path d="M236 81 C 330 81, 352 158, 444 158" marker-end="url(#arrIn)"/>
                 <path d="M236 148 C 330 148, 352 186, 444 186" marker-end="url(#arrIn)"/>
                 <path d="M236 215 C 330 215, 352 215, 444 215" marker-end="url(#arrIn)"/>
@@ -2755,7 +2770,7 @@ and...
 
               <!-- skill library panel -->
               <rect class="loop-anim loop-d3" x="712" y="74" width="388" height="286" rx="18" fill="#1C1917" fill-opacity="0.025" stroke="#1C1917" stroke-opacity="0.09"/>
-              <g class="loop-anim loop-d3" font-family="Geist Mono, ui-monospace, monospace">
+              <g class="fan-tiles" font-family="Geist Mono, ui-monospace, monospace">
                 <!-- row 0 -->
                 <g>
                   <rect x="728" y="86" width="170" height="54" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
@@ -3123,7 +3138,7 @@ and...
           <h1 class="title"><span class="title-highlight">Self-Improving Agents</span> <span class="title-highlight-animate">That Teach the Company Back</span></h1>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Here's the whole title, lit up. "Improving agents" — that's skills. "Self-improving" — that's the distill loop. And we have the distribution layer: the central MCP server. So far, that is one agent getting smarter. The interesting part is what happens when you multiply that by every agent, on every client, in the entire company — and that is the next slide. If you remember one diagram from this talk, make it that one.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>How can we do it? Well — we have all the pieces of the puzzle. We have Skills as a means to improve agents, retain knowledge, and guide models. We have MCP as the unified distribution layer for those skills — and also the central repository, the knowledge base, for all of them. And we have the continuous-learning flywheel that makes one agent smarter. The interesting part is what happens when you multiply that by every agent, on every client, in the entire company.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3154,7 +3169,6 @@ and...
               <!-- outer clockwise ring -->
               <g fill="none" stroke="#1C1917" stroke-opacity="0.3" stroke-width="2.25">
                 <path class="loop-anim loop-d2" d="M717 73 A 396 162 0 0 1 933 178" marker-end="url(#compArr)"/>
-                <path class="loop-anim loop-d4" d="M362 363 A 396 162 0 0 1 191 288" marker-end="url(#compArr)"/>
                 <path class="loop-anim loop-d5" d="M191 151 A 396 162 0 0 1 383 73" marker-end="url(#compArr)"/>
               </g>
 
@@ -3244,66 +3258,88 @@ and...
       <div class="frame" style="--gx: 80%; --gy: 20%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">25 / iteration</div></div>
         <div class="content stack center" style="inset: 72px 56px 46px; gap: 10px;">
-          <div class="eyebrow">Continuous improvement</div>
-          <h2 class="display" style="font-size: 42px; max-width: 1000px;">Skills improve like code: patches, evidence, rollback.</h2>
-          <div class="loop-figure">
-            <svg viewBox="0 0 1100 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A refinement loop: an existing skill version N is used in a run that hits a new edge case, a diff is distilled, evidence decides whether to keep it or roll back, producing version N plus one">
+          <div class="eyebrow">Self-improvement</div>
+          <h2 class="display" style="font-size: 42px; max-width: 1000px;">Every run — pass or fail — distills a sharper skill.</h2>
+          <div class="loop-figure" style="height: 376px;">
+            <svg viewBox="0 0 1100 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="An agent with a skill runs four times — one success, three errors, each with an id. A skill distiller reads them all and produces the next revision of the skill, which feeds back to the agent.">
               <defs>
-                <marker id="iterArr" markerWidth="10" markerHeight="10" refX="6" refY="3.5" orient="auto">
-                  <path d="M0 0 L7 3.5 L0 7 Z" fill="#1C1917" fill-opacity="0.6"/>
-                </marker>
-                <symbol id="mdmark4" viewBox="0 0 208 128">
-                  <rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/>
-                  <path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/>
-                </symbol>
+                <marker id="itArr" markerWidth="9" markerHeight="9" refX="5.5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#1C1917" fill-opacity="0.55"/></marker>
+                <marker id="itArrTan" markerWidth="9" markerHeight="9" refX="5.5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#a48977"/></marker>
+                <symbol id="mdmark5" viewBox="0 0 208 128"><rect x="6" y="6" width="196" height="116" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-width="12"/><path d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z" fill="#1C1917"/></symbol>
               </defs>
 
-              <g fill="none" stroke="#1C1917" stroke-opacity="0.3" stroke-width="2.25">
-                <path d="M720 73 A 402 140 0 0 1 938 164" marker-end="url(#iterArr)"/>
-                <path d="M914 259 A 402 140 0 0 1 720 327" marker-end="url(#iterArr)"/>
-                <path d="M380 327 A 402 140 0 0 1 186 259" marker-end="url(#iterArr)"/>
-                <path d="M186 141 A 402 140 0 0 1 380 73" marker-end="url(#iterArr)"/>
+              <!-- agent -> runs (fan out) -->
+              <g class="loop-anim iv-fan" fill="none" stroke="#1C1917" stroke-opacity="0.22" stroke-width="1.6">
+                <path d="M248 196 C 288 196, 290 110, 318 110" marker-end="url(#itArr)"/>
+                <path d="M248 198 C 290 198, 296 170, 318 170" marker-end="url(#itArr)"/>
+                <path d="M248 202 C 290 202, 296 230, 318 230" marker-end="url(#itArr)"/>
+                <path d="M248 204 C 288 204, 290 290, 318 290" marker-end="url(#itArr)"/>
+              </g>
+              <!-- runs -> distiller (converge) -->
+              <g class="loop-anim iv-conv" fill="none" stroke="#1C1917" stroke-opacity="0.22" stroke-width="1.6">
+                <path d="M574 110 C 642 110, 660 197, 696 197" marker-end="url(#itArr)"/>
+                <path d="M574 170 C 642 170, 662 199, 696 199" marker-end="url(#itArr)"/>
+                <path d="M574 230 C 642 230, 662 201, 696 201" marker-end="url(#itArr)"/>
+                <path d="M574 290 C 642 290, 660 203, 696 203" marker-end="url(#itArr)"/>
+              </g>
+              <!-- distiller -> new skill -->
+              <path class="loop-anim iv-out" d="M914 200 L 933 200" fill="none" stroke="#1C1917" stroke-opacity="0.3" stroke-width="2" marker-end="url(#itArr)"/>
+              <!-- feedback: new revision -> agent -->
+              <path class="loop-anim iv-fb" d="M1008 226 C 1008 330, 980 356, 880 356 L 262 356 C 176 356, 143 332, 143 258" fill="none" stroke="#a48977" stroke-opacity="0.85" stroke-width="2" marker-end="url(#itArrTan)"/>
+              <text class="loop-anim iv-fb" x="571" y="349" text-anchor="middle" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.4" fill="#a48977">NEW REVISION → AGENT</text>
+
+              <!-- agent (with skill attached) -->
+              <g class="loop-anim iv-agent">
+                <rect x="40" y="146" width="206" height="108" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.16"/>
+                <text x="143" y="174" text-anchor="middle" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.4" fill="#57534E">AGENT</text>
+                <g fill="none" stroke="#1C1917" stroke-width="2" stroke-linecap="round"><line x1="143" y1="183" x2="143" y2="190"/><rect x="127" y="190" width="32" height="22" rx="6"/></g>
+                <circle cx="135" cy="201" r="2.5" fill="#1C1917"/><circle cx="151" cy="201" r="2.5" fill="#1C1917"/><circle cx="143" cy="182" r="2.2" fill="#1C1917"/>
+                <g><rect x="91" y="232" width="104" height="26" rx="8" fill="#F5F5F4" stroke="#1C1917" stroke-opacity="0.16"/><use href="#mdmark5" x="99" y="238" width="20" height="13"/><text x="126" y="249" font-family="Geist Mono, monospace" font-size="11" font-weight="700" fill="#1C1917">skill v1</text></g>
               </g>
 
-              <text x="244" y="98" font-family="Geist Mono, monospace" font-size="13" font-weight="700" letter-spacing="0.5" fill="#1C1917" fill-opacity="0.62">merge → vN+1</text>
+              <!-- 4 runs -->
+              <g font-family="Geist Mono, monospace">
+                <g class="loop-anim iv-run1">
+                  <rect x="320" y="88" width="252" height="44" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="346" cy="110" r="11" fill="#EF4444"/><path d="M342 106 L350 114 M350 106 L342 114" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                  <text x="374" y="115" font-size="13" fill="#1C1917" fill-opacity="0.45">run</text><text x="404" y="115" font-size="14" font-weight="700" fill="#1C1917">a3f9c2e1</text>
+                </g>
+                <g class="loop-anim iv-run2">
+                  <rect x="320" y="148" width="252" height="44" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="346" cy="170" r="11" fill="#16A34A"/><path d="M341 170 L345 174 L352 166" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="374" y="175" font-size="13" fill="#1C1917" fill-opacity="0.45">run</text><text x="404" y="175" font-size="14" font-weight="700" fill="#1C1917">7b1d04aa</text>
+                </g>
+                <g class="loop-anim iv-run3">
+                  <rect x="320" y="208" width="252" height="44" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="346" cy="230" r="11" fill="#EF4444"/><path d="M342 226 L350 234 M350 226 L342 234" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                  <text x="374" y="235" font-size="13" fill="#1C1917" fill-opacity="0.45">run</text><text x="404" y="235" font-size="14" font-weight="700" fill="#1C1917">c2e8f5b0</text>
+                </g>
+                <g class="loop-anim iv-run4">
+                  <rect x="320" y="268" width="252" height="44" rx="10" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
+                  <circle cx="346" cy="290" r="11" fill="#EF4444"/><path d="M342 286 L350 294 M350 286 L342 294" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                  <text x="374" y="295" font-size="13" fill="#1C1917" fill-opacity="0.45">run</text><text x="404" y="295" font-size="14" font-weight="700" fill="#1C1917">9d4a1c77</text>
+                </g>
+              </g>
 
-              <g font-family="Geist, ui-sans-serif, system-ui, sans-serif">
-                <g>
-                  <rect x="418" y="16" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
-                  <circle cx="418" cy="16" r="17" fill="#1C1917"/>
-                  <text x="418" y="21.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">1</text>
-                  <text x="450" y="50" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">EXISTING</text>
-                  <use href="#mdmark4" x="450" y="62" width="34" height="21"/>
-                  <text x="494" y="79" font-size="18.5" font-weight="750" fill="#1C1917">Skill vN</text>
-                </g>
-                <g>
-                  <rect x="820" y="156" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
-                  <circle cx="820" cy="156" r="17" fill="#1C1917"/>
-                  <text x="820" y="161.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">2</text>
-                  <text x="852" y="192" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">RUN</text>
-                  <text x="852" y="220" font-size="18.5" font-weight="750" fill="#1C1917">Hits a new edge case</text>
-                </g>
-                <g>
-                  <rect x="418" y="296" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
-                  <circle cx="418" cy="296" r="17" fill="#1C1917"/>
-                  <text x="418" y="301.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">3</text>
-                  <text x="450" y="334" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">PATCH</text>
-                  <text x="450" y="362" font-size="18.5" font-weight="750" fill="#1C1917">Distill a diff</text>
-                </g>
-                <g>
-                  <rect x="16" y="156" width="264" height="88" rx="14" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.14"/>
-                  <circle cx="16" cy="156" r="17" fill="#1C1917"/>
-                  <text x="16" y="161.5" text-anchor="middle" font-family="Geist Mono, monospace" font-size="15" font-weight="800" fill="#FFFFFF">4</text>
-                  <text x="48" y="192" font-family="Geist Mono, monospace" font-size="13" letter-spacing="1.4" fill="#57534E">REVIEW</text>
-                  <text x="48" y="220" font-size="18.5" font-weight="750" fill="#1C1917">Keep, or roll back</text>
-                </g>
+              <!-- skill distiller -->
+              <g class="loop-anim iv-dist">
+                <rect x="700" y="150" width="212" height="100" rx="16" fill="#FFFFFF" stroke="#1C1917" stroke-opacity="0.16"/>
+                <g class="cog"><svg x="786" y="164" width="40" height="40" viewBox="0 0 24 24"><path fill="#1C1917" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg></g>
+                <text x="806" y="232" text-anchor="middle" font-family="Geist Mono, monospace" font-size="11" letter-spacing="1.2" fill="#57534E">SKILL DISTILLER</text>
+              </g>
+
+              <!-- new skill revision -->
+              <g class="loop-anim iv-skill">
+                <rect x="936" y="176" width="144" height="48" rx="11" fill="#1C1917"/>
+                <use href="#mdmark5" x="952" y="192" width="22" height="14"/>
+                <text x="982" y="205" font-family="Geist Mono, monospace" font-size="13" font-weight="700" fill="#FAFAF9">skill v2</text>
               </g>
             </svg>
           </div>
         </div>
-        <div class="source">The flywheel spreads a skill sideways, across the company. This loop runs forward, across versions.</div>
+        <div class="source">Successes and failures both feed the distiller — which ships the next revision of the skill straight back to the agent.</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>One more axis. The flywheel spreads a skill sideways — across the company. This is the same loop running forward — across versions. A skill is rarely great on the first try, so every new edge case becomes a patch: distill a diff, gather evidence, and either ship it as the next version or roll it back. Treat skills like code, because they are code now — which means yes, they have bugs, yes, they have versions, and yes, eventually someone is going to git blame the agent.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>One more axis. The flywheel spreads a skill sideways — across the company. This loop runs forward — across versions — and the agent drives it itself. It runs with its current skill; some runs pass, plenty fail. A distiller reads all of them — and the failures teach as much as the wins — then writes the next revision of the skill, which flows straight back to the agent. Nobody hand-edited anything. The skill that comes out the far side is sharper than the one that went in. That's the self-improving part: bad runs aren't waste, they're training data.</p></aside>
     </div>
   </section>
 <section class="slide">
