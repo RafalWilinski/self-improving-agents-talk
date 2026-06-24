@@ -2004,6 +2004,15 @@
       text-transform: uppercase;
     }
 
+    .notes-timer {
+      font-family: var(--mono);
+      font-variant-numeric: tabular-nums;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: rgba(250,250,249,.9);
+    }
+
     .notes-console-title {
       max-width: 1120px;
       color: rgba(250,250,249,.9);
@@ -2143,6 +2152,41 @@
     .blast-sentence .danger {
       color: var(--red);
       text-shadow: none;
+    }
+
+    .rotor {
+      position: relative;
+      display: inline-block;
+      text-align: left;
+    }
+    .rotor-sizer { visibility: hidden; }
+    .rotor-word {
+      position: absolute;
+      left: 0;
+      top: 0;
+      white-space: nowrap;
+      opacity: 0;
+    }
+    .slide.is-active .rotor-word { animation: rotorCycle 8s infinite both; }
+    .slide.is-active .rotor .rw2 { animation-delay: 2s; }
+    .slide.is-active .rotor .rw3 { animation-delay: 4s; }
+    .slide.is-active .rotor .rw4 { animation-delay: 6s; }
+    @keyframes rotorCycle {
+      0%   { opacity: 0; transform: translateY(0.14em); }
+      3%   { opacity: 1; transform: translateY(0); }
+      22%  { opacity: 1; transform: translateY(0); }
+      27%  { opacity: 0; transform: translateY(-0.14em); }
+      100% { opacity: 0; transform: translateY(0.14em); }
+    }
+    @media print {
+      .rotor-word { animation: none !important; }
+      .rotor-sizer { display: none !important; }
+      .rotor-word.rw1 { opacity: 1 !important; }
+      .rotor-word.rw2, .rotor-word.rw3, .rotor-word.rw4 { display: none !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rotor-word { animation: none !important; }
+      .rotor-word.rw1 { opacity: 1 !important; }
     }
 
     .manual-promo {
@@ -2414,13 +2458,13 @@
 <section class="slide">
     <div class="unit">
       <div class="frame" style="--gx: 24%; --gy: 74%;">
-        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">01 / the problem</div></div>
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">01 / imagine</div></div>
         <div class="blast">
-          <div class="eyebrow">How most companies use AI today</div>
-          <h2 class="blast-sentence">Isolated task execution. Every session <span class="danger">starts from zero</span>.</h2>
+          <div class="eyebrow">Imagine</div>
+          <h2 class="blast-sentence" style="font-size: clamp(48px, 5.8vw, 92px)">Your best <span class="rotor"><span class="rotor-sizer" aria-hidden="true">marketer</span><span class="rotor-word rw1">engineer</span><span class="rotor-word rw2">marketer</span><span class="rotor-word rw3">lawyer</span><span class="rotor-word rw4">sales</span></span> cracks the hard problem — and leaves the playbook <span style="color: var(--tan)">for everyone</span>.</h2>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Quick gut-check before we start. Most companies today are using AI as isolated task execution. One person has a brilliant run; one agent cracks some weird problem at 2am — and then that's it. The learning stays trapped in that session, and nobody else ever sees it. The next person, or the next agent, starts from zero and re-derives the exact same thing. That is the problem this whole talk is about. For the next 17 minutes I want to show you how to stop throwing that learning away — how one agent's win can become the entire company's default.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Imagine the best engineer you've ever worked with — the one who, every time they cracked something genuinely hard, wrote down exactly how they did it and handed it to the whole team. Nobody ever had to solve that problem again. Now imagine that happening for every hard problem, in every department, automatically. That's the dream. And here's the thing — it's almost never how it works. Today most AI is isolated task execution: one agent cracks something brilliant at 2am, and then that knowledge just evaporates with the session. The next person starts from zero. But I want to convince you this is actually possible — we have the primitives, and the ways to build it and make it happen.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2445,7 +2489,7 @@
         </div>
         <div class="source">Bio source: rwilinski.ai</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Before diving deep into this topic, very quickly on me: I'm a founding engineer at Runlayer. We're making the golden path for AI adoption inside your company. Before that, I was leading Zapier Agents, and before that I was also leading AI work at a startup called Vendr. So most of my recent work has been about making agents more reliable in production, not just impressive in demos. Outside of work, I'm usually climbing, and I love whiskey, but for medical and legal reasons, I'm not combining those two at the same time.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Before diving deep into this topic, very quickly on me: I'm a founding engineer at Runlayer. We're making the golden path for AI adoption inside your company. Before that, I was leading Zapier Agents, and earlier I led AI teams at a few other companies. So most of my recent work has been about making agents more reliable in production, not just impressive in demos. Outside of work, I'm usually climbing, and I love whiskey, but for medical and legal reasons, I'm not combining those two at the same time.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3045,7 +3089,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>And we started doing something very similar and straightforward. Let the agent do real work. When the run succeeds, take the trace and ask another LLM to distill the reusable part. Then draft or update a skill. Some agent frameworks, like Hermes-style self-learning agents, do similar things.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>And we started doing something very similar and straightforward. Let the agent do real work. When the run succeeds, take the trace and ask another LLM to distill the reusable part. Then draft or update a skill.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3164,7 +3208,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The results were great. We had this very peculiar task: running a Chromium fork inside AWS Lambda. With Sonnet 4.6, across 25 runs, the agent could sometimes figure it out, but it was still unreliable: 9 out of 25, or about a 36 percent success rate. After distilling the successful trace into a skill, the same model went to 25 out of 25. We did not change the model. We changed the playbook. Same model, same prompt, same task — the only difference is that this time it read the notes. Like a developer, but with a better attitude about documentation.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The results were great. We had this very peculiar task: running a Chromium fork inside AWS Lambda. With Sonnet 4.6 the results were mixed and unreliable — sometimes the agent figured it out, sometimes not. But after it cracked the code just once and we distilled that run into a skill, every subsequent run succeeded. We did not change the model, we did not change the prompt — same model, same task. The only difference is that this time it had the playbook. Like a developer, but with a better attitude about documentation.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3190,7 +3234,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The success rate is the easiest number to show, but the savings are broader. A good skill narrows the search space before the agent starts spending. It reduces failed attempts, tool calls, tokens, wall clock time, and human interruptions. But putting savings and accuracy aside, there is a deeper reason to do this. Frontier-model intelligence is rented.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The success rate is the easiest number to show, but the savings are broader. A good skill narrows the search space before the agent starts spending. It reduces failed attempts, tool calls, tokens, wall clock time, and human interruptions.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3222,7 +3266,7 @@ and...
         </div>
         <div class="source">Reference: <a href="https://x.com/shadcn/status/2065826989769163068">shadcn on X</a></div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Frontier-model intelligence is rented. It can move, change, get deprecated, or just disappear behind a different product surface. So while we have access to that intelligence, we should use it to discover and persist useful procedures. We should be building a catalog, almost a collective subconscious, of how work gets done inside the company.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But putting savings and accuracy aside, there's a deeper reason to do this. Frontier-model intelligence is rented. It can move, change, get deprecated, or just disappear behind a different product surface — I think we all fondly remember that three-day window with Fable. So while we have access to that intelligence, we should use it to discover and persist useful procedures. We should be building a catalog, almost a collective subconscious, of how work gets done inside the company.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3381,7 +3425,7 @@ and...
           <h2 class="blast-sentence">The model is rented. The knowledge it leaves behind is your <span style="color: var(--tan)">moat</span>.</h2>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Right now, everyone in our industry is asking the same question: once the models themselves become a commodity, what is actually my moat? And it's a fair question — frontier intelligence is rented. You don't own it. It can change, get deprecated, get repriced, or just disappear behind someone else's product, and soon enough everyone has access to the same raw intelligence anyway. So the moat was never the model. The moat is this flywheel — and more precisely, the knowledge that flows through it: the distilled, governed, hard-won way your company does things, captured and compounding. That is the one thing a competitor can't copy by swapping in a better model.</p><p>And here's the image I want to leave you with. It's like the best engineer you've ever worked with — the one who actually wrote things down. When they fixed something gnarly, the runbook appeared. When they figured out the weird deploy path, it ended up in the docs. Everyone around them got faster, because their knowledge didn't live only in their head. Now imagine that person never gets tired, never forgets, and never quits — and there's one of them behind every agent in your company, quietly writing down what it learns and handing it to everyone else. That's the whole talk. Not agents that just do the task — agents that teach the company back, and make the whole company a little smarter every night while you sleep.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Right now, everyone in our industry is asking the same question: the models themselves have basically become a commodity — so what is actually my moat? How does my company survive? It's a fair question. You don't own the frontier intelligence; it can disappear, and everyone else has access to the same intelligence you do. And the cost of creating software is going to zero, so anyone can rebuild your product fast. So what's your moat? I believe it's in building this flywheel — and more precisely, the knowledge flowing through it: the distilled, governed, hard-won lessons of how your company does things, captured and compounding, raising the floor for everyone by giving them access to the best knowledge you have. That is the one thing a competitor can't copy by swapping in a better model or by burning more tokens than you.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3418,6 +3462,8 @@ and...
     let lastPublishedIndex = -1;
     let applyingRemoteIndex = false;
     let notesConsole = null;
+    let notesTimerStart = 0;
+    let notesTimerInterval = null;
 
     function clampIndex(index) {
       return Math.max(0, Math.min(slides.length - 1, index));
@@ -3454,6 +3500,7 @@ and...
       notesConsole.innerHTML = `
         <div class="notes-console-top">
           <span data-notes-label></span>
+          <span class="notes-timer" data-notes-timer>00:00</span>
           <span data-notes-count></span>
         </div>
         <h1 class="notes-console-title" data-notes-title></h1>
@@ -3464,10 +3511,31 @@ and...
         </div>
       `;
       document.body.appendChild(notesConsole);
+      startNotesTimer();
+    }
+
+    function startNotesTimer() {
+      notesTimerStart = Date.now();
+      if (notesTimerInterval) clearInterval(notesTimerInterval);
+      const tick = () => {
+        if (!notesConsole) return;
+        const el = notesConsole.querySelector("[data-notes-timer]");
+        if (!el) return;
+        const s = Math.max(0, Math.floor((Date.now() - notesTimerStart) / 1000));
+        const m = Math.floor(s / 60);
+        el.textContent = String(m).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
+      };
+      tick();
+      notesTimerInterval = setInterval(tick, 250);
     }
 
     function renderNotes(index) {
       if (!notesConsole) return;
+      if (index === 0) {
+        notesTimerStart = Date.now();
+        const t = notesConsole.querySelector("[data-notes-timer]");
+        if (t) t.textContent = "00:00";
+      }
       notesConsole.querySelector("[data-notes-label]").textContent = slideLabel(index);
       notesConsole.querySelector("[data-notes-count]").textContent = `${index + 1} / ${slides.length}`;
       notesConsole.querySelector("[data-notes-title]").textContent = slideTitle(index);
@@ -3545,7 +3613,7 @@ and...
       if (event.key.toLowerCase() === "n" && !isNotesMode) openNotesWindow();
     });
     document.addEventListener("click", (event) => {
-      if (isNotesMode || event.button !== 0) return;
+      if (event.button !== 0) return;
       if (event.target.closest('a, button, input, textarea, select, label, summary, [role="button"]')) return;
       if (window.getSelection && String(window.getSelection())) return;
       go(1);
