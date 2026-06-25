@@ -1516,6 +1516,24 @@
     }
     .x-foot:hover { color: #1d9bf0; }
 
+    .discourse-stack {
+      align-self: start;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .discourse-stack .x-tweet {
+      max-width: 500px;
+      padding: 16px 18px;
+      box-shadow: 0 14px 34px rgba(28,25,23,.16);
+    }
+    .discourse-stack .x-tweet .x-body { margin-top: 11px; font-size: 15px; line-height: 1.45; }
+    .discourse-stack .x-tweet .x-body p { margin-bottom: 7px; }
+    .discourse-stack .x-tweet .x-foot { margin-top: 13px; padding-top: 11px; }
+    .discourse-stack .x-tweet:nth-child(1) { align-self: flex-start; transform: rotate(-1.6deg); }
+    .discourse-stack .x-tweet:nth-child(2) { align-self: flex-end; transform: rotate(1.6deg); }
+
     .tangent-chip {
       display: inline-flex; align-items: center; gap: 7px; width: fit-content;
       font-family: var(--mono); font-size: 12px; letter-spacing: .03em;
@@ -2711,15 +2729,45 @@ and...
       <div class="frame" style="--gx: 80%; --gy: 24%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">11 / discourse</div></div>
         <div class="content grid-2" style="grid-template-columns: .82fr 1.18fr; gap: 28px; align-items: start;">
-          <div class="stack" style="margin-top: 26px;">
+          <div class="stack" style="margin-top: 20px;">
             <div class="eyebrow">The internet argument</div>
             <h2 class="display">“Skills vs MCP” is the wrong fight. Skills-over-MCP is the answer.</h2>
           </div>
-          <div class="tweet-static discourse-tweets">
-            <img src="assets/images/skills-vs-mcp-tweets-crop.png" alt="Static screenshot collage of tweets debating whether Skills make MCP obsolete" />
+          <div class="discourse-stack">
+            <div class="x-tweet">
+              <div class="x-tweet-head">
+                <div class="x-avatar">lv</div>
+                <div class="x-id">
+                  <span class="x-name">levelsio <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#1d9bf0" d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/></svg></span>
+                  <span class="x-handle">@levelsio · <b>Follow</b></span>
+                </div>
+                <span class="x-logo"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+              </div>
+              <div class="x-body">
+                <p><span class="x-mark">Thank god MCP is dead</span></p>
+                <p>Just as useless of an idea as LLMs.txt was</p>
+                <p>It's all dumb abstractions that AI doesn't need because AIs are as smart as humans, so they can just use what was already there — which is APIs</p>
+              </div>
+              <a class="x-foot" href="https://x.com/levelsio/status/2031943074151104634" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> View post on X</a>
+            </div>
+            <div class="x-tweet">
+              <div class="x-tweet-head">
+                <div class="x-avatar">GT</div>
+                <div class="x-id">
+                  <span class="x-name">Garry Tan <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="#1d9bf0" d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/></svg></span>
+                  <span class="x-handle">@garrytan · <b>Follow</b></span>
+                </div>
+                <span class="x-logo"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+              </div>
+              <div class="x-body">
+                <p><span class="x-mark">MCP sucks honestly</span></p>
+                <p>It eats too much context window and you have to toggle it on and off and the auth sucks</p>
+              </div>
+              <a class="x-foot" href="https://x.com/garrytan/status/2031910564344262988" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> View post on X</a>
+            </div>
           </div>
         </div>
-        <div class="source">Sources: X posts by @levelsio, @garrytan, @Dan_Jeffries1</div>
+        <div class="source">Sources: X posts by @levelsio and @garrytan</div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>Sometime ago, when skills were introduced, there was this big heated debate — skills change everything, MCP is now dead. For about two weeks the internet decided MCP was obsolete, because now you could just hard-code your API keys directly into a skill. Progress. But I think everyone missed the point. It's not Skills versus MCP. It's Skills over the MCP.</p></aside>
     </div>
