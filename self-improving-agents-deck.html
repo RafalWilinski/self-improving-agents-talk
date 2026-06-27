@@ -1974,9 +1974,16 @@
     .notes p {
       font-size: 14.5px;
       line-height: 1.46;
-      color: rgba(250,250,249,.74);
-      font-weight: 650;
+      color: rgba(250,250,249,.42);
+      font-weight: 600;
       max-width: 1040px;
+    }
+
+    .notes p .key,
+    .notes-console-text .key {
+      color: var(--paper);
+      font-weight: 850;
+      letter-spacing: .005em;
     }
 
     .notes-console {
@@ -2044,11 +2051,16 @@
     .notes-console-text {
       align-self: center;
       max-width: 1180px;
-      color: rgba(250,250,249,.92);
+      color: rgba(250,250,249,.4);
       font-size: clamp(28px, 3.25vw, 58px);
       line-height: 1.18;
-      font-weight: 760;
+      font-weight: 720;
       letter-spacing: 0;
+    }
+
+    .notes-console-text .key {
+      color: var(--paper);
+      font-weight: 880;
     }
 
     .notes-console-footer {
@@ -2446,7 +2458,8 @@
       .unit { width: 100vw; gap: 0; }
       .frame { max-height: none; box-shadow: none; border: 0; }
       .notes { border: 0; box-shadow: none; background: white; color: black; }
-      .notes p { color: black; }
+      .notes p { color: rgba(0,0,0,.55); }
+      .notes p .key { color: black; }
       .progress, .hint { display: none; }
     }
   </style>
@@ -2470,7 +2483,7 @@
           <p class="body">Rafal Wilinski · Founding Engineer, Runlayer</p>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Hi everyone, I'm Rafal. Today I want to talk about self-improving agents, but not in an offline single-player setting where just one agent gets better by itself. I want to talk about how we can apply that self-improving loop across the whole company, or even across the whole enterprise.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Hi everyone, I'm <span class="key">Rafal</span>. Today I want to talk about <span class="key">self-improving agents</span>, but not in an offline <span class="key">single-player</span> setting where just one agent gets better by itself. I want to talk about how we can apply that self-improving loop <span class="key">across the whole company</span> to achieve a <span class="key">self-improving enterprise</span>.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2482,7 +2495,7 @@
           <h2 class="blast-sentence" style="font-size: clamp(48px, 5.8vw, 92px)">Your best <span class="rotor"><span class="rotor-sizer" aria-hidden="true">marketer</span><span class="rotor-word rw1">engineer</span><span class="rotor-word rw2">marketer</span><span class="rotor-word rw3">lawyer</span><span class="rotor-word rw4">sales</span></span> cracks the hard problem — and leaves the playbook <span style="color: var(--tan)">for everyone</span>.</h2>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Imagine the best engineer you've ever worked with — the one who, every time they cracked something genuinely hard, wrote down exactly how they did it and handed it to the whole team. Nobody ever had to solve that problem again. Now imagine that happening for every hard problem, in every department, automatically. That's the dream. And here's the thing — it's almost never how it works. Today most AI is isolated task execution: one agent cracks something brilliant at 2am, and then that knowledge just evaporates with the session. The next person starts from zero. But I want to convince you this is actually possible — we have the primitives, and the ways to build it and make it happen.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Imagine the best engineer you've ever worked with — the one who, every time they cracked something genuinely hard, <span class="key">wrote down exactly how</span> they did it and handed it to the whole team. <span class="key">Nobody ever had to solve that problem again</span>. Now imagine that happening for <span class="key">every hard problem, in every department</span>, automatically. That's <span class="key">the dream</span>. And here's the thing — it's <span class="key">almost never how it works</span>. Today most AI is <span class="key">isolated task execution</span>: one agent cracks something brilliant at 2am, and then that knowledge just <span class="key">evaporates with the session</span>. The next person <span class="key">starts from zero</span>. But I want to convince you this is <span class="key">actually possible</span> — we have the primitives, and the ways to build it and make it happen.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2507,7 +2520,7 @@
         </div>
         <div class="source">Bio source: rwilinski.ai</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Before diving deep into this topic, very quickly on me: I'm a founding engineer at Runlayer. We're making the golden path for AI adoption inside your company. Before that, I was leading Zapier Agents, and earlier I led AI teams at a few other companies. So most of my recent work has been about making agents more reliable in production, not just impressive in demos. Outside of work, I'm usually climbing, and I love whiskey, but for medical and legal reasons, I'm not combining those two at the same time.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Before diving deep into this topic, very quickly on me: I'm a <span class="key">founding engineer at Runlayer</span>. We're making the <span class="key">golden path for AI adoption</span> inside your company. Before that, I was leading <span class="key">Zapier Agents</span>, and earlier I led AI teams at a few other companies. So most of my recent work has been about making agents <span class="key">reliable in production</span>, not just impressive in demos. Outside of work, I'm usually <span class="key">climbing</span>, and I love <span class="key">whiskey</span>, but for medical and legal reasons, I'm not combining those two at the same time.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2524,7 +2537,7 @@
           <h1 class="title title-dim">Self-<span class="title-highlight-animate">Improving Agents</span> That Teach the Company Back</h1>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Before we go to the interesting parts, I want to break down my title into three parts, starting with just improving agents. I believe the path to improving your agents is actually using skills.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Before we go to the interesting parts, I want to break down my title into <span class="key">three parts</span>, starting with just <span class="key">improving agents</span>. I believe the path to improving your agents is actually using <span class="key">skills</span>.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2581,7 +2594,7 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>I want to make sure we are all on the same page. In this talk, a skill is essentially a playbook that an agent or a client can load when it thinks that knowledge is relevant. The technical pattern here is called progressive disclosure. In a simplified way, a skill consists of two things: a description or summary, and the actual content. At the beginning, the harness or client sees only the summary. But when it thinks the knowledge inside can be valuable, it can read the whole skill, insert it into context, and change its trajectory based on that acquired knowledge.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>To make sure that we're on the <span class="key">same page</span>. In this talk, a skill is essentially a <span class="key">playbook</span> that an agent or a client can load when it thinks that knowledge is relevant. The technical pattern here is called <span class="key">progressive disclosure</span>. In a simplified way, a skill consists of two things: a <span class="key">description or summary</span>, and the <span class="key">actual content</span>. At the beginning, the harness or client sees only the <span class="key">summary</span>. But when it thinks the knowledge inside can be valuable, it can read the <span class="key">whole skill</span>, insert it into context, and <span class="key">change its trajectory</span> based on that acquired knowledge.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2599,7 +2612,7 @@
         </div>
         <div class="source">Source: METR Task-Completion Time Horizons of Frontier AI Models, updated May 8, 2026</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Why are skills important? If you have not been living under a rock for the past six to twelve months, your workflow has probably changed pretty dramatically, and you can see that in a quantifiable way. The METR benchmark measures task horizon: how long agents can work independently while still having a good chance of completing some task. The trend is clear: frontier agents are getting better at longer, deeper, multi-step work. Caveat: only if those frontier capabilities are not taken from you. More on that later.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Why are skills <span class="key">important</span>? If you have not been living under a rock for the past six to twelve months, your <span class="key">workflow has changed dramatically</span>, and you can see that in a quantifiable way. The <span class="key">METR benchmark</span> measures <span class="key">task horizon</span>: how long agents can work independently while still having a good chance of completing some task. The <span class="key">trend is clear</span>: frontier agents are getting better at longer, deeper, multi-step work. Caveat: only if those frontier capabilities are <span class="key">not taken from you</span>. More on that later.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2617,7 +2630,7 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>But there is a catch. With great power comes great responsibility. If an agent can work independently for longer, it can also go much deeper into the wrong path. It can find a local optimum, spend hundreds of tool calls exploring one direction, defending it, and still not arrive at the right conclusion. The next agent can do the same thing. It can repeat the wrong exploration, or even find a worse one. So the initial trajectory matters a lot. That is why skills are important: they can guide the agent toward the right target. Otherwise you waste tokens, you waste money, you get bad tool calls, and bad side effects.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But there is a <span class="key">catch</span>. With great power comes <span class="key">great responsibility</span>. If an agent can work independently for longer, it can also go much deeper into the <span class="key">wrong path</span>. It can find a <span class="key">local optimum</span>, spend hundreds of tool calls exploring one direction, defending it, and still not arrive at the right conclusion. The <span class="key">next agent</span> can do the same thing. It can <span class="key">repeat the wrong exploration</span>, or even find a worse one. So the <span class="key">initial trajectory matters</span> a lot. That is why skills are important: they can <span class="key">guide the agent toward the right target</span>. Otherwise you waste <span class="key">time, tokens</span> and most importantly, <span class="key">money</span>.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2635,7 +2648,7 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The most valuable knowledge is often not glamorous. It is tribal ritual that is probably embedded deeply inside your company, and if your agents try to discover that from first principles, like SAP approval paths, legacy deployment scripts, customer escalation language, and things like that, without a curated playbook, they will likely fail. And many times, that failure can be really costly. Effectively, that is why I believe so many AI POCs are failing across the industry. You're not giving the agents the relevant context, the playbooks to act accordingly within your company.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The most valuable knowledge is often <span class="key">not glamorous</span>. It is <span class="key">tribal ritual</span> that is probably embedded deeply inside your company, and if your agents try to discover that from <span class="key">first principles</span>, like SAP approval paths, legacy deployment scripts, customer escalation language, and things like that, without a curated playbook, they will likely <span class="key">fail</span>. And many times, that failure can be <span class="key">really costly</span>. Effectively, that is why I believe so many <span class="key">AI POCs are failing</span> across the industry. You're not giving the agents the <span class="key">relevant context</span>, the playbooks to act accordingly within your company.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2656,7 +2669,7 @@
         </div>
         <div class="source">Reference: <a href="https://x.com/HamelHusain/status/2065057311375421905">Hamel Husain on X</a></div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Skills are great, but they are not problem-free. I think there are three important problems standing in the way of making them great. The first one is that they are local-first and dev-centric. When you look at skills today, the things you mostly find are CLI commands, Git repositories, config files as JSON, and so on. That works great if you are a developer and if this is single-player mode. But if you are a company, or an AI adoption leader, or a VP of AI trying to roll out an AI strategy across the whole company, that approach does not scale. So the challenge is: how can non-technical people use and share skills?</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Skills are great, but they are <span class="key">not problem-free</span>. I think there are <span class="key">three important problems</span> standing in the way of making them great. The first one is that they are <span class="key">local-first and dev-centric</span>. When you look at skills today, the things you mostly find are <span class="key">CLI commands, Git repositories</span>, config files as JSON, and so on. That works great if you are a developer and if this is <span class="key">single-player mode</span>. But if you are a company, or an AI adoption leader, or a VP of AI trying to roll out an AI strategy across the whole company, that approach <span class="key">does not scale</span>. So the challenge is: how can <span class="key">non-technical people</span> use and share skills?</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2667,7 +2680,7 @@
           <span class="npx-skills-tag">npx skills</span>
         </figure>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Btw, this is what happens when your junior developer discovers npx skills. That's the only command I know that installs a playbook, three prompt injections, and someone else's API keys and untrusted root-access scripts, all in one go. We're scanning thousands of skills every day, and trust me — there's wild stuff in there.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Btw, this is what happens when your <span class="key">junior developer discovers npx skills</span>. That's the only command I know that installs a playbook, <span class="key">three prompt injections</span>, and someone else's API keys and <span class="key">untrusted root-access scripts</span>, all in one go. We're <span class="key">scanning thousands of skills</span> every day, and trust me — there's <span class="key">wild stuff</span> in there.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2692,7 +2705,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The problem is that everyone wants to see well-curated, up-to-date playbooks or docs, but nobody wants to take the time to create them after that weird OOM incident. It takes a lot of intention, time, and effort to reflect on stuff, invest your time there, and leave something useful for posterity behind.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The problem is that everyone wants to see <span class="key">well-curated, up-to-date playbooks</span> or docs, but <span class="key">nobody wants to take the time to create them</span> after that weird OOM incident. It takes a lot of <span class="key">intention, time, and effort</span> to reflect on stuff, invest your time there, and leave something useful <span class="key">for posterity</span> behind.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2721,7 +2734,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The third problem is that not every LLM client supports Skills. Claude Code is great, and if your audience is developers, they will probably manage. But if you think about this empathetically and see how your marketing, legal, HR, and finance departments work, they most likely use ChatGPT or some other basic client. Skills cannot be used there. So that is a big problem.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The third problem is that <span class="key">not every LLM client supports Skills</span>. <span class="key">Claude Code</span> is great, and if your audience is developers, they will probably manage. But if you think about this empathetically and see how your <span class="key">marketing, legal, HR, and finance</span> departments work, they most likely use <span class="key">ChatGPT</span> or some other basic client. Skills <span class="key">cannot be used there</span>. So that is a <span class="key">big problem</span>.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2769,7 +2782,7 @@ and...
         </div>
         <div class="source">Sources: X posts by @levelsio and @garrytan</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Sometime ago, when skills were introduced, there was this big heated debate — skills change everything, MCP is now dead. For about two weeks the internet decided MCP was obsolete, because now you could just hard-code your API keys directly into a skill. Progress. But I think everyone missed the point. It's not Skills versus MCP. It's Skills over the MCP.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Sometime ago, when skills were introduced, there was this big <span class="key">heated debate</span> — skills change everything, <span class="key">MCP is now dead</span>. For about two weeks the internet decided <span class="key">MCP was obsolete</span>, because now you could just hard-code your API keys directly into a skill. Progress. But I think everyone <span class="key">missed the point</span>. It's <span class="key">not Skills versus MCP</span>. It's <span class="key">Skills over the MCP</span>.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2924,7 +2937,7 @@ and...
         </div>
         <div class="source">Source: <a href="https://github.com/modelcontextprotocol/experimental-ext-skills">github.com/modelcontextprotocol/experimental-ext-skills</a></div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Instead of installing skills locally, the remote MCP server can become the source of truth. It can search the right skills, enforce policy, and make sure everyone gets the freshest, best version of the skill. And this is no longer just our internal thing. We have been doing this at Runlayer for over six months already, but we see the broader MCP ecosystem also going in this direction.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Instead of installing skills locally, the <span class="key">remote MCP server</span> can become the <span class="key">source of truth</span>. It can search the right skills, <span class="key">enforce policy</span>, and make sure everyone gets the <span class="key">freshest, best version</span> of the skill. And this is no longer just our internal thing. We have been doing this at <span class="key">Runlayer for over six months</span> already, but we see the <span class="key">broader MCP ecosystem</span> also going in this direction.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2936,7 +2949,7 @@ and...
         </figure>
         <div class="source">Source: <a href="https://github.com/modelcontextprotocol/experimental-ext-skills">github.com/modelcontextprotocol/experimental-ext-skills</a></div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>There is already a working group called Skills over MCP. The exact API is not final, but the direction is clear: skills can be distributed through MCP instead of living only as local files or developer-only installs.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>There is already a <span class="key">working group called Skills over MCP</span>. The exact API is not final, but the <span class="key">direction is clear</span>: skills can be <span class="key">distributed through MCP</span> instead of living only as local files or developer-only installs.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -2961,7 +2974,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>We decided to go with a very simple API surface. With just these two functions, you can get surprisingly far. One function finds relevant skills for the query. Another function fetches the relevant skill file. The API is minimal. The hard parts are everything around it: ranking, scoping, versioning, auditing, and all the governance work that makes this useful in a company.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>We decided to go with a very <span class="key">simple API surface</span>. With just these <span class="key">two functions</span>, you can get surprisingly far. One function <span class="key">finds relevant skills</span> for the query. Another function <span class="key">fetches the skill file</span>. The API is <span class="key">minimal</span>. The hard parts are everything around it: <span class="key">ranking, scoping, versioning, auditing</span>, and all the governance work that makes this useful in a company.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3011,7 +3024,7 @@ and...
         </div>
         <div class="source">Sources: OpenAI, Anthropic, Microsoft, Perplexity docs</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>And if you look at this compatibility matrix, you can see that Model Context Protocol solves that problem almost entirely. So the problem of distributing skills to your non-technical people is solved. Plus, because you're now serving skills from a centralized API, they're always up-to-date — you can monitor which skills are used, apply RBAC and scanning, and do all sorts of stuff.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>And if you look at this <span class="key">compatibility matrix</span>, you can see that Model Context Protocol <span class="key">solves that problem almost entirely</span>. So the problem of distributing skills to your <span class="key">non-technical people is solved</span>. Plus, because you're now serving skills from a <span class="key">centralized API</span>, they're <span class="key">always up-to-date</span> — you can monitor which skills are used, apply <span class="key">RBAC and scanning</span>, and do all sorts of stuff.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3028,7 +3041,7 @@ and...
           <h1 class="title title-dim"><span class="title-prefix-reveal">Self-</span><span class="title-highlight">Improving Agents</span> That Teach the Company Back</h1>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>So now we can come back to the first half of the title. We have improving agents, and we have a distribution layer for skills. The next question is: can agents help create and improve those skills themselves?</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>So now we can come back to the <span class="key">first half of the title</span>. We have <span class="key">improving agents</span>, and we have a <span class="key">distribution layer</span> for skills. The next question is: can agents help <span class="key">create and improve those skills themselves</span>?</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3051,7 +3064,7 @@ and...
         </div>
         <div class="source">Source: Voyager, arXiv:2305.16291</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Whenever I see a new paper or framework about self-improving agents, I always go back to the Voyager paper. This was back in 2023, ages ago, right? Right after the GPT-4 release. The question was simple: how long can an agent explore independently, and what can it learn? Voyager introduced this brilliant idea of a skill library. When the agent figured out how to do something useful, like craft a pickaxe, build a furnace, or make a crafting table, it saved the recipe for how it achieved that. Then, in the future, it did not have to rediscover the same thing from first principles. It could retrieve the skill, almost like a higher-order function or reusable code, and use that persisted knowledge directly.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Whenever I see a new paper or framework about self-improving agents, I always go back to the <span class="key">Voyager paper</span>. This was back in <span class="key">2023</span>, ages ago, right? Right after the <span class="key">GPT-4 release</span>. The question was simple: how long can an agent <span class="key">explore independently</span>, and what can it learn? Voyager introduced this brilliant idea of a <span class="key">skill library</span>. When the agent figured out how to do something useful, like craft a pickaxe, build a furnace, or make a crafting table, it <span class="key">saved the recipe</span> for how it achieved that.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3067,7 +3080,7 @@ and...
         </div>
         <div class="source" style="left: auto; right: 64px;">Source: Voyager, arXiv:2305.16291</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>So while this diagram is on screen, the key thing to notice is the skill library. Voyager did not just explore Minecraft and throw the trace away. When the agent achieved something, it saved the recipe for how it got there. Later, when the same capability was needed again, the agent could retrieve that persisted skill instead of reasoning from scratch. That is the core idea I want to carry forward: exploration should turn into reusable procedural knowledge.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p><span class="key">How?</span> The key thing to notice is the <span class="key">skill library</span>. Voyager did not just explore Minecraft and <span class="key">throw the trace away</span>. When the agent achieved something, it <span class="key">saved the recipe as a list of tool calls</span> for how it got there. Later, when the same capability was needed again, the agent could <span class="key">retrieve that persisted skill</span> instead of reasoning from scratch. That is the core idea I want to carry forward: exploration should turn into <span class="key">reusable procedural knowledge</span>.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3137,7 +3150,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>And we started doing something very similar and straightforward. Let the agent do real work. When the run succeeds, take the trace and ask another LLM to distill the reusable part. Then draft or update a skill.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>And we started doing something very <span class="key">similar and straightforward</span>. Let the agent <span class="key">do real work</span>. When the run succeeds, take the trace and ask another LLM to <span class="key">distill the reusable part</span>. Then <span class="key">draft or update a skill</span>.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3226,7 +3239,7 @@ and...
         </div>
         <div class="source">Successes and failures both feed the distiller — which ships the next revision of the skill straight back to the agent.</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>But the most progress comes from the mistakes. Distilling a skill from a clean success is the easy half — the real sharpening happens when the agent fails. A run that goes sideways is the richest signal you have: it exposes the missing guardrail, the edge case, the thing nobody wrote down. So every run, pass or fail, feeds the distiller. The wins confirm what already works; the failures are what actually move the skill forward. It reads all of them and writes the next revision, which flows straight back to the agent — no human hand-editing in the loop. The skill that comes out the far side is sharper than the one that went in, and it got that way mostly from the runs that failed.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But the most progress comes from the <span class="key">mistakes</span>. Distilling a skill from a clean success is the <span class="key">easy half</span> — the real sharpening happens <span class="key">when the agent fails</span>. A run that goes sideways is the <span class="key">richest signal</span> you have: it exposes the missing guardrail, the edge case, the thing nobody wrote down. So <span class="key">every run, pass or fail</span>, feeds the distiller. The wins confirm what already works; the failures are what <span class="key">actually move the skill forward</span>. It reads all of them and writes the <span class="key">next revision</span>, which flows straight back to the agent — <span class="key">no human hand-editing</span> in the loop. The skill that comes out the far side is <span class="key">sharper</span> than the one that went in, and it got that way mostly from the runs that failed.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3256,7 +3269,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The results were great. We had this very peculiar task: running a Chromium fork inside AWS Lambda. With Sonnet 4.6 the results were mixed and unreliable — sometimes the agent figured it out, sometimes not. But after it cracked the code just once and we distilled that run into a skill, every subsequent run succeeded. We did not change the model, we did not change the prompt — same model, same task. The only difference is that this time it had the playbook. Like a developer, but with a better attitude about documentation.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The results were <span class="key">great</span>. We had this very peculiar task: running a <span class="key">Chromium fork inside AWS Lambda</span>. With Sonnet 4.6 the results were <span class="key">mixed and unreliable</span> — sometimes the agent figured it out, sometimes not. But after it <span class="key">cracked the code just once</span> and we distilled that run into a skill, <span class="key">every subsequent run succeeded</span>. We did not change the model, we did not change the prompt — <span class="key">same model, same task</span>. The only difference is that this time it <span class="key">had the playbook</span>. Like a developer, but with a <span class="key">better attitude about documentation</span>.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3282,7 +3295,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>The success rate is the easiest number to show, but the savings are broader. A good skill narrows the search space before the agent starts spending. It reduces failed attempts, tool calls, tokens, wall clock time, and human interruptions.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>The <span class="key">success rate</span> is the easiest number to show, but the <span class="key">savings are broader</span>. A good skill <span class="key">narrows the search space</span> before the agent starts spending. It reduces <span class="key">failed attempts, tool calls, tokens</span>, wall clock time, and human interruptions.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3314,7 +3327,7 @@ and...
         </div>
         <div class="source">Reference: <a href="https://x.com/shadcn/status/2065826989769163068">shadcn on X</a></div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>But putting savings and accuracy aside, there's a deeper reason to do this. Frontier-model intelligence is rented. It can move, change, get deprecated, or just disappear behind a different product surface — I think we all fondly remember that three-day window with Fable. So while we have access to that intelligence, we should use it to discover and persist useful procedures. We should be building a catalog, almost a collective subconscious, of how work gets done inside the company.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But putting savings and accuracy aside, there's a <span class="key">deeper reason</span> to do this. Frontier-model <span class="key">intelligence is rented</span>. It can move, change, <span class="key">get deprecated</span>, or just disappear behind a different product surface — I think we all fondly remember that three-day window with <span class="key">Fable</span>. So while we have access to that intelligence, we should use it to <span class="key">discover and persist useful procedures</span>. We should be building a catalog, almost a <span class="key">collective subconscious</span>, of how work gets done inside the company.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3331,7 +3344,7 @@ and...
           <h1 class="title"><span class="title-highlight">Self-Improving Agents</span> <span class="title-highlight-animate">That Teach the Company Back</span></h1>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>How can we do it? Well — we have all the pieces of the puzzle. We have Skills as a means to improve agents, retain knowledge, and guide models. We have MCP as the unified distribution layer for those skills — and also the central repository, the knowledge base, for all of them. And we have the continuous-learning flywheel that makes one agent smarter. The interesting part is what happens when you multiply that by every agent, on every client, in the entire company.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>How can we do it? Well — we have <span class="key">all the pieces of the puzzle</span>. We have <span class="key">Skills</span> as a means to improve agents, retain knowledge, and guide models. We have <span class="key">MCP</span> as the unified distribution layer for those skills — and also the <span class="key">central repository</span>, the knowledge base, for all of them. And we have the <span class="key">continuous-learning flywheel</span> that makes one agent smarter. The interesting part is what happens when you <span class="key">multiply that by every agent, on every client</span>, in the entire company.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3431,7 +3444,7 @@ and...
         </div>
         <div class="source">One agent's win becomes the company's default.</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>At Runlayer we call this the self-improving organization flywheel — and this is the whole talk in one loop. Any agent, on any client, does real work. The successful run gets distilled into a skill. It passes through the governance layer — scanning for prompt injections and PII, with a human in the loop — and then MCP serves it back to every client. The org skill library in the middle is a constantly evolving knowledge base — always up to date, continuously updated with new alpha, fed on new edge cases. So one agent solves something once — and every other agent, in every department, starts the next task already knowing it. Nobody re-derives that OOM playbook incantation ever again. Your company gets smarter in the background, while you sleep. That is, very literally, teaching the company back.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>At Runlayer we call this the <span class="key">self-improving organization flywheel</span> — and this is the <span class="key">whole talk in one loop</span>. Any agent, on any client, <span class="key">does real work</span>. The successful run gets <span class="key">distilled into a skill</span>. It passes through the <span class="key">governance layer</span> — scanning for prompt injections and PII, with a <span class="key">human in the loop</span> — and then <span class="key">MCP serves it back to every client</span>. The org skill library in the middle is a <span class="key">constantly evolving knowledge base</span> — always up to date, continuously updated with new alpha, fed on new edge cases. So one agent <span class="key">solves something once</span> — and every other agent, in every department, <span class="key">starts the next task already knowing it</span>. <span class="key">Nobody re-derives that OOM playbook</span> ever again. Your company gets <span class="key">smarter in the background, while you sleep</span>. That is, very literally, <span class="key">teaching the company back</span>.</p></aside>
     </div>
   </section>
 <section class="slide-hidden" hidden>
@@ -3443,7 +3456,7 @@ and...
           <h2 class="blast-sentence">A <span class="danger">bad skill</span> shared across agents becomes <span class="danger">organizational hallucination.</span></h2>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>But there's also a catch — and it's a big one. A hallucinating agent is a bad day. A hallucinating skill is a policy. One bad agent makes one bad call; one bad skill makes that same bad call on every client, every day, automatically. You didn't ship a bug — you promoted it to company policy and gave it a distribution channel. That's the real reason a bad skill is worse than no skill: with no skill the agent thinks for itself; with a bad one it's confidently wrong, fast, and now it can teach the new hires. So scope, evidence, and rollback aren't enterprise checkboxes — they're the line between organizational learning and organizational hallucination.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But there's also a <span class="key">catch</span> — and it's a big one. A hallucinating agent is a <span class="key">bad day</span>. A hallucinating skill is a <span class="key">policy</span>. One bad agent makes one bad call; one bad skill makes that same bad call <span class="key">on every client, every day, automatically</span>. You didn't ship a bug — you <span class="key">promoted it to company policy</span> and gave it a distribution channel. That's the real reason a <span class="key">bad skill is worse than no skill</span>: with no skill the agent thinks for itself; with a bad one it's <span class="key">confidently wrong, fast</span>, and now it can teach the new hires. So <span class="key">scope, evidence, and rollback</span> aren't enterprise checkboxes — they're the line between <span class="key">organizational learning and organizational hallucination</span>.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3461,7 +3474,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>These are the four things I'd want you to walk out with. Skills make your agents better — and let you keep what they've learned, even when the model underneath changes. A remote MCP server is the distribution layer: one place to unify, govern, and actually see how skills get used. Agents can distill those skills themselves, from real successes and failures, instead of waiting for someone to hand-write the docs. And the flywheel takes one agent's win and spreads it across the entire company. Put them together and here's what changes: when an agent finishes, the company is smarter than it was before it started — not just another task done, but knowledge that compounds, every run.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>These are the <span class="key">four things</span> I'd want you to walk out with. <span class="key">Skills make your agents better</span> — and let you keep what they've learned, even when the model underneath changes. A <span class="key">remote MCP server is the distribution layer</span>: one place to unify, govern, and actually see how skills get used. <span class="key">Agents can distill those skills themselves</span>, from real successes and failures, instead of waiting for someone to hand-write the docs. And the <span class="key">flywheel spreads one agent's win across the entire company</span>. Put them together and here's what changes: when an agent finishes, the <span class="key">company is smarter than it was before</span> — not just another task done, but <span class="key">knowledge that compounds, every run</span>.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3473,7 +3486,7 @@ and...
           <h2 class="blast-sentence">The model is rented. The knowledge it leaves behind is your <span style="color: var(--tan)">moat</span>.</h2>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Right now, everyone in our industry is asking the same question: the models themselves have basically become a commodity — so what is actually my moat? How does my company survive? It's a fair question. You don't own the frontier intelligence; it can disappear, and everyone else has access to the same intelligence you do. And the cost of creating software is going to zero, so anyone can rebuild your product fast. So what's your moat? I believe it's in building this flywheel — and more precisely, the knowledge flowing through it: the distilled, governed, hard-won lessons of how your company does things, captured and compounding, raising the floor for everyone by giving them access to the best knowledge you have. That is the one thing a competitor can't copy by swapping in a better model or by burning more tokens than you.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Right now, everyone in our industry is asking the same question: the models themselves have basically become a <span class="key">commodity</span> — so what is actually my <span class="key">moat</span>? How does my company <span class="key">survive</span>? It's a fair question. You <span class="key">don't own the frontier intelligence</span>; it can disappear, and everyone else has access to the same intelligence you do. And the <span class="key">cost of creating software is going to zero</span>, so anyone can rebuild your product fast. So <span class="key">what's your moat</span>? I believe it's in <span class="key">building this flywheel</span> — and more precisely, the <span class="key">knowledge flowing through it</span>: the <span class="key">distilled, governed, hard-won lessons</span> of how your company does things, captured and compounding, raising the floor for everyone by giving them access to the best knowledge you have. That is the one thing a <span class="key">competitor can't copy</span> by swapping in a better model or by burning more tokens than you.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3494,7 +3507,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Thank you. I'm Rafal — if any of this resonated, come find me on X; I'd love to talk skills, MCP, or making agents survive production. And if your company is trying to figure out the golden path for AI adoption, that is exactly what we are building at Runlayer.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p><span class="key">Thank you</span>. I'm Rafal — if any of this resonated, come <span class="key">find me on X</span>; I'd love to talk <span class="key">skills, MCP</span>, or making agents survive production. And if your company is trying to figure out the <span class="key">golden path for AI adoption</span>, that is exactly what we are building at <span class="key">Runlayer</span>.</p></aside>
     </div>
   </section>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -3538,7 +3551,7 @@ and...
 
     function slideNotes(index) {
       const note = slides[index].querySelector(".notes p");
-      return note ? note.textContent.replace(/\s+/g, " ").trim() : "";
+      return note ? note.innerHTML.replace(/\s+/g, " ").trim() : "";
     }
 
     function setupNotesMode() {
@@ -3587,7 +3600,7 @@ and...
       notesConsole.querySelector("[data-notes-label]").textContent = slideLabel(index);
       notesConsole.querySelector("[data-notes-count]").textContent = `${index + 1} / ${slides.length}`;
       notesConsole.querySelector("[data-notes-title]").textContent = slideTitle(index);
-      notesConsole.querySelector("[data-notes-text]").textContent = slideNotes(index);
+      notesConsole.querySelector("[data-notes-text]").innerHTML = slideNotes(index);
     }
 
     function publishIndex(index) {
