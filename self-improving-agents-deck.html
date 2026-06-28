@@ -2612,7 +2612,7 @@
         </div>
         <div class="source">Source: METR Task-Completion Time Horizons of Frontier AI Models, updated May 8, 2026</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Why are skills <span class="key">important</span>? If you have not been living under a rock for the past six to twelve months, your <span class="key">workflow has changed dramatically</span>, and you can see that in a quantifiable way. The <span class="key">METR benchmark</span> measures <span class="key">task horizon</span>: how long agents can work independently while still having a good chance of completing some task. The <span class="key">trend is clear</span>: frontier agents are getting better at longer, deeper, multi-step work. Caveat: only if those frontier capabilities are <span class="key">not taken from you</span>. More on that later.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Why are skills <span class="key">important</span>? If you have not been living under a rock for the past six to twelve months, your <span class="key">workflow has changed dramatically</span>, and you can see that in a quantifiable way. The <span class="key">METR benchmark</span> measures <span class="key">task horizon</span>: how long agents can work independently while still having a good <span class="key">chance</span> of completing some task — with emphasis on the word <span class="key">chance</span>. The <span class="key">trend is clear</span>: frontier agents are getting better at longer, deeper, multi-step work. Caveat: only if those frontier capabilities are <span class="key">not taken from you</span>. God I miss <span class="key">Fable</span> so much.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2630,7 +2630,7 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>But there is a <span class="key">catch</span>. With great power comes <span class="key">great responsibility</span>. If an agent can work independently for longer, it can also go much deeper into the <span class="key">wrong path</span>. It can find a <span class="key">local optimum</span>, spend hundreds of tool calls exploring one direction, defending it, and still not arrive at the right conclusion. The <span class="key">next agent</span> can do the same thing. It can <span class="key">repeat the wrong exploration</span>, or even find a worse one. So the <span class="key">initial trajectory matters</span> a lot. That is why skills are important: they can <span class="key">guide the agent toward the right target</span>. Otherwise you waste <span class="key">time, tokens</span> and most importantly, <span class="key">money</span>.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>But there is a <span class="key">catch</span>. With great power, or long <span class="key">task horizons</span>, comes <span class="key">great responsibility</span>. If an agent can work independently for longer, it can also go much deeper into the <span class="key">rabbit hole</span>. It can find a <span class="key">local optimum</span>, spend hundreds of tool calls exploring one direction, defending it, and still not arrive at the right conclusion. The <span class="key">next agent</span> can do the same thing. It can <span class="key">repeat the wrong exploration</span>, or even find a worse one. So the <span class="key">initial trajectory matters</span> a lot. That is why skills are important: they can <span class="key">guide the agent toward the right target</span>. Otherwise you waste <span class="key">time, tokens</span> and most importantly, <span class="key">money</span>.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2782,7 +2782,7 @@ and...
         </div>
         <div class="source">Sources: X posts by @levelsio and @garrytan</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Sometime ago, when skills were introduced, there was this big <span class="key">heated debate</span> — skills change everything, <span class="key">MCP is now dead</span>. For about two weeks the internet decided <span class="key">MCP was obsolete</span>, because now you could just hard-code your API keys directly into a skill. Progress. But I think everyone <span class="key">missed the point</span>. It's <span class="key">not Skills versus MCP</span> — it's Skills <span class="key">over MCP as the distribution layer</span>.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Sometime ago, when skills were introduced, there was this big <span class="key">heated debate</span> — skills change everything, <span class="key">MCP is now dead</span>. For about two weeks the internet decided <span class="key">MCP was obsolete</span>, because now you could just write a bunch of <span class="key">CLI commands</span> and hard-code your API keys directly into a skill and <span class="key">call it progress</span>. But I think everyone <span class="key">missed the point</span>. It's <span class="key">not Skills versus MCP</span> — it's Skills <span class="key">over MCP as the distribution layer</span>.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2937,7 +2937,7 @@ and...
         </div>
         <div class="source">Source: <a href="https://github.com/modelcontextprotocol/experimental-ext-skills">github.com/modelcontextprotocol/experimental-ext-skills</a></div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Instead of installing skills locally, the <span class="key">remote MCP server</span> can become the <span class="key">source of truth</span>. It can search the right skills, <span class="key">enforce policy</span>, and make sure everyone gets the <span class="key">freshest, best version</span> of the skill. And this is no longer just our internal thing. We have been doing this at <span class="key">Runlayer for over six months</span> already, but we see the <span class="key">broader MCP ecosystem</span> also going in this direction.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Instead of installing skills locally, the <span class="key">remote MCP server</span> can become the <span class="key">source of truth</span>. It can search the right skills, <span class="key">enforce policy</span>, and make sure everyone gets the <span class="key">freshest, best version</span> of the skill. We have been doing this at <span class="key">Runlayer for over six months</span> already, but this is <span class="key">no longer just our internal thing</span> — we see the <span class="key">broader MCP ecosystem</span> going in this direction too.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2974,7 +2974,7 @@ and...
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>While the official spec is leaning towards <span class="key">Resources</span>, we decided to go with a very <span class="key">simple API surface</span> composed of just these <span class="key">two tools</span> — you can get surprisingly far. One function <span class="key">finds relevant skills</span> for the query. Another function <span class="key">fetches the skill file</span>. The API is <span class="key">minimal</span>. The hard parts are everything around it: <span class="key">ranking, scoping, versioning, auditing</span>, and all the governance work that makes this useful in a company.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>While the official spec is leaning towards <span class="key">MCP Resources</span>, we decided to go with a very <span class="key">simple API surface</span> composed of just these <span class="key">two tools</span> — you can get surprisingly far. One function <span class="key">finds relevant skills</span> for the query. The other is for <span class="key">fetching skill files</span>. The API is <span class="key">minimal</span>. The hard parts are everything around it: <span class="key">ranking, scoping, versioning, auditing</span>, and all the governance work that makes this useful in a company.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -3024,7 +3024,7 @@ and...
         </div>
         <div class="source">Sources: OpenAI, Anthropic, Microsoft, Perplexity docs</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Remember <span class="key">problems one and three</span>? Skills are <span class="key">well supported across dev tools</span>, but they're stuck there — <span class="key">local-first, dev-centric</span>, and absent from the clients your marketing, legal, and finance teams actually use. <span class="key">MCP as the distribution layer</span> fixes that: it's <span class="key">unified and works in almost every client</span>, not just dev clients. And if you look at this <span class="key">compatibility matrix</span>, you can see that Model Context Protocol <span class="key">solves that problem almost entirely</span>. So the problem of distributing skills to your <span class="key">non-technical people is solved</span>. Plus, because you're now serving skills from a <span class="key">centralized API</span>, they're <span class="key">always up-to-date</span> — you can monitor which skills are used, apply <span class="key">RBAC and scanning</span>, and do all sorts of stuff.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Remember <span class="key">problems one and three</span>? Skills are <span class="key">well supported across dev tools</span>, but they're stuck there — <span class="key">local-first, dev-centric</span>, and absent from the clients your marketing, legal, and finance teams actually use. <span class="key">MCP as the distribution layer</span> fixes that: it's <span class="key">unified and works in almost every client</span>, not just dev clients. So the problem of distributing skills to your <span class="key">non-technical people is solved</span>. Plus, because you're now serving skills from a <span class="key">centralized API</span>, they're <span class="key">always up-to-date</span> — you can monitor which skills are used, apply <span class="key">RBAC and scanning</span>, and do all sorts of stuff.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3041,7 +3041,7 @@ and...
           <h1 class="title title-dim"><span class="title-prefix-reveal">Self-</span><span class="title-highlight">Improving Agents</span> That Teach the Company Back</h1>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>So now we can come back to the <span class="key">first half of the title</span>. We have <span class="key">improving agents</span>, and we have a <span class="key">distribution layer</span> for skills. The next question is: can agents help <span class="key">create and improve those skills themselves</span>?</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Ok, so we now know how we can <span class="key">improve agents</span> — using skills — and we can leverage <span class="key">MCP to distribute</span> them to agents. But let's talk about something more interesting: how can agents <span class="key">create and improve those skills for themselves</span>?</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3239,7 +3239,7 @@ and...
         </div>
         <div class="source">Successes and failures both feed the distiller — which ships the next revision of the skill straight back to the agent.</div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>But the most progress comes from the <span class="key">mistakes</span>. Distilling a skill from a clean success is the <span class="key">easy half</span> — the real sharpening happens <span class="key">when the agent fails</span>. A run that goes sideways is the <span class="key">richest signal</span> you have: it exposes the missing guardrail, the edge case, the thing nobody wrote down. So <span class="key">every run, pass or fail</span>, feeds the distiller. The wins confirm what already works; the failures are what <span class="key">actually make the skill more robust</span>. All that happens completely <span class="key">autonomously and async</span>, with <span class="key">no human in the loop</span>.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Distilling a skill from a clean success is the <span class="key">easy half</span> — we learn the most from <span class="key">mistakes</span>; the real sharpening happens <span class="key">when the agent fails</span>. A run that goes sideways is the <span class="key">richest signal</span> you have: it exposes the missing guardrail, the edge case, the thing nobody wrote down. So <span class="key">every run, pass or fail</span>, feeds the distiller. The wins confirm what already works and <span class="key">make the skill more trustworthy</span>; the failures are what <span class="key">actually make the skill more robust</span>. All that happens completely <span class="key">autonomously and async</span>, with <span class="key">no human in the loop</span>.</p></aside>
     </div>
   </section>
 <section class="slide">
@@ -3458,7 +3458,7 @@ and...
       <aside class="notes"><div class="label">Speaker notes</div><p>But there's also a <span class="key">catch</span> — and it's a big one. A hallucinating agent is a <span class="key">bad day</span>. A hallucinating skill is a <span class="key">policy</span>. One bad agent makes one bad call; one bad skill makes that same bad call <span class="key">on every client, every day, automatically</span>. You didn't ship a bug — you <span class="key">promoted it to company policy</span> and gave it a distribution channel. That's the real reason a <span class="key">bad skill is worse than no skill</span>: with no skill the agent thinks for itself; with a bad one it's <span class="key">confidently wrong, fast</span>, and now it can teach the new hires. So <span class="key">scope, evidence, and rollback</span> aren't enterprise checkboxes — they're the line between <span class="key">organizational learning and organizational hallucination</span>.</p></aside>
     </div>
   </section>
-<section class="slide">
+<section class="slide-hidden" hidden>
     <div class="unit">
       <div class="frame" style="--gx: 72%; --gy: 18%;">
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">26 / close</div></div>
