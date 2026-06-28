@@ -1534,6 +1534,52 @@
     .discourse-stack .x-tweet:nth-child(1) { align-self: flex-start; transform: rotate(-1.6deg); }
     .discourse-stack .x-tweet:nth-child(2) { align-self: flex-end; transform: rotate(1.6deg); }
 
+    .slack-card {
+      align-self: center;
+      width: 100%;
+      max-width: 560px;
+      background: #fff;
+      border: 1px solid rgba(41,37,36,.16);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      font-family: var(--sans);
+      color: #1d1c1d;
+    }
+    .slack-head {
+      display: flex; align-items: center; gap: 9px;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(29,28,29,.10);
+      font-weight: 800; font-size: 15px; color: #1d1c1d;
+    }
+    .slack-head .hash { color: #868686; font-weight: 700; }
+    .slack-head .slack-meta {
+      margin-left: auto; font-family: var(--mono);
+      font-weight: 700; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      color: #d7263d; display: flex; align-items: center; gap: 7px;
+    }
+    .slack-head .dot { width: 7px; height: 7px; border-radius: 999px; background: #d7263d; box-shadow: 0 0 0 3px rgba(215,38,61,.16); }
+    .slack-msgs { padding: 10px 18px 16px; display: flex; flex-direction: column; gap: 13px; }
+    .slack-msg { display: grid; grid-template-columns: 38px 1fr; gap: 11px; align-items: start; }
+    .slack-avatar {
+      width: 38px; height: 38px; border-radius: 9px; flex: 0 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 14px; color: #fff; letter-spacing: .02em;
+    }
+    .slack-avatar.vitor { background: #4a154b; }
+    .slack-avatar.rafal { background: #1264a3; }
+    .slack-msg-body { min-width: 0; }
+    .slack-msg-head { display: flex; align-items: baseline; gap: 8px; line-height: 1.2; }
+    .slack-msg-name { font-weight: 800; font-size: 15px; color: #1d1c1d; }
+    .slack-msg-time { font-size: 12px; color: #868686; font-weight: 600; }
+    .slack-msg-text { margin-top: 2px; font-size: 15.5px; line-height: 1.46; color: #1d1c1d; }
+    .slack-react {
+      display: inline-flex; align-items: center; gap: 5px; margin-top: 8px;
+      padding: 2px 9px 2px 7px; border-radius: 999px;
+      background: rgba(18,100,163,.10); border: 1px solid rgba(18,100,163,.28);
+      font-size: 12.5px; font-weight: 700; color: #1264a3;
+    }
+
     .tangent-chip {
       display: inline-flex; align-items: center; gap: 7px; width: fit-content;
       font-family: var(--mono); font-size: 12px; letter-spacing: .03em;
@@ -2500,6 +2546,61 @@
   </section>
 <section class="slide light">
     <div class="unit">
+      <div class="frame" style="--gx: 82%; --gy: 22%;">
+        <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">reality check</div></div>
+        <div class="content grid-2" style="grid-template-columns: .82fr 1.18fr; gap: 30px; align-items: center;">
+          <div class="stack">
+            <div class="eyebrow">Meanwhile, in #incidents</div>
+            <h2 class="display" style="font-size: 44px;">The win shipped at 3am. The rollback left with the session.</h2>
+          </div>
+          <div class="slack-card">
+            <div class="slack-head"><span class="hash">#</span>&nbsp;incidents <span class="slack-meta"><span class="dot"></span> Prod · 500s</span></div>
+            <div class="slack-msgs">
+              <div class="slack-msg">
+                <div class="slack-avatar vitor">VB</div>
+                <div class="slack-msg-body">
+                  <div class="slack-msg-head"><span class="slack-msg-name">Vitor Balocco</span><span class="slack-msg-time">2:21 PM</span></div>
+                  <div class="slack-msg-text">prod's been throwing 500s since the 2:14 deploy 🔥 can you roll it back?</div>
+                </div>
+              </div>
+              <div class="slack-msg">
+                <div class="slack-avatar rafal">RW</div>
+                <div class="slack-msg-body">
+                  <div class="slack-msg-head"><span class="slack-msg-name">Rafal Wilinski</span><span class="slack-msg-time">2:21 PM</span></div>
+                  <div class="slack-msg-text">yep, on it</div>
+                </div>
+              </div>
+              <div class="slack-msg">
+                <div class="slack-avatar rafal">RW</div>
+                <div class="slack-msg-body">
+                  <div class="slack-msg-head"><span class="slack-msg-name">Rafal Wilinski</span><span class="slack-msg-time">2:24 PM</span></div>
+                  <div class="slack-msg-text">…uh, how do we roll this one back 😅</div>
+                </div>
+              </div>
+              <div class="slack-msg">
+                <div class="slack-avatar vitor">VB</div>
+                <div class="slack-msg-body">
+                  <div class="slack-msg-head"><span class="slack-msg-name">Vitor Balocco</span><span class="slack-msg-time">2:24 PM</span></div>
+                  <div class="slack-msg-text">the agent shipped it at 3am… it didn't leave rollback steps?</div>
+                </div>
+              </div>
+              <div class="slack-msg">
+                <div class="slack-avatar rafal">RW</div>
+                <div class="slack-msg-body">
+                  <div class="slack-msg-head"><span class="slack-msg-name">Rafal Wilinski</span><span class="slack-msg-time">2:25 PM</span></div>
+                  <div class="slack-msg-text">it wrote a flawless PR description. rollback steps? nowhere. 🫠</div>
+                  <span class="slack-react">🔥 3</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes"><div class="label">Speaker notes</div><p>This is the <span class="key">reality today</span>. A great deploy goes out — the agent figured it out, shipped it, wrote a <span class="key">beautiful PR</span>. Then prod catches fire, and <span class="key">nobody, not even the agent, remembers how to roll it back</span>. The one thing that mattered — the rollback procedure — was <span class="key">never captured</span>; it <span class="key">left with the session</span>. It's funny, but it's exactly the <span class="key">isolation problem</span>: every win is <span class="key">trapped in the run</span> that produced it.</p></aside>
+    </div>
+  </section>
+<section class="slide light">
+    <div class="unit">
       <div class="frame" style="--gx: 86%; --gy: 18%;">
         <div class="chrome">
           <div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div>
@@ -3009,6 +3110,12 @@ and...
               <span class="coverage-mark full" aria-label="Full MCP support"></span>
               <div class="coverage-note">MCP Apps are available in Copilot chat; no portable Skills format for end users.</div>
             </div>
+            <div class="coverage-row">
+              <div class="coverage-client">Google Gemini</div>
+              <span class="coverage-mark empty" aria-label="Skills not supported"></span>
+              <span class="coverage-mark full" aria-label="Full MCP support"></span>
+              <div class="coverage-note">Custom/remote MCP via Gemini Enterprise &amp; Workspace connectors and the API; consumer app adds curated partner connectors. No portable Skills format.</div>
+            </div>
           </div>
           <div class="coverage-legend">
             <span class="legend-item"><span class="coverage-mark full"></span> Native</span>
@@ -3016,7 +3123,7 @@ and...
             <span class="legend-item"><span class="coverage-mark empty"></span> Not documented</span>
           </div>
         </div>
-        <div class="source">Sources: OpenAI, Anthropic, Microsoft, Perplexity docs</div>
+        <div class="source">Sources: OpenAI, Anthropic, Microsoft, Google docs</div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>Remember <span class="key">problems one and three</span>? Skills are <span class="key">well supported across dev tools</span>, but they're stuck there — <span class="key">local-first, dev-centric</span>, and absent from the clients your marketing, legal, and finance teams actually use. <span class="key">MCP as the distribution layer</span> fixes that: it's <span class="key">unified and works in almost every client</span>, not just dev clients. So the problem of distributing skills to your <span class="key">non-technical people is solved</span>. Plus, because you're now serving skills from a <span class="key">centralized API</span>, they're <span class="key">always up-to-date</span> — you can monitor which skills are used, apply <span class="key">RBAC and scanning</span>, and do all sorts of stuff.</p></aside>
     </div>
