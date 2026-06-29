@@ -2496,6 +2496,22 @@
     .cell:nth-child(4n) { border-right: 0; }
     .cell:nth-last-child(-n+4) { border-bottom: 0; }
 
+    /* Projector / full-bleed present mode — press F */
+    html:fullscreen, html:-webkit-full-screen { background: #000; }
+    html:fullscreen body, html:-webkit-full-screen body { background: #000; }
+    html:fullscreen .slide, html:-webkit-full-screen .slide { padding: 0; }
+    html:fullscreen .unit, html:-webkit-full-screen .unit { width: 100%; gap: 0; }
+    html:fullscreen .frame, html:-webkit-full-screen .frame {
+      width: auto;
+      height: 100vh;
+      max-height: 100vh;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    html:fullscreen .hint, html:-webkit-full-screen .hint { display: none; }
+
     @media (max-width: 900px) {
       .slide { padding: 10px; }
       .unit { gap: 10px; }
@@ -2524,7 +2540,7 @@
 </head>
 <body>
   <div class="progress" id="progress"></div>
-  <div class="hint">← → or PgUp/PgDn</div>
+  <div class="hint">← → or PgUp/PgDn · F full screen</div>
 
   <section class="slide">
     <div class="unit">
@@ -3780,6 +3796,14 @@ and...
       if (event.key === "Home") goToIndex(0);
       if (event.key === "End") goToIndex(slides.length - 1);
       if (event.key.toLowerCase() === "n" && !isNotesMode) openNotesWindow();
+      if (event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        if (document.fullscreenElement) {
+          document.exitFullscreen?.();
+        } else {
+          (document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen)?.call(document.documentElement);
+        }
+      }
     });
     document.addEventListener("click", (event) => {
       if (event.button !== 0) return;
