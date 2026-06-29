@@ -2553,7 +2553,7 @@
           <h2 class="blast-sentence" style="font-size: clamp(48px, 5.8vw, 92px)">Your best <span class="rotor"><span class="rotor-sizer" aria-hidden="true">marketer</span><span class="rotor-word rw1">engineer</span><span class="rotor-word rw2">marketer</span><span class="rotor-word rw3">lawyer</span><span class="rotor-word rw4">sales</span></span> cracks the hard problem — and leaves the playbook <span style="color: var(--tan)">for everyone</span>.</h2>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>Imagine the best engineer you've ever worked with — the one who, every time they cracked something genuinely hard, <span class="key">wrote down exactly how</span> they did it and handed it to the whole team. <span class="key">Nobody ever had to solve that problem again</span>. Now imagine that happening for <span class="key">every hard problem, in every department</span>, automatically. That's <span class="key">the dream</span>. Even with AI, most work is <span class="key">isolated</span>: one agent cracks something brilliant at 2am, and then that knowledge just <span class="key">evaporates with the session</span>. The next person <span class="key">starts from zero</span>. But I want to convince you this is <span class="key">actually possible</span> — we have the primitives, and the ways to build it and make it happen.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Imagine the best engineer you've ever worked with — the one who, every time they cracked something genuinely hard, <span class="key">wrote down exactly how</span> they did it and handed it to the whole team. <span class="key">Nobody ever had to solve that problem again</span>. Now imagine that happening for <span class="key">every hard problem, in every department</span>, automatically. That's <span class="key">the dream</span>.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2568,35 +2568,35 @@
                 <div class="slack-avatar"><img src="assets/images/vitor-avatar.jpg" alt="Vitor Balocco" /></div>
                 <div class="slack-msg-body">
                   <div class="slack-msg-head"><span class="slack-msg-name">Vitor Balocco</span><span class="slack-msg-time">11:42 AM</span></div>
-                  <div class="slack-msg-text">yo how did we get chromium running inside lambda last quarter 😅</div>
+                  <div class="slack-msg-text">dumb q — when checkout broke back in March, how'd we actually roll it back? 😅</div>
                 </div>
               </div>
               <div class="slack-msg">
                 <div class="slack-avatar"><img src="assets/images/rafal-avatar.jpg" alt="Rafal Wilinski" /></div>
                 <div class="slack-msg-body">
                   <div class="slack-msg-head"><span class="slack-msg-name">Rafal Wilinski</span><span class="slack-msg-time">11:43 AM</span></div>
-                  <div class="slack-msg-text">ohhh that cursed headless browser thing</div>
+                  <div class="slack-msg-text">ohh the great friday outage 💀</div>
                 </div>
               </div>
               <div class="slack-msg">
                 <div class="slack-avatar"><img src="assets/images/rafal-avatar.jpg" alt="Rafal Wilinski" /></div>
                 <div class="slack-msg-body">
                   <div class="slack-msg-head"><span class="slack-msg-name">Rafal Wilinski</span><span class="slack-msg-time">11:43 AM</span></div>
-                  <div class="slack-msg-text">honestly no clue man, the agent cracked it at like 2am and i just merged it</div>
+                  <div class="slack-msg-text">i flipped like 3 feature flags in a very specific order and it came back to life</div>
                 </div>
               </div>
               <div class="slack-msg">
                 <div class="slack-avatar"><img src="assets/images/vitor-avatar.jpg" alt="Vitor Balocco" /></div>
                 <div class="slack-msg-body">
                   <div class="slack-msg-head"><span class="slack-msg-name">Vitor Balocco</span><span class="slack-msg-time">11:44 AM</span></div>
-                  <div class="slack-msg-text">lol so it's… gone?</div>
+                  <div class="slack-msg-text">which order?? staging's doing the exact same thing rn 🫠</div>
                 </div>
               </div>
               <div class="slack-msg">
                 <div class="slack-avatar"><img src="assets/images/rafal-avatar.jpg" alt="Rafal Wilinski" /></div>
                 <div class="slack-msg-body">
                   <div class="slack-msg-head"><span class="slack-msg-name">Rafal Wilinski</span><span class="slack-msg-time">11:44 AM</span></div>
-                  <div class="slack-msg-text">gone. just a merged PR and good vibes 🫡</div>
+                  <div class="slack-msg-text">no clue man 😭 it was 2am, never wrote it down. lives in my head somewhere</div>
                   <span class="slack-react">😭 2</span>
                 </div>
               </div>
@@ -2604,7 +2604,7 @@
           </div>
         </div>
       </div>
-      <aside class="notes"><div class="label">Speaker notes</div><p>This is the <span class="key">reality today</span>. We actually shipped something hard last quarter — Chromium running inside Lambda — the agent <span class="key">cracked it at 2am</span> and we merged it. Months later, <span class="key">nobody, not even the agent, remembers how</span>. The knowledge was <span class="key">never captured</span>; it <span class="key">left with the session</span>. It's funny, but it's exactly the <span class="key">isolation problem</span>: every win is <span class="key">trapped in the run</span> that produced it. And yes — we'll come back to that <span class="key">Chromium-on-Lambda</span> story later.</p></aside>
+      <aside class="notes"><div class="label">Speaker notes</div><p>Yet, it <span class="key">almost never works that way</span>. Even with AI, most work is <span class="key">isolated</span>: one agent or employee cracks something brilliant at 2am, and then that knowledge just <span class="key">evaporates with the session</span>. The next person <span class="key">starts from zero</span>. But I want to convince you this is <span class="key">actually possible</span> — we have the primitives, and the ways to build it and make it happen.</p></aside>
     </div>
   </section>
 <section class="slide light">
@@ -2750,10 +2750,10 @@
           <div class="eyebrow">Why enterprises care</div>
           <h2 class="display">The valuable skills are the rituals nobody wants rediscovered.</h2>
           <div class="usecase-grid">
-            <div class="usecase"><div class="question">“Have we seen this OOM before?”</div><p>Root cause, fix, PR, and what not to restart blindly.</p></div>
-            <div class="usecase"><div class="question">“How does this vendor get approved?”</div><p>SAP screens, exception path, budget code, approval order.</p></div>
-            <div class="usecase"><div class="question">“Which deploy path is real?”</div><p>Legacy script, runtime flags, environment variables, rollback.</p></div>
-            <div class="usecase"><div class="question">“Can I say this to the customer?”</div><p>Severity proof, safe language, escalation owner, approval gate.</p></div>
+            <div class="usecase"><div class="question">“How do we roll this back safely?”</div><p>Which feature flags to flip, in what order, and what not to restart.</p></div>
+            <div class="usecase"><div class="question">“How do we rec revenue on this deal?”</div><p>The multi-year schedule, the exception cases, who signs off.</p></div>
+            <div class="usecase"><div class="question">“Can I send this to the customer?”</div><p>The escalation tone, safe wording, and who owns the reply.</p></div>
+            <div class="usecase"><div class="question">“Who approves this discount?”</div><p>The approval ladder, the threshold, the redlines that are actually negotiable.</p></div>
           </div>
         </div>
       </div>
