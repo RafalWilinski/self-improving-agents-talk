@@ -2515,6 +2515,15 @@
     }
     html:fullscreen .hint, html:-webkit-full-screen .hint { display: none; }
 
+    /* Bigger discourse tweet cards in present mode */
+    html:fullscreen .discourse-stack, html:-webkit-full-screen .discourse-stack { gap: 28px; }
+    html:fullscreen .discourse-stack .x-tweet, html:-webkit-full-screen .discourse-stack .x-tweet { max-width: 640px; padding: 24px 28px; }
+    html:fullscreen .discourse-stack .x-avatar, html:-webkit-full-screen .discourse-stack .x-avatar { width: 58px; height: 58px; }
+    html:fullscreen .discourse-stack .x-name, html:-webkit-full-screen .discourse-stack .x-name { font-size: 21px; }
+    html:fullscreen .discourse-stack .x-handle, html:-webkit-full-screen .discourse-stack .x-handle { font-size: 18px; }
+    html:fullscreen .discourse-stack .x-tweet .x-body, html:-webkit-full-screen .discourse-stack .x-tweet .x-body { font-size: 21px; line-height: 1.5; margin-top: 16px; }
+    html:fullscreen .discourse-stack .x-tweet .x-foot, html:-webkit-full-screen .discourse-stack .x-tweet .x-foot { font-size: 17px; margin-top: 18px; padding-top: 15px; }
+
     @media (max-width: 900px) {
       .slide { padding: 10px; }
       .unit { gap: 10px; }
