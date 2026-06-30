@@ -2065,7 +2065,7 @@
 
     body.notes-mode .notes-console {
       min-height: 100vh;
-      padding: 52px 64px 42px;
+      padding: 26px 32px 21px;
       display: grid;
       grid-template-rows: auto auto 1fr auto;
       gap: 28px;
@@ -2578,7 +2578,7 @@
         <div class="chrome"><div><img class="wordmark wordmark-dark" src="assets/runlayer-logo-dark.svg" alt="Runlayer" /><img class="wordmark wordmark-light" src="assets/runlayer-logo-light.svg" alt="Runlayer" /></div><div class="slide-no">01 / imagine</div></div>
         <div class="blast">
           <div class="eyebrow">Imagine</div>
-          <h2 class="blast-sentence" style="font-size: clamp(48px, 5.8vw, 92px)">Your best <span class="rotor"><span class="rotor-sizer" aria-hidden="true">marketer</span><span class="rotor-word rw1">engineer</span><span class="rotor-word rw2">marketer</span><span class="rotor-word rw3">lawyer</span><span class="rotor-word rw4">sales</span></span> cracks the hard problem — and leaves the playbook <span style="color: var(--tan)">for everyone</span>.</h2>
+          <h2 class="blast-sentence" data-speaker-title="Your best engineer cracks the hard problem — and leaves the playbook for everyone." style="font-size: clamp(48px, 5.8vw, 92px)">Your best <span class="rotor"><span class="rotor-sizer" aria-hidden="true">marketer</span><span class="rotor-word rw1">engineer</span><span class="rotor-word rw2">marketer</span><span class="rotor-word rw3">lawyer</span><span class="rotor-word rw4">sales</span></span> cracks the hard problem — and leaves the playbook <span style="color: var(--tan)">for everyone</span>.</h2>
         </div>
       </div>
       <aside class="notes"><div class="label">Speaker notes</div><p>Imagine the best engineer you've ever worked with — the one who, every time they cracked something genuinely hard, <span class="key">wrote down exactly how</span> they did it and handed it to the whole team. <span class="key">Nobody ever had to solve that problem again</span>. Now imagine that happening for <span class="key">every hard problem, in every department</span>, automatically. That's <span class="key">the dream</span>.</p></aside>
@@ -3670,6 +3670,8 @@ and...
     }
 
     function slideTitle(index) {
+      const explicit = slides[index].querySelector("[data-speaker-title]");
+      if (explicit) return explicit.getAttribute("data-speaker-title");
       const heading = slides[index].querySelector("h1, h2");
       return heading ? heading.textContent.replace(/\s+/g, " ").trim() : "Full-screen visual";
     }
